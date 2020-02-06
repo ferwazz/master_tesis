@@ -11,7 +11,9 @@ En este capítulo se expone la metodología seguida para la obtención de los re
 
 Este trabajo está pensado para llevarse acabo con datos del proyecto TAOS-II, cuando entre en completo funcionamiento. Como parte de este trabajo de tesis, se realizaron observaciones de tránsitos de exoplanetas a una cadencia de 20 fps, es decir, bajo las mismas condiciones que se tendrán en TAOS-II \cite{lehner2012transneptunian}. Todo esto con el fin, de que cuando el proyecto comience, se tengan las herramientas y metodología para analizar los datos.
 
-Hay que destacar que TAOS-II, tendrá exposiciones de dos horas por campo, esto para observar con la menor masa de aire posible. Debido a esto será muy difícil observar un tránsito completo, se espera observar la entrada o la salida del exoplaneta frente al disco solar. Por este motivo, los análisis y la metodología presentadas en este trabajo, se aplicaron a curvas de luz de 2 horas.
+Hay que destacar que TAOS-II tendrá curvas de luz de 2 horas de longitud por campo de observación, esto para observar con la menor masa de aire posible. Debido a esto será muy difícil observar un tránsito completo, se espera observar la entrada o la salida del exoplaneta frente al disco solar. 
+
+A una cadencia de 20fps, esto se traduce en curvas con $N=144000$ muestras. Además, por campo de observación se espera observar alrededor de 10,000 estrellas simultáneamente. Por este motivo, los análisis y la metodología presentadas en este trabajo, se enfocan en detectar las firmas de un tránsitos de exiplanetas de la manera más eficiente posible.
 
 \subsection*{III.1.1 Telescopio e instrumentos en la temporada de observación}
 \addcontentsline{toc}{subsection}{III.1.1 Telescopio e instrumentos en la temporada de observación}
@@ -384,8 +386,15 @@ Este proceso utiliza las componentes principales de los tránsitos simulados par
 \section*{III.6 Criterio de validación para candidatos a tránsitos de exoplanetas}
 \addcontentsline{toc}{section}{III.6 Criterio de validación para candidatos a tránsitos de exoplanetas}
 
+Las curvas de luz resultado de las metodologías para reducción de ruido y PCA, son analizadas de manera automática, donde se ajusta un modelo para validar si es un posible candidato a tránsito de exoplaneta o no.
+
 \subsection*{III.6.1 Modelo del trapezoide}
 \addcontentsline{toc}{subsection}{III.6.1 Modelo del trapezoide}
+
+Las curvas de luz de alta candencia son mucho mas tardadas de procesar por el número de mediciones que se realizan. Como se mencionó anteriormente, TAOS-II tendrá curvas de luz de 2 horas de longitud, lo cual se traduce en curvas con $N=144000$ muestras. Además, por campo de observación se espera observar alrededor de 10,000 estrellas simultaneamente. Teniendo en cuenta la eficiencia del algoritmo, se utilizó el modelo más simple para un tránsito de exoplaneta, un trapezoide. Este modelo es muy utilizado en el procesamiento de señales producidas por tránsitos de exoplanetas, por ejemplo los trabajos \cite{alapini2010transiting}, \cite{hippke2019optimized}, \cite{kipping2016observational} y \cite{morton2012efficient}.
+
+
+Como se explicó en la sección II.1, a partir de curvas de luz de tránsitos solo podemos conocer el periodo orbital $P$ y la profundidad del tránsito $\Delta F$, la cual está en función del radio del planeta $R_{p}$ y el radio de la estrella $R_{*}$. Por lo que el modelo del trapezoide es suficiente para validar un posible candidato a tránsito.
 
 \subsection*{III.6.2 Coeficiente de correlación de Pearson}
 \addcontentsline{toc}{subsection}{III.6.2 Coeficiente de correlación de Pearson}
