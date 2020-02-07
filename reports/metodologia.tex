@@ -90,7 +90,7 @@ A continuación se muestra la metodología para la caracterización del ruido, u
 El primer paso para la caracterización del ruido, fue saber que tipo de distribuciónes podemos encontrar en los datos. En esta subsección analizaremos el ejemplo de la curva de luz de WASP-74b (ver Tabla \ref{tab:tab_objetivos} para más detalle) calculada usando fotometría diferencial de las imágenes obtenidas el 27 de mayo del 2017. La metodología explicada a continuación fue la misma para todas las curvas de luz.
 
 \begin{equation}
-  G(x)=Ae^{-\dfrac{(x-\mu)^{2}}{2\sigma^{2}}};
+  \displaystyle G(x)=Ae^{-\dfrac{(x-\mu)^{2}}{2\sigma^{2}}};
 \end{equation}
 
 Un ruido con una distribución gaussiana (3.1) es conocido como ruido blanco. Se puede apreciar un ejemplo en la Figura 3.3.
@@ -156,7 +156,7 @@ Entonces si queremos simular ruido, que posea características que se aprecian e
 Para añadir estas contribuciones de baja frecuencia, se modeló una envolvente exponencial de la forma:
 
 \begin{equation}
-  E(f)= C + a_{1}e^{-\dfrac{f}{b_{1}}} + a_{2}e^{-\dfrac{f}{b_{2}}};
+  \displaystyle E(f)= C + a_{1}e^{-\dfrac{f}{b_{1}}} + a_{2}e^{-\dfrac{f}{b_{2}}};
 \end{equation}
 
 utilizando esta envolvente se altera el espectro de frecuencias de acuerdo a lo observado en las curvas de luz. De manera similar a la metodología implementada para las distribuciónes temporales, se calcularon los parámetros de $E(f)$ para todas las curvas de luz y se obtuvieron restricciones para la posterior simulación de ruido sintético.
@@ -176,13 +176,13 @@ Utilizando los resultados obtenidos siguiendo la metodología de las secciónes 
 Primeramente, para simular un ruido $R(t)$, dada una función de distribución $m(t)$, calculamos la función de distribución acumulativa:
 
 \begin{equation}
-  M(t)= \int m(t)dt;
+  \displaystyle M(t)= \int m(t)dt;
 \end{equation}
 
 \noindent y después normalizamos $M(t)$:
 
 \begin{equation}
-  M_{norm}(t)= \dfrac{M(t)}{\mbox{MAX}(M(t))};
+  \displaystyle M_{norm}(t)= \dfrac{M(t)}{\mbox{MAX}(M(t))};
 \end{equation}
 
 Para generar el vector de ruido, se realiza un sampleo de puntos aleatorios $t_{i}$ con distribución uniforme $\mathcal{U}(a,b)$, evaluados en la función inversa de la distribución acumulada normalizada denotada como: $M^{-1}_{norm}$. Resumiendo, se muestran a continuación los pasos a seguir:
@@ -218,6 +218,20 @@ Esto resulta en una serie de tiempo, con $SNR=\sigma^{-1}$, con algunos sistemá
     \label{fig:3.8_comp_espectros}
 \end{figure}
 
+Utilizando esta metodología, se creó una base de datos de ruidos simulados para asegurar reproducibilidad. Se variaron los parámetros $(C,a_{1},b_{1},a_{2},b_{2})$ de manera uniforme dentro de los intervalos:
+
+\begin{equation}
+  \begin{split}
+  0.85 \leq C \leq 10 \\
+  0 \leq a_{1} \leq 30 \\
+  0.02 \leq b_{1} \leq 2.5 \\
+  0 \leq a_{2} \leq 150 \\
+  0.0029 \leq b_{2} \leq 0.06 \\
+  \end{split}
+\end{equation}
+
+estos invervalos se calcularon a partir de los espectros de los datos observacionales. Se generaron 100 curvas de ruido por cada valor de SNR. Los valores de SNR utilizados fueron 10, 20, 50, 80 y 100.
+
 
 \section*{III.3 Simulación de tránsitos de exoplanetas}
 \addcontentsline{toc}{section}{III.3 Simulación de tránsitos de exoplanetas}
@@ -241,6 +255,8 @@ Para utilizar BATMAN, se requiere ingresar los parámetros físicos de los cuál
    \caption{Fig. 3.9. Curvas de luz de tránsitos de exoplanetas con $P=1$ día, $i=90\circ$, $a=15R_{*}$, $\epsilon = 0$, $\bar{\omega}=90$ y un modelo de oscurecimiento lineal. Las distintas curvas representan la diferencia en el cambio del flujo $\Delta F$ para diferentes valores de $R_{p}$.}
     \label{fig:3.9_comp_radios}
 \end{figure}
+
+Utilizando BATMAN se creó una base de datos de tránsitos simulados, con un total de 625 curvas diferentes, utilizando 25 diferentes valores de las observables $\Delta F$ y $P$.
 
 \section*{III.4 Análisis de datos observacionales}
 \addcontentsline{toc}{section}{III.4 Análisis de datos observacionales}
@@ -284,7 +300,7 @@ En la sección II.2 se explicó la manera convencional en el que los proyectos e
 Por ejemplo, las curvas de luz de este trabajo fueron tomadas a una cadencia de 20 fps, es decir, 0.05 segundos de exposición, durante aproximadamente 2 horas, lo cual resulta en una curva $F(t)$ de $N=144000$ muestras. Entonces, promediando el flujo de $n=1200$ muestras de la curva de luz $F(t)$, se puede simular una muestra obtenida a partir de una imágen con 60 segundos de exposición $F_{prom}(t)$. Es decir, cada $n=1200$ muestras de la curva de luz original, resultan en $N_{prom}=1$ muestras en la curva promediada, es decir:
 
 \begin{equation}
-  F_{prom}(t)=  \dfrac{\sum_{i=m}^{m+n} F(t_{i})}{n}\hspace{1cm}m=0,n,2n,...,N-n;
+  \displaystyle F_{prom}(t)=  \dfrac{\sum\limits_{i=m}^{m+n} F(t_{i})}{n}\hspace{1cm}m=0,n,2n,...,N-n;
 \end{equation}
 
 Esto resulta en una curva con longitud $N_{prom}=N/n$. Esta misma metodología aplicado a las imágenes, es el método \textit{Shift \& Add} \cite{kluckers1996comparison}.
@@ -292,7 +308,7 @@ Esto resulta en una curva con longitud $N_{prom}=N/n$. Esta misma metodología a
 Para evitar perder resolución temporal, se utiliza la técnica promedio móvil \cite{borucki2009kepler}. Esta técnica consiste en igualmente promediar la contribución de $n$ muestras, pero desplazando el promediado 1 muestra, en vez de $n$ como en el ejemplo anterior, es decir:
 
 \begin{equation}
-  F_{mov}(t)=  \dfrac{\sum_{i=m}^{m+n} F(t_{i})}{n}\hspace{1cm}m=0,1,2,...,N-n;
+  \displaystyle  F_{mov}(t)=  \dfrac{\sum\limits_{i=m}^{m+n} F(t_{i})}{n}\hspace{1cm}m=0,1,2,...,N-n;
 \end{equation}
 
 Lo cual resulta en una curva de luz $F_{mov}(t)$ de longitud  $N_{mov}=N-n$. Otra opción análoga a este método, es usar la mediana, en lugar del promedio, esta tiene un comportamiento mas suave cuando se tienen valores atípicos. Un ejemplo del efecto de estos método en la curva de de luz de WASP-74 (Figura 3.4) se muestra en la Figura 3.11.
@@ -363,7 +379,7 @@ Primero se necesita construir una matriz $X$ con muestras $\{x_{i}|i=1,...,N\}$.
 donde $n$ es el número de puntos en la curva simulada $\{v^{N}_{i}|i=1,...,n\}$. Por cual entonces, $X$ tiene dimensiones $N\times n$, y su SVD está dada por:
 
 \begin{equation}
-  X=U\Sigma V^{T};
+  \displaystyle X=U\Sigma V^{T};
 \end{equation}
 
 Para calcular la matriz de eigenvalores $V^{T}$, se utilizó la función \texttt{TruncatedSVD} de la paquetería \textit{Scikit Learn} en \textit{Python}. Como su nombre lo indica, esta SVD esta truncada a las primeras $k$ componentes más significativas, donde $k$  es definido por el usuario. Esta función nos proporciona la matriz $V^{T}$ truncada, de dimensiones $k\times N$.
@@ -371,13 +387,13 @@ Para calcular la matriz de eigenvalores $V^{T}$, se utilizó la función \texttt
 Después se calcula la contribución de las $k$ componentes sobre una curva de luz $F_{t}$ o un conjunto de $l$ curvas de luz:
 
 \begin{equation}
-  C=V^{T} \times F_{t};
+  \displaystyle C=V^{T} \times F_{t};
 \end{equation}
 
 donde C tiene dimensiones $k\times l$, si utilizamos una sola curva de luz $l=1$. Finalmente para construir la curva de luz $F'_{t}$ reconstruida en base a las $k$ componentes principales:
 
 \begin{equation}
-  F'_{t}=C^{T} \times V^{T};
+  \displaystyle F'_{t}=C^{T} \times V^{T};
 \end{equation}
 
 Este proceso utiliza las componentes principales de los tránsitos simulados para recontruir la curva de luz con ruido. Esto no es análogo a una reducción de ruido. Si la curva $F_{t}$ que se va analizar no contiene las características que se están buscando (las características de $X$), el resultado es una curva $F'_{t}$ que no posee ningún patrón específico. Esto no se convierte en un problema, dado que solo estamos interesados a las curvas que sí presenten las características de un tránsito.
@@ -398,3 +414,17 @@ Como se explicó en la sección II.1, a partir de curvas de luz de tránsitos so
 
 \subsection*{III.6.2 Coeficiente de correlación de Pearson}
 \addcontentsline{toc}{subsection}{III.6.2 Coeficiente de correlación de Pearson}
+
+Después de ajustar el modelo del trapezoide a las curvas de luz, de utilizó el coeficiente de correlación de Pearson, para evaluar la calidad del ajuste. 
+
+\begin{equation}
+\displaystyle C=\frac{\sigma_{12}}{\sigma_{1}\sigma_{2}};
+\end{equation}
+  
+donde $\sigma_{12}$ es la covarianza entre la curva de luz y el modelo ajustado, definida como:
+  
+\begin{equation}
+\displaystyle \sigma_{xy}= \sum\limits_{i}^{n} \frac{1}{n}(x_{i}-\bar{x})(y_{i}-\bar{y});
+\end{equation}
+  
+donde $\sigma_{1}$ y $\sigma_{2}$ son la desviación estándar de la curva de luz y el modelo respectivamente. A partir de simulaciones, se calculó el limite inferior para el coeficiente de correlación, para evaluar si la estrella y su curva de luz se cataloga como objeto de interés, para elaborar un análisis más detallado (véase IIII.2).
