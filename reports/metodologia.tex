@@ -13,7 +13,7 @@ Este trabajo está pensado para llevarse acabo con datos del proyecto TAOS-II, c
 
 Hay que destacar que TAOS-II tendrá curvas de luz de 2 horas de longitud por campo de observación, esto para observar con la menor masa de aire posible. Debido a esto será muy difícil observar un tránsito completo, se espera observar la entrada o la salida del exoplaneta frente al disco solar. 
 
-A una cadencia de 20fps, esto se traduce en curvas con $N=144000$ muestras. Además, por campo de observación se espera observar alrededor de 10,000 estrellas simultáneamente. Por este motivo, los análisis y la metodología presentadas en este trabajo, se enfocan en detectar las firmas de un tránsitos de exiplanetas de la manera más eficiente posible.
+A una cadencia de 20fps, esto se traduce en curvas con $N=144,000$ muestras. Además, por campo de observación se espera observar alrededor de 10,000 estrellas simultáneamente. Por este motivo, los análisis y la metodología presentadas en este trabajo, se enfocan en detectar las firmas de un tránsitos de exiplanetas de la manera más eficiente posible.
 
 \subsection*{III.1.1 Telescopio e instrumentos en la temporada de observación}
 \addcontentsline{toc}{subsection}{III.1.1 Telescopio e instrumentos en la temporada de observación}
@@ -297,7 +297,7 @@ Como se mencionó con anterioridad, para la detección de un tránsito exoplanet
 
 En la sección II.2 se explicó la manera convencional en el que los proyectos enfocados a la detección de exoplanetas realizan sus observaciones. Todos ellos utilizan imágenes de mediana-larga exposición, para así aumentar la SNR. Se puede intentar simular una curva de luz de larga exposición desde una de alta cadencia, simplemente integrando la contribución de $n$ muestras de la curva de luz. 
 
-Por ejemplo, las curvas de luz de este trabajo fueron tomadas a una cadencia de 20 fps, es decir, 0.05 segundos de exposición, durante aproximadamente 2 horas, lo cual resulta en una curva $F(t)$ de $N=144000$ muestras. Entonces, promediando el flujo de $n=1200$ muestras de la curva de luz $F(t)$, se puede simular una muestra obtenida a partir de una imágen con 60 segundos de exposición $F_{prom}(t)$. Es decir, cada $n=1200$ muestras de la curva de luz original, resultan en $N_{prom}=1$ muestras en la curva promediada, es decir:
+Por ejemplo, las curvas de luz de este trabajo fueron tomadas a una cadencia de 20 fps, es decir, 0.05 segundos de exposición, durante aproximadamente 2 horas, lo cual resulta en una curva $F(t)$ de $N=144,000$ muestras. Entonces, promediando el flujo de $n=1200$ muestras de la curva de luz $F(t)$, se puede simular una muestra obtenida a partir de una imágen con 60 segundos de exposición $F_{prom}(t)$. Es decir, cada $n=1200$ muestras de la curva de luz original, resultan en $N_{prom}=1$ muestras en la curva promediada, es decir:
 
 \begin{equation}
   \displaystyle F_{prom}(t)=  \dfrac{\sum\limits_{i=m}^{m+n} F(t_{i})}{n}\hspace{1cm}m=0,n,2n,...,N-n;
@@ -407,7 +407,7 @@ Las curvas de luz resultado de las metodologías para reducción de ruido y PCA,
 \subsection*{III.6.1 Modelo del trapezoide}
 \addcontentsline{toc}{subsection}{III.6.1 Modelo del trapezoide}
 
-Las curvas de luz de alta candencia son mucho mas tardadas de procesar por el número de mediciones que se realizan. Como se mencionó anteriormente, TAOS-II tendrá curvas de luz de 2 horas de longitud, lo cual se traduce en curvas con $N=144000$ muestras. Además, por campo de observación se espera observar alrededor de 10,000 estrellas simultaneamente. Teniendo en cuenta la eficiencia del algoritmo, se utilizó el modelo más simple para un tránsito de exoplaneta, un trapezoide. Este modelo es muy utilizado en el procesamiento de señales producidas por tránsitos de exoplanetas, por ejemplo los trabajos \cite{alapini2010transiting}, \cite{hippke2019optimized}, \cite{kipping2016observational} y \cite{morton2012efficient}.
+Las curvas de luz de alta candencia son mucho mas tardadas de procesar por el número de mediciones que se realizan. Como se mencionó anteriormente, TAOS-II tendrá curvas de luz de 2 horas de longitud, lo cual se traduce en curvas con $N=144,000$ muestras. Además, por campo de observación se espera observar alrededor de 10,000 estrellas simultaneamente. Teniendo en cuenta la eficiencia del algoritmo, se utilizó el modelo más simple para un tránsito de exoplaneta, un trapezoide. Este modelo es muy utilizado en el procesamiento de señales producidas por tránsitos de exoplanetas, por ejemplo los trabajos \cite{alapini2010transiting}, \cite{hippke2019optimized}, \cite{kipping2016observational} y \cite{morton2012efficient}.
 
 
 Como se explicó en la sección II.1, a partir de curvas de luz de tránsitos solo podemos conocer el periodo orbital $P$ y la profundidad del tránsito $\Delta F$, la cual está en función del radio del planeta $R_{p}$ y el radio de la estrella $R_{*}$. Por lo que el modelo del trapezoide es suficiente para validar un posible candidato a tránsito.
