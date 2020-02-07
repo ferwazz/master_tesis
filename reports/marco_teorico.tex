@@ -26,7 +26,7 @@ Las primeras 3 suposiciones son aceptables debido a que la gran mayoría de los 
 Podemos describir la curva de luz de un tránsito a partir de 4 ecuaciones. La primera describe la profundidad del tránsito $\Delta F$. El flujo total $F$ de una estrella es proporcional a su superficie, el cambio en el flujo debido al eclipse se traduce en el cociente de las áreas de la estrella y el planeta transitando frente a esta.
 
 \begin{equation}
-\dfrac{\Delta F}{F}=\left(\dfrac{R_*}{R_p} \right)^{2} ;
+  \displaystyle \dfrac{\Delta F}{F}=\left(\dfrac{R_*}{R_p} \right)^{2} ;
 \end{equation}
 
 De esta relación podemos claramente ver que si conocemos el radio de la estrella $R_{*}$, podemos entonces calcular el radio del planeta $R_{p}$. También esta es la razón por la cual proyectos como \textit{TESS} se enfoca en estrellas pequeñas, porque de esta manera es más sencillo medir $\Delta F$ provocados por planetas más pequeños.
@@ -35,21 +35,21 @@ La duración total del tránsito $t_{T}$esta definida por sus parámetros orbita
 
 \begin{equation}
 \label{ec:tiempoTransito}
-t_{T}=\dfrac{P}{\pi} \mbox{arcsin} \left(\dfrac{R_{*}}{a}\left[ \dfrac{\left( 1+\dfrac{R_{p}}{R_{*}}\right)^{2}-\left( \dfrac{a}{R_{*}} \mbox{cos} i\right)^{2}}{1-\mbox{cos}^{2}i} \right]^{1/2}  \right); 
+\displaystyle t_{T}=\dfrac{P}{\pi} \mbox{arcsin} \left(\dfrac{R_{*}}{a}\left[ \dfrac{\left( 1+\dfrac{R_{p}}{R_{*}}\right)^{2}-\left( \dfrac{a}{R_{*}} \mbox{cos} i\right)^{2}}{1-\mbox{cos}^{2}i} \right]^{1/2}  \right); 
 \end{equation}
 
 Esta relación se puede reducir a:
 
 \begin{equation}
 \label{ec:tiempoTransitoReduc}
-t_{T}=\dfrac{P}{\pi}\sqrt{\left(\dfrac{R_{*}}{a} \right)^{2}- \mbox{cos}^{2}i};
+\displaystyle t_{T}=\dfrac{P}{\pi}\sqrt{\left(\dfrac{R_{*}}{a} \right)^{2}- \mbox{cos}^{2}i};
 \end{equation}
 
 esta ecuación solo es valida si consideramos que $a\gg R_{*}\gg R_{p}$ \cite{winn2010transits}, donde $P$ es el periodo orbital dado por la tercera ley de Kepler \ref{ec:kepler3}, $a$ es el semi-eje e $i$ la inclinación de la órbita. Usando $i$, podemos definir $b=\dfrac{a}{R_{*}}\mbox{cos}i$ conocido como parámetro de impacto, la cual es comúnmente más utilizada para cuantificar la inclinación de la órbita. 
 
 \begin{equation}
 \label{ec:kepler3}
-P=\sqrt{\dfrac{4\pi^{2}a^{3}}{GM_{*}}};
+\displaystyle P=\sqrt{\dfrac{4\pi^{2}a^{3}}{GM_{*}}};
 \end{equation} 
 
 donde $G$ es la constante de la gravitación universal ($G=6.674x10^{-11}\dfrac{Nm^{2}}{kg^{2}}$), y $M_{*}$ la masa de la estrella.
@@ -118,7 +118,7 @@ Por lo general, se utilizan tiempos de exposición de (30s - 120s), dependiendo 
 Como mencionamos en la sección anterior, necesitamos medir con precisión el flujo $f_{\lambda}$ recibido de las estrellas. Es decir, medir la energía por segundo, por unidad de área, por unidad de longitud de onda.
 
 \begin{equation}
-f_{\lambda}=W s^{-1}m^{-2}nm^{-1};
+  \displaystyle f_{\lambda}=W s^{-1}m^{-2}nm^{-1};
 \end{equation}
 
 Para esto, utilizamos cámaras equipadas con CCD's (\textit{Couple Charge Detectors}) los cuales son un conjunto de ``chips'', generalmente de silicio muy sencibles a la luz. Cada CCD está conformado por una matriz de estos ``chips'', mejor conocidos como pixeles (para mayor detalle sobre su funcionamiento veasé \cite{mortara1981evaluations}).
@@ -144,7 +144,7 @@ Cada pixel en la imágen tiene asociado un valor comunmente denominado como ``cu
 La fotometría rápida consiste en sumar las ``cuentas'' $Pix_{t}(x,y) $ de cada pixel ($x_{i},y_{i}$), donde $ i $ va de 1 hasta $ N $, donde $ N $ es el número de pixeles en cada eje de la imágen de la estrella que se esté estudiando y $ t $ es el número de imágenes. En este caso consideraremos el caso con imágenes simétricas, donde el número de pixeles en el eje x $(N_{x})$, y en el eje y $(N_{y})$ son iguales $N_{x}=N_{y}=N$. 
 
 \begin{equation}
-F_{t} = \sum_{x_{i}}^{N} \sum_{y_{i}}^{N} Pix_{t}(x_{i},y_{i}),\hspace{1cm}i=1,...,N;
+  \displaystyle F_{t} = \sum_{x_{i}}^{N} \sum_{y_{i}}^{N} Pix_{t}(x_{i},y_{i}),\hspace{1cm}i=1,...,N;
 \end{equation}
 
 La integración de cada imágen produce un solo valor $F_{t}$ en la curva de luz \cite{romanishin2006introduction}. Por ejemplo la Figura 2.1 fue obtenida mediante la fotometría de 624 imágenes de una región de 7x7 pixeles. Este procesado de las imágenes puede realizarse utilizando distintas metodologías. Como su nombre lo indica, la fotometría rápida toma poco tiempo generar la curva de luz y es muy útil para análisis in sitú, sin embargo no permite observar variaciones pequeñas de flujo, púes regularmente el ruido en las imágenes es suficientemente grande para enmascarar dicha señal. En este trabajo, las curvas de luz fueron obtenidas utilizando la metodología de fotometría diferencial.
@@ -168,13 +168,13 @@ Primeramente definimos 2 máscaras circulares centradas en las coordenadas $(x_{
 Denotaremos el área entre $D_{t}$ y $A_{t}$ como $Area_{D_{t}-A_{t}}$, esta área en conjunto con $S_{t}$ se puede calcular la contribución del flujo debido al cielo por unidad de área $S^{Area}_{t}$.
 
 \begin{equation}
-S^{Area}_{t} = \dfrac{S_{t}}{Area_{D_{t}-A_{t}}};
+  \displaystyle S^{Area}_{t} = \dfrac{S_{t}}{Area_{D_{t}-A_{t}}};
 \end{equation}
 
 El brillo del cielo por unidad de área $S^{Area}_{t}$ multiplicado por el área de $M_{t}$ denotada como $Area_{M_{t}}$	nos da la contribución del cielo dentro de $M_{t}$, es decir:
 
 \begin{equation}
-F_{t} = F_{t} + S_{t} - \left( S^{Area}_{t}\times Area_{M_{t}}\right);
+  \displaystyle F_{t} = F_{t} + S_{t} - \left( S^{Area}_{t}\times Area_{M_{t}}\right);
 \end{equation}
 
 Con esta metodología podemos obtener $F_{t}$ libre de contribución del cielo. Este proceso se repite para las $t$ imágenes. Si existe movimiento de la estrella debido a perturbaciones atmosféricas, o mal guiado, el centroide $ C_{t} $ se recalcula en cada imágen.
@@ -187,7 +187,7 @@ Si en el campo de observación hay $ N $ estrellas, denotaremos la curva de luz 
 
 
 \begin{equation}
-F^{i}_{Diff}=\dfrac{F^{i}}{F^{j}};
+  \displaystyle F^{i}_{Diff}=\dfrac{F^{i}}{F^{j}};
 \end{equation}
 
 Idealmente, estas estrellas deben tener una magnitud similar $(\pm 10 \%)$ y estar cerca de una de otra ($<3$ arcmin) para que la contribución debido a la atmósfera sea comparable.
@@ -214,7 +214,7 @@ Idealmente, estas estrellas deben tener una magnitud similar $(\pm 10 \%)$ y est
 El análisis de las series de tiempo se basa en suponer que el flujo observado en la curva de luz de la estrella que se está estudiando $(F^{obs}_{t})$, está  compuesto a partir de la contribución de distintos fenómenos:
 
 \begin{equation}
-F^{obs}_{t}=F_{t}\times R_{t};
+  \displaystyle F^{obs}_{t}=F_{t}\times R_{t};
 \end{equation}
 
 \noindent donde $F^{t}$ es el flujo real de la estrella, sin ningún tipo de contribución debido a la atmósfera o el instrumento de medición. Todas estas contribuciones que añaden ruido al flujo observado están representadas por $R_{t}$. A su vez, $R_{t}$ está conformado por ruido de alta o baja frecuencia. 
@@ -228,7 +228,7 @@ Entender el comportamiento de cada componente es importante cuando se desea real
 Los tipos de ruido que están presentes en todas las curvas de luz, son el ruido instrumental, el producido por la masa de aire y el causado por las condiciones climáticas. Estos tipos de ruido afectan por igual a las imágenes de alta y baja cadencia, y el tratamiento estadístico utilizado para eliminarlo es el mismo en ambos tipos de curvas. Sin embargo el ruido en las curvas de luz de alta cadencia, es mucho mas notable que en las de baja cadencia. Esto se debe a que el tiempo de exposición es corto, por lo tanto se captan menos fotones provenientes de la estrella, y la magnitud del ruido de lectura puede llegar a ser comparable con la de la estrella. Esto provoca que la señal de un tránsito en la estrella $F^{t}$  se vea ocultada por el ruido $R_{t}$ \cite{pont2006effect}. Para cuantificar la contribución del ruido, calculamos el coeficiente de señal a ruido (SNR):
 
 \begin{equation}
-SNR=\dfrac{\bar{F}^{obs}_{t}}{\sigma};
+  \displaystyle SNR=\dfrac{\bar{F}^{obs}_{t}}{\sigma};
 \end{equation}
 
 \noindent donde $\bar{F}^{obs}_{t}$ es la media aritmética de la curva de luz y $\sigma$ su desviación estándar.
@@ -241,13 +241,13 @@ Por otra parte, analizar el espectro de frecuencias de la serie de tiempo, nos p
 Dentro del estudio de las series de tiempo, una herramienta matemática fundamental es la transformada de Fourier (FT), definida de manera analítica como:
 
 \begin{equation}
-\mathcal{F}(\omega )=\frac{1}{\sqrt{2\pi}}\int_{-\infty}^{\infty} f(t)e^{i\omega t}dt;
+  \displaystyle \mathcal{F}(\omega )=\frac{1}{\sqrt{2\pi}}\int_{-\infty}^{\infty} f(t)e^{i\omega t}dt;
 \end{equation}
 
 \noindent donde $\mathcal{F}(\omega )$ es la transformada de Fourier de $f(t)$. Sin embargo, al trabajar con series de tiempo numéricas haremos uso de la transformada de Fourier discreta (DFT):  
 
 \begin{equation}
-\mathcal{F}_{\omega}= \sum_{n=0}^{N-1} f_{t}e^{-\dfrac{i2\pi}{N}\omega t};
+  \displaystyle \mathcal{F}_{\omega}= \sum_{n=0}^{N-1} f_{t}e^{-\dfrac{i2\pi}{N}\omega t};
 \end{equation}
 
 \noindent de 2.13 podemos observar que es necesario realizar $N$ multiplicaciones y $N$ sumas, lo que resulta en $N^{2}$ operaciones. El método más usual de calcular una transformada de Fourier Discreta es utilizar el algoritmo conocido como \textit{Fast Fourier Transform} (FFT). Como su nombre lo indica, es una manera de calcular la transformada más eficientemente, lo cual es útil cuando analizamos una gran cantidad de datos y/o $N$ es grande. En la FFT se reduce el número de operciones a $Nlog_{2}N$ \cite{cooley1965algorithm}. 
@@ -271,7 +271,7 @@ En este trabajo se utilizó el análisis de Fourier para encontrar las component
 PPara toda matriz $A$ con dimensiones $m\times n$, su descomposición en valores singulares ó SVD (\textit{del inglés Singular Value Decomposition}) es:
 
 \begin{equation}
-A=U\Sigma V^{T};
+  \displaystyle A=U\Sigma V^{T};
 \end{equation}
 
 \noindent donde:\\
@@ -285,13 +285,13 @@ A=U\Sigma V^{T};
 Si multiplicamos la ecuación 2.14 por su transpuesta tenemos:
 
 \begin{equation}
-  AA^{T}=U\Sigma V^{T} V\Sigma U^{T} = U \Sigma^{2} U^{T};
+  \displaystyle AA^{T}=U\Sigma V^{T} V\Sigma U^{T} = U \Sigma^{2} U^{T};
 \end{equation}
 
 \noindent el resultado es el conocido teorema de diagonalización para matrices simétricas que dice: \textit{Sea S una matriz cuadrada de $M\times M$ con $M$ eigenvectores linealmente independientes, entonces existe una descomposición simétrica tal que:}
 
 \begin{equation*}
-  S=Q\Lambda Q^{T};
+  \displaystyle S=Q\Lambda Q^{T};
 \end{equation*}
 
 
