@@ -3,7 +3,7 @@
 \chead{Metodología}
 \setcounter{chapter}{3}
 
-En este capítulo se expone la metodología seguida para la obtención de los resultados de este trabajo, ademas de los conocimientos teóricos básicos y las herramientas numéricas para el análisis de los datos obtenidos.
+En este capítulo se expone la metodología seguida para la obtención de los resultados de este trabajo, adem\'as de los conocimientos teóricos básicos y las herramientas numéricas para el análisis de los datos obtenidos.
 
 
 \section*{III.1 Datos observacionales, estudios preparatorios para TAOS-II}
@@ -11,16 +11,16 @@ En este capítulo se expone la metodología seguida para la obtención de los re
 
 Este trabajo está pensado para llevarse acabo con datos del proyecto TAOS-II, cuando entre en completo funcionamiento. Como parte de este trabajo de tesis, se realizaron observaciones de tránsitos de exoplanetas a una cadencia de 20 fps, es decir, bajo las mismas condiciones que se tendrán en TAOS-II \cite{lehner2012transneptunian}. Todo esto con el fin, de que cuando el proyecto comience, se tengan las herramientas y metodología para analizar los datos.
 
-Hay que destacar que TAOS-II tendrá curvas de luz de 2 horas de longitud por campo de observación, esto para observar con la menor masa de aire posible. Debido a esto será muy difícil observar un tránsito completo, se espera observar la entrada o la salida del exoplaneta frente al disco solar. 
+Hay que destacar que TAOS-II tendrá curvas de luz de 2 horas de duraci\'on por campo de observación, esto para observar con la menor masa de aire posible. Debido a esto será muy difícil observar un tránsito completo, se espera observar la entrada o la salida del exoplaneta frente al disco estelar. 
 
-A una cadencia de 20fps, esto se traduce en curvas con $N=144,000$ muestras. Además, por campo de observación se espera observar alrededor de 10,000 estrellas simultáneamente. Por este motivo, los análisis y la metodología presentadas en este trabajo, se enfocan en detectar las firmas de un tránsitos de exiplanetas de la manera más eficiente posible.
+A una cadencia de 20 fps, esto se traduce en curvas con $N=144,000$ muestras. Además, por campo de observación se espera observar alrededor de 10,000 estrellas simultáneamente. Por este motivo, los análisis y la metodología presentadas en este trabajo, se enfocan en detectar las firmas de tránsitos de exoplanetas de la manera más eficiente posible.
 
 \subsection*{III.1.1 Telescopio e instrumentos en la temporada de observación}
 \addcontentsline{toc}{subsection}{III.1.1 Telescopio e instrumentos en la temporada de observación}
 
-La mayoría de las observaciones se realizaron en el telescopio de 84 cm en el OAN-SPM (Figura 3.1). Utilizando la rueda de filtros MEXMAN, este sistema permite intercambiar el filtro que se antepone al detecto. En total se cuenta con dos ruedas de filtros con 8 posiciones, lo cual resulta en 14 filtros en total (dos posiciones están normalmente vacías). 
+La mayoría de las observaciones se realizaron en el telescopio de $84~cm$ en el OAN-SPM (Figura 3.1). Utilizando la rueda de filtros MEXMAN, este instrumento permite intercambiar el filtro que se antepone al detector. En total se cuenta con dos ruedas de filtros con 8 posiciones, lo cual resulta en 14 filtros en total (dos posiciones están normalmente vacías). 
 
-Como detector utilizaron dos cámaras en distintas temporadas. La primera de ellas fue del 1-6 de agosto del 2016, usando una cámara rápida iXon Ultra 888 de la marca ANDOR, capaz de tomar imágenes de muy corta exposición, con cadencias de hasta 300 imágenes por segundo (fps del inglés \textit{frames per second}). Esta cámara es la única disponible en el OAN-SPM que puede trabajar a 20 fps. A su vez, las imágenes se tomaron en un \textit{binning}\footnote{Binning es una manera de medir el CCD, uniendo la constibución de varios pixeles adyacentes.} de 3x3, con esto, se logró igualar la escala de placa del telescopio de 84 cm, con los telescopios de TAOS-2 en donde el campo de visión fue de $~3.5$ minutos de arco.
+Como detector se utilizaron dos cámaras en distintas temporadas. La primera de ellas fue del 1-6 de agosto del 2016, usando una cámara rápida iXon Ultra 888 de la marca ANDOR, capaz de tomar imágenes de muy corta exposición, con cadencias de hasta 300 imágenes por segundo (fps del inglés \textit{frames per second}). Esta cámara es la única disponible en el OAN-SPM que puede trabajar a 20 fps. A su vez, las imágenes se tomaron en un \textit{binning}\footnote{Binning es una manera de medir el CCD, uniendo la constibución de varios pixeles adyacentes.} de 3x3, con esto, se logró igualar la escala de placa del telescopio de 84 cm, con los telescopios de TAOS-2 en donde el campo de visión fue de $~3.5$ minutos de arco.
 
 \begin{figure}[h!]
 \centering
@@ -30,6 +30,8 @@ Como detector utilizaron dos cámaras en distintas temporadas. La primera de ell
 \end{figure}
 
 La segunda temporada de observación ocurrió del 26-05 de junio del 2017, igualmente en el telescopio de 84 cm. El detector fue una cámara \textit{frame transfer} de la marca \textit{Spectral Instruments}. El campo de la cámara fue disminuido para alcanzar la cadencia necesaria (20 fps), al igual el \textit{binning} de las imágenes variaba dependiendo de la magnitud de la estrella.
+
+\textcolor{red}{no vamos a presentar nada de los telescopios de TAOS II???}
 
 \subsection*{III.1.2 Descripción de objetos observados}
 \addcontentsline{toc}{subsection}{III.1.2 Descripción de objetos observados}
@@ -67,12 +69,12 @@ Kepler 17b & $2.45\pm 0.014 $ & $1.31\pm 0.018 $ & 1.48 & 2.13 & $1.16\pm 0.06$ 
 \addcontentsline{toc}{subsection}{III.1.3 Descripción de datos, influencia del seeing y ruido sistemático}
 
 
-Debido al corto tiempo de exposición, el número de cuentas por estrella es pequeño, por lo cual, el ruido debido al cielo se vuelve un factor importante. En general, el \textit{seeing} durante las temporadas fue de bueno, aunque se presentan ligeras variaciones en la posición de la estrella de toma a toma, este es el motivo por el cual no vemos la estrella como una circunferencia perfecta. Este ruido se ve reflejado a la hora de obtener la curva de luz de las imágenes. La cantidad de ruido se puede cuantificar calculando la SNR (2.11), la cual está en función de la magnitud aparente de la estrella.
+Debido al corto tiempo de exposición, el número de cuentas por estrella es pequeño, por lo cual, el ruido electr\'onico se vuelve un factor importante. Por otro lado, las perturbaciones atmosf\'ericas afectan el \textit{seeing} que es una medida de la estabilidad de la atm\'osfera. Esto afecta a las im\'agenes de alta cadencia de dos maneras: 1) cambiando de posici\'on la estrella en el detector o deform\'andola, lo cual se convierte en una fuerte contribici\'on al ruido cuando se lleva a cabo la fotomtr\'ia de apertura. El \textit{seeing} durante las temporadas fue bueno, aunque se presentan ligeras variaciones en la posición de la estrella de toma a toma, este es el motivo por el cual no vemos la estrella como una circunferencia perfecta. Este ruido se ve reflejado a la hora de obtener la curva de luz de las imágenes. La cantidad de ruido se puede cuantificar calculando la SNR (2.11), la cual está en función de la magnitud aparente de la estrella.
 
 \begin{figure}[H]
   \centering
     \includegraphics[max size={0.7\textwidth}{0.6\textheight}]{./figures/snr_vs_mag.png}
-   \caption{Fig. 3.2. SNR en función de la magnitud en el filtro R. Los puntos representan la SNR calculada utilizando curvas de luz obtenidas en TAOS I. Las lineas solidas representan la predicción de SNR utilizando ruido con distribución de Poisson, ruido del cielo y ruido de lectura. Imágen tomada de \cite{lehner2016status}.}
+   \caption{Fig. 3.2. SNR en función de la magnitud en el filtro R. Los puntos representan la SNR calculada utilizando curvas de luz obtenidas en TAOS I. Las lineas solidas representan la predicción de SNR utilizando ruido con distribución de Poisson, ruido del cielo y ruido de lectura. Gr\'afica tomada de \cite{lehner2016status}.}
     \label{fig:3.2}
   \end{figure}
 
@@ -87,7 +89,7 @@ A continuación se muestra la metodología para la caracterización del ruido, u
 \subsection*{III.2.1 Distribución temporal del ruido}
 \addcontentsline{toc}{subsection}{III.2.1 Distribución temporal del ruido}
 
-El primer paso para la caracterización del ruido, fue saber que tipo de distribuciónes podemos encontrar en los datos. En esta subsección analizaremos el ejemplo de la curva de luz de WASP-74b (ver Tabla \ref{tab:tab_objetivos} para más detalle) calculada usando fotometría diferencial de las imágenes obtenidas el 27 de mayo del 2017. La metodología explicada a continuación fue la misma para todas las curvas de luz.
+El primer paso para la caracterización del ruido, fue saber que tipo de distribuciónes podemos encontrar en los datos. En esta subsección analizaremos el ejemplo de la curva de luz de WASP-74b (ver Tabla \ref{tab:tab_objetivos} para más detalle) calculada usando fotometría diferencial de las imágenes obtenidas el 27 de mayo del 2017. La metodología explicada a continuación se utiliz\'o para caracterizar el ruido en todas las curvas de luz.
 
 \begin{equation}
   \displaystyle G(x)=Ae^{-\dfrac{(x-\mu)^{2}}{2\sigma^{2}}};
@@ -102,7 +104,7 @@ Un ruido con una distribución gaussiana (3.1) es conocido como ruido blanco. Se
     \label{fig:3.3_ruido_gauss}
 \end{figure}
 
-Esta es la manera mas común y simple de modelar el ruido, sin embargo al analizar la curva de luz se encontraron 2 componentes gaussianas que conforman el ruido observado en la curva de luz de WASP-74b que se aprecia en la Figura 3.4.
+Esta es la manera mas común y simple de modelar el ruido, sin embargo, al analizar la curva de luz se encontraron 2 componentes gaussianas que conforman el ruido observado en la curva de luz de WASP-74b que se aprecia en la Figura 3.4.
 
 \begin{figure}[H]
   \centering
@@ -111,7 +113,7 @@ Esta es la manera mas común y simple de modelar el ruido, sin embargo al analiz
     \label{fig:3.4_wasp-74b-curva}
 \end{figure}
 
-Esta misma distribución se encontró en diferentes curvas de luz, por lo que se ajustó el modelo (3.2) a las distribuciónes temporales de las curvas de luz. 
+Esta misma distribución se encontró en diferentes curvas de luz, por lo que se ajustó el modelo \textcolor{red}{ Cual es este modelo??? (3.2)} a las distribuciónes temporales de las curvas de luz. 
 
 \begin{equation}
   m(t)= A_{1}e^{-\dfrac{(t-\mu_{1})^{2}}{2\sigma_{1}^{2}}} + A_{2}e^{-\dfrac{(t-\mu_{2})^{2}}{2\sigma_{2}^{2}}} = G_{1}(t)+G_{2}(t);

@@ -30,3 +30,5 @@ reports/tesis.synctex.gz
 reports/tesis.toc
 
 reports/tesis.bbl
+
+*.log
