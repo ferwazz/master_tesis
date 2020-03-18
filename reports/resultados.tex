@@ -1,0 +1,128 @@
+\chapter*{\textbf{Capítulo IV: Análisis de Resultados}}
+\addcontentsline{toc}{chapter}{\textbf{IV. Análisis de Resultados}}
+\chead{Análisis de Resultados}
+
+\section*{IIII.1 Identificación y eliminación de ruido en curvas de luz}
+\addcontentsline{toc}{section}{IIII.1 Identificación y eliminación de ruido en curvas de luz}
+
+Primeramente presentamos los resultados de las metodologías para la mejora de la SNR en las curvas de luz obtenidas en las temporadas de observación, y las curvas con tránsitos simulados.
+
+\subsection*{IIII.1.2 Datos observacionales}
+\addcontentsline{toc}{subsection}{IIII.1.2 Datos observacionales}
+
+En la Tabla 4.1 se presentan los resultados de la mejora de la SNR utilizando las metodologías descritas en la sección anterior: el filtro de frecuencias de Fourier, promedio móvil y PCA.
+
+\begin{table}
+	\hspace{-1.7cm}
+	\begin{footnotesize}
+	\begin{tabular}{ccccccccc}
+	\hline 
+	Fecha & Nombre & SNR & $\mbox{SNR}_{fourier}$ &  $\mbox{SNR}_{mov}$ & $\mbox{SNR}_{PCA}$\\ 
+	\hline
+	06/Ago/2016 & WASP74b$^{1}$ & 47.03 & 226.50 & 212.93 & 279.51 \\ 
+	06/Ago/2016 & WASP74b$^{2}$ & 39.82 & 114.47 & 114.73 & 156.30 \\
+	06/Ago/2016 & HAT-P-32b & 14.55 & 29.68 & 29.43 & 31.85 \\
+	07/Ago/2016 & HAT-P-37$^{1}$ & 11.66 & 176.44 & 166.00 & 180.11 \\ 
+	07/Ago/2016 & HAT-P-37$^{2}$ & 11.73 & 124.75 & 116.64 & 135.51 \\ 
+	28/May/2017 & HAT-P-14b & 61.40 & 154.80 & 158.96 & - \\ 
+	29/May/2017 & WASP74b & 9.46 & 93.33 & 82.86 & 93.86 \\
+	31/May/2017 & WASP48b & 7.74 & 61.25 & 48.16 & 63.29 \\  
+	31/May/2017 & WASP74b & 14.70 & 41.36 & 42.60 & 47.97 \\
+	02/Jun/2017 & WASP-48b$^{1}$ & 11.07 & 28.10 & 22.91 & 32.71 \\
+	02/Jun/2017 & WASP48b$^{2}$ & 7.67 & 20.37 & 14.78 & 20.32 \\
+	05/Jun/2017 & HAT-P-31b & 6.17 & 68.05 & 43.67 & 80.09 \\
+	08/Jun/2018 & Kepler17b & 146.52 & 523.31 & 512.25 & 602.00 \\ 
+	\hline 
+	\end{tabular} 
+	\end{footnotesize}
+	\caption{Tabla 4.1. Resumen de los resultados para mejorar la SNR en las curvas de luz de tránsitos de exoplanetas obtenidas en múltiples temporadas en el OAN-SPM. SNR indica el valor de ruido después de la fotometría. $\mbox{SNR}_{fourier}$, $\mbox{SNR}_{mov}$ y $\mbox{SNR}_{PCA}$ indican el valor de ruido resultado del filtrado de Fourier, promedio móvil y PCA respectivamente. Los superíndices indican que la misma curva se dividió en 2 segmentos de 2 horas cada uno, los cuales se analizaron de manera independiente.}
+	\end{table}
+
+Todas las curvas de luz de la tabla 4.1 tienen una duración de 2 horas y fueron obtenidas al momento del tránsito de exoplanetario. En la mayoría de las ocasiones, solo se observo la entrada o salida del exoplaneta al disco solar, las curvas con el superíndices ($^{1,2}$) indican que se observó el tránsito completo y se separó en segmentos de 2 horas para su análisis.
+
+\subsection*{IIII.1.3 Curvas de luz simuladas}
+\addcontentsline{toc}{subsection}{IIII.1.3 Curvas de luz simuladas}
+
+Combinando las bases de datos de ruidos simulados (véase III.2.3) y de tránsitos simulados (véase III.3) se generó una prueba de ajuste del modelo del trapezoide y probó el criterio de validación de tránsitos. Se insertaron los tránsitos simulados a las curvas de ruido para distintos valores de SNR. Las 625 curvas de tránsitos, con cada una de las 100 curvas de ruido. Esto genera un total de 62,500 pruebas por valor de SNR, y un total de 2,500 pruebas por valor de $\Delta F$.
+
+En la tabla 1
+
+\begin{table}
+	\hspace{-1.7cm}
+	\begin{footnotesize}
+	\begin{tabular}{ccccccccc}
+	\hline 
+	$\Delta F$ & $\mbox{SNR}_{fourier}$ &  $\mbox{SNR}_{mov}$ & $\mbox{SNR}_{PCA}$\\ 
+	\hline
+	0.03 & 	${56.12}_{-22.53}^{+21.43}$ & ${46.39}_{-17.83}^{+26.5}$ & ${66.95}_{-22.37}^{+20.83}$ \\
+	0.02 &  ${65.82}_{-29.63}^{+42.01}$ & ${51.0}_{-21.18}^{+50.29}$ & ${86.41}_{-37.71}^{+38.48}$ \\
+	0.01 & ${73.24}_{-36.93}^{+96.5}$ & ${55.08}_{-24.24}^{+86.07}$ & ${112.47}_{-58.77}^{+91.6}$ \\
+	0.002 & ${76.25}_{-38.76}^{+163.78}$ & ${56.83}_{-25.37}^{+108.36}$	& ${127.94}_{-69.19}^{+228.57}$ \\
+	\hline 
+	\end{tabular} 
+	\end{footnotesize}
+	\caption{Tabla 4.2. Resultados de la mejora de la SNR para tránsitos simulados, a los cuales se les insertó un ruido simulado de $SNR=10$. $\Delta F$ representa la variación en el flujo de la estrella debido al tránsito. $\mbox{SNR}_{fourier}$, $\mbox{SNR}_{mov}$ y $\mbox{SNR}_{PCA}$ indican el valor de SNR de la curva de luz, obtenida mediante el filtrado de Fourier, promedio móvil y PCA respectivamente. Los intervalos del 90\% fueron obtenidos a partir de la distribución de SNR's que resultan de las pruebas, con $N=2500$ casos únicos para cada $\Delta F$.}
+	\end{table}
+
+
+\begin{table}
+	\hspace{-1.7cm}
+	\begin{footnotesize}
+	\begin{tabular}{ccccccccc}
+	\hline 
+	$\Delta F$ & $\mbox{SNR}_{fourier}$ &  $\mbox{SNR}_{mov}$ & $\mbox{SNR}_{PCA}$\\ 
+	\hline
+	0.03 & 	${81.71}_{-4.37}^{+4.01}$ & ${80.91}_{-4.74}^{+3.74}$ & ${81.22}_{-3.82}^{+4.11}$ \\
+	0.02 &  ${123.01}_{-10.47}^{+7.08}$ & ${120.85}_{-12.16}^{+7.21}$ & ${123.04}_{-8.96}^{+7.65}$ \\
+	0.01 & ${240.81}_{-47.93}^{+24.17}$ & ${226.68}_{-47.63}^{+32.63}$ & ${248.12}_{-36.71}^{+27.47}$ \\
+	0.002 & ${548.05}_{-237.59}^{+474.3}$ & ${439.0}_{-182.87}^{+497.27}$ & ${784.99}_{-357.55}^{+456.92}$ \\
+	\hline 
+	\end{tabular} 
+	\end{footnotesize}
+	\caption{Tabla 4.2. Resultados de la mejora de la SNR para tránsitos simulados, a los cuales se les insertó un ruido simulado de $SNR=100$. $\Delta F$ representa la variación en el flujo de la estrella debido al tránsito. $\mbox{SNR}_{fourier}$, $\mbox{SNR}_{mov}$ y $\mbox{SNR}_{PCA}$ indican el valor de SNR de la curva de luz, obtenida mediante el filtrado de Fourier, promedio móvil y PCA respectivamente. Los intervalos del 90\% fueron obtenidos a partir de la distribución de SNR's que resultan de las pruebas, con $N=2500$ casos únicos para cada $\Delta F$.}
+	\end{table}
+
+Como puede verse en las tablas, el valor de la SNR depende de la variación en el flujo $\Delta F$, los tránsitos profundos disminuyen la SNR, sin embargo podemos apreciar que los valores centrales son comparables.
+
+\section*{IIII.2 Determinación de candidatos a tránsitos}
+\addcontentsline{toc}{section}{IIII.2 Determinación de candidatos a tránsitos}
+
+Cabe destacar que las técnicas de filtrado utilizadas para la mejora de la SNR, deforman la curva de luz, por lo que no es posible recuperar la curva exacta del tránsito. Sin embargo, el propósito es encontrar variaciones en el flujo, para determinar si la estrella observada puede ser candidata a tener un exoplaneta.
+
+\subsection*{IIII.2.1 Datos observacionales}
+\addcontentsline{toc}{subsection}{IIII.2.1 Datos observacionales}
+
+ El desempeño del algoritmo implementado a los datos observacionales, se evaluó reportando el valor de $\Delta F$ medido en la curva de luz filtrada y comparándolo con el mejor valor reportado por la comunidad en bases de datos como \href{http://var2.astro.cz/ETD/index.php}{\textit{Exoplanet Transit Database}}. 
+
+
+\begin{table}
+	\hspace{-1.7cm}
+	\begin{footnotesize}
+	\begin{tabular}{ccccccccc}
+	\hline 
+	Fecha & Nombre & $\Delta F$ (\%) & $\Delta F_{fourier}$ (\%) &  $\Delta F_{mov}$ (\%) & $\Delta F_{PCA}$ (\%) \\ 
+	\hline
+	06/Ago/2016 & WASP74b$^{1}$ & 1.04 & - & - & - \\ 
+	06/Ago/2016 & WASP74b$^{2}$ & 1.04 & - & - & - \\
+	06/Ago/2016 & HAT-P-32b$^{1}$ & 2.44 & - & - & - \\
+	07/Ago/2016 & HAT-P-37$^{1}$ & 2.04 & 1.63 & 1.67 & 1.75 \\ 
+	07/Ago/2016 & HAT-P-37$^{2}$ & 2.04 & 1.74 & 1.84 & 1.91 \\ 
+	28/May/2017 & HAT-P-14b$^{1}$ & 0.5 & - & - & - \\ 
+	29/May/2017 & WASP74b$^{2}$ & 1.04 & 2.42 & 2.59 & 1.62 \\ 
+	31/May/2017 & WASP48b$^{2}$ & 1.0 & - & - & - \\  
+	31/May/2017 & WASP74b$^{1}$ & 1.04 & 6.47 & 6.28 & 6.59 \\
+	02/Jun/2017 & WASP-48b$^{1}$ & 1.0 & 6.63 & 5.33 & 7.5 \\
+	02/Jun/2017 & WASP48b$^{2}$ & 1.0 & - & - & - \\
+	05/Jun/2017 & HAT-P-31b$^{1}$ & 1.23 & - & - & - \\
+	08/Jun/2018 & Kepler17b$^{1}$ & 2.13 & - & - & - \\ 
+	\hline 
+	\end{tabular} 
+	\end{footnotesize}
+	\caption{Tabla 4.2. Resultados de $\Delta F$ obtenidos ajustando el modelo del trapezoide a las curvas de luz de tránsitos. $\Delta F_{fourier}$, $\Delta F_{mov}$ y $\Delta F_{PCA}$ representan el valor de $\Delta F$ obtenido después del filtrado de Fourier, promedio móvil y PCA respectivamente. El superíndice $^{1}$ indica que a curva de luz fue obtenida mediante el inicio del tránsito y $^{2}$ indica que la curva contenía el final del tránsito.}
+	\end{table}
+
+
+\subsection*{IIII.2.2 Simulaciones}
+\addcontentsline{toc}{subsection}{IIII.2.2 Simulaciones}
+
+
