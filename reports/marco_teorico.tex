@@ -31,7 +31,7 @@ Podemos describir la curva de luz de un tránsito a partir de 4 ecuaciones. La p
 
 De esta relación podemos claramente ver que si conocemos el radio de la estrella $R_{*}$, podemos entonces calcular el radio del planeta $R_{p}$. También esta es la razón por la cual proyectos como \textit{TESS} se enfoca en estrellas pequeñas, porque de esta manera es más sencillo medir $\Delta F$ provocados por planetas más pequeños.
 
-La duración total del tránsito $t_{T}$esta definida por sus parámetros orbitales y el radio estelar.
+La duración total del tránsito $t_{T}$ está definida por sus parámetros orbitales y el radio estelar.
 
 \begin{equation}
 \label{ec:tiempoTransito}
@@ -48,11 +48,18 @@ Esta relación se puede reducir a:
 esta ecuación solo es valida si consideramos que $a\gg R_{*}\gg R_{p}$ \cite{winn2010transits}, donde $P$ es el periodo orbital dado por la tercera ley de Kepler \ref{ec:kepler3}, $a$ es el semi-eje e $i$ la inclinación de la órbita. Usando $i$, podemos definir $b=\dfrac{a}{R_{*}}\mbox{cos}i$ conocido como parámetro de impacto, la cual es comúnmente más utilizada para cuantificar la inclinación de la órbita. 
 
 \begin{equation}
-\label{ec:kepler3}
-\displaystyle P=\sqrt{\dfrac{4\pi^{2}a^{3}}{GM_{*}}};
-\end{equation} 
-
+  \label{ec:kepler3}
+  \displaystyle P=\sqrt{\dfrac{4\pi^{2}a^{3}}{GM_{*}}};
+  \end{equation} 
+  
 donde $G$ es la constante de la gravitación universal ($G=6.674x10^{-11}\dfrac{Nm^{2}}{kg^{2}}$), y $M_{*}$ la masa de la estrella.
+
+El tiempo total $t_{T}$ puede desglosarse en 2 diferentes procesos. El tiempo de que le toma al planeta estar completamente sobre el disco solar, el cual denotaremos como $t_{c}$ y la parte ``plana'' del tránsito $t_{F}$, donde:
+
+\begin{equation}
+  \label{ec:tiempoTransitoReduc}
+  \displaystyle t_{T}=2t_{c}+t_{F};
+\end{equation}
 
 Por último, la relación masa-radio, por ejemplo $R_{*}=kM_{*}^{x}$ ($x\sim 0.8$ para estrellas de secuencia principal del tipo espectral F-K), y k una constante el cual su valor depende del tipo estelar de la estrella y su edad. \cite{allen2001allen}
 
