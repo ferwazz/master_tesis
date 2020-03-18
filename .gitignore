@@ -30,3 +30,5 @@ reports/tesis.synctex.gz
 reports/tesis.toc
 
 reports/tesis.bbl
+
+data/train_pca_mandel_entradas.hdf5
