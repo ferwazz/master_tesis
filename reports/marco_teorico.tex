@@ -2,11 +2,23 @@
 \addcontentsline{toc}{chapter}{\textbf{II. Marco teórico}}
 \chead{Marco teórico}
 \setcounter{chapter}{2}
+\setcounter{equation}{0}
+\setcounter{figure}{0}
+\setcounter{table}{0}
 
 \section*{II.1 Señales observadas por tránsitos de exoplanetas}
 \addcontentsline{toc}{section}{II.1 Señales observadas por tránsitos de exoplanetas}
 
-Como se mencionó anteriormente, el método del tránsito es la técnica más popular y exitosa para descubrir nuevos planetas. Un tránsito ocurre cuando un exoplaneta está alineado de manera particular con la línea de observación ($i\sim 90^{\circ}$) \textcolor{red}{explicar esta ecuaci'on, con alguna figura donde se vea que significa i}. Al estar orbitando su estrella, un planeta bloquea el brillo de la misma, lo cual provoca una ligera disminución en su brillo. A continuación se muestran las ecuaciones que describen este fenómeno.
+Como se mencionó anteriormente, el método del tránsito es la técnica más popular y exitosa para descubrir nuevos planetas. Un tránsito ocurre cuando un exoplaneta está alineado de manera particular con la línea de observación ($i\sim 90^{\circ}$) y el planeta bloquea parte de su superficie, lo cual provoca una ligera disminución en su brillo. Como se muestra en la figura 2.1, si $i$ disminuye el tránsito deja de ser visible por el observador, por lo que la probabilidad de observar un tránsito, está en función del ángulo de inclinación con respecto a la línea de visión.
+
+
+\begin{figure}[H]
+  \centering
+    \includegraphics[max size={0.9\textwidth}{0.9\textheight}]{./figures/inclinacion.png}
+   \caption{Esquema de un transito de exoplaneta observable. $i$ representa la inclinación de la órbita, $R_{*}$ es el radio de la estrella y $b$ el parámetro de impacto.}
+    \label{fig_2_1_transito}
+\end{figure}
+
 
 \subsection*{II.1.1 Sistema general de ecuaciones}
 \addcontentsline{toc}{subsection}{II.1.1 Sistema general de ecuaciones}
@@ -21,7 +33,7 @@ A partir de las señales observadas de tránsitos de exoplanetas, podemos calcul
 \item No se considerará el oscurecimiento al limbo ($\textit{Limb Darkening}$).
 \end{itemize}
 
-Las primeras 3 suposiciones son aceptables \textcolor{red}{mencionar para que tipos de estrellas y planetas, imagina un jupiter en una M,} debido a que la gran mayoría de los sistemas planetarios cumplen con relaciones similares. Los planetas con periodos orbitales cortos ($\sim 5$ días) tienen excentricidades cercanas a 0.
+Las primeras 3 suposiciones son aceptables para estrellas de secuencia principal, la gran mayoría de los sistemas planetarios cumplen con relaciones similares. Los planetas con periodos orbitales cortos ($\sim 5$ días) tienen excentricidades cercanas a 0.
 
 Bajo estas aproximaciones, podemos describir la curva de luz de un tránsito a partir de 4 ecuaciones. La primera (\ref{ec:profundidadTransito}) representa la profundidad del tránsito $\Delta F$. El flujo total $F$ de una estrella es proporcional a su superficie, el cambio en el flujo debido al tr'ansito se traduce en el cociente de las áreas de la estrella y el planeta transitando frente a esta.
 
@@ -67,8 +79,8 @@ Por último, la relación masa-radio, por ejemplo $R_{*}=kM_{*}^{x}$ ($x\sim 0.8
 \begin{figure}[h!]
   \centering
     \includegraphics[max size={0.9\textwidth}{0.9\textheight}]{./figures/transito_listo.png}
-   \caption{Fig. 2.1. Esquema de un transito de exoplaneta.}
-    \label{fig_2_1_transito}
+   \caption{Proceso que ocurre durante un tránsito planetario. La curva en la parte inferior representa el flujo de la estrella medido por el observador. $i$ representa la inclinación de la órbita, $R_{*}$ es el radio de la estrella, $R_{p}$ el radio del planeta, $\Delta F$ es el cambio en el flujo visto por el observador, $t_{T}$ es la duración total del tránsito y $b$ el parámetro de impacto.}
+    \label{fig_2_2_transito_curva}
 \end{figure}
  
 Utilizando la información contenida en las curvas de luz de tránsitos, podemos calcular el radio del planeta $R_{p}$ y el periodo orbital $P$, si se tienen múltiples observaciones simultáneas del evento, y si el radio de la estrella $R_{*}$ es conocido. Para los demás parámetros orbitales se necesita información complementaria de la dinámica de los cuerpos, normalmente obtenida mediante la técnica de velocidad radial. Es por este motivo que para la confirmación de un exoplaneta, este debe ser detectado por un mínimo de 2 técnicas diferentes.
@@ -83,8 +95,8 @@ Es posible incorporar el efecto del LD a la descripción matemática del tránsi
 \begin{figure}[h!]
   \centering
     \includegraphics[max size={0.9\textwidth}{0.9\textheight}]{./figures/limbDarkening.png}
-   \caption{Fig. 2.2. Efecto del oscurecimiento del limbo (LD) en curvas de luz de tránsitos simulados. Se muestran 3 modelos distintos, en azul tenemos LD constante, en naranja un modelo lineal, en verde un modelo cuadrático y en rojo un modelo no-lineal.}
-    \label{fig_2_2_limbDarkening}
+   \caption{Efecto del oscurecimiento del limbo (LD) en curvas de luz de tránsitos simulados. Se muestran 3 modelos distintos, en azul tenemos LD constante, en naranja un modelo lineal, en verde un modelo cuadrático y en rojo un modelo no-lineal.}
+    \label{fig_2_3_limbDarkening}
 \end{figure}
 
 Para el propósito de este trabajo, no afecta el modelo de LD que se utilice, debido a que para la detección del tránsito, solamente buscamos detectar el cambio en el flujo $\Delta F$ independientemente de la forma de la curva de luz. El modelo de reconocimiento utilizado y descrito más adelante (véase III.6.1) es equivalente a una curva de luz con un LD constante.
@@ -92,7 +104,7 @@ Para el propósito de este trabajo, no afecta el modelo de LD que se utilice, de
 \subsection*{II.1.3 Falsos positivos en la búsqueda de tránsitos}
 \addcontentsline{toc}{subsection}{II.1.3 Falsos positivos en la búsqueda de tránsitos}
 
-Los grandes proyectos como \textit{TESS} y \textit{Kepler}, observan miles, incluso cientos de miles de estrellas de manera simultánea, \textcolor{red}{EXPLICAR MEJOR ESTA LINEA:: esto para compensar la probabilidad de encontrar sistemas planetarios alineados con la linea de visión ($i\sim 90^{\circ}$)}. Por lo general, los datos recolectados por estos grandes proyectos, son preprocesados de manera automática, y se archivan las curvas de luz de interés en las cuales se observan algunas características similares a las que tendría un tránsito real. En el caso de \textit{Kepler}, la estrella se catalóga como \textit{Kepler Object of Interest (KOI)}, sin embargo, un porcentaje de estos objetos de interés no son realmente planetas. Las posibles detecciones fallidas se dividen en dos grupos: falsos positivos y falsas alarmas.
+Los grandes proyectos como \textit{TESS} y \textit{Kepler}, observan miles, incluso cientos de miles de estrellas de manera simultánea, esto aumenta significativamente la probabilidad de encontrar sistemas planetarios, cuyo plano orbital se encuentra lo suficientemente alineado con la linea de visión ($i\sim 90^{\circ}$), para poder observar un tránsito exoplanetario (véase Fig 2.1). Por lo general, los datos recolectados por estos grandes proyectos, son preprocesados de manera automática, y se archivan las curvas de luz de interés en las cuales se observan algunas características similares a las que tendría un tránsito real. En el caso de \textit{Kepler}, la estrella se catalóga como \textit{Kepler Object of Interest (KOI)}, sin embargo, un porcentaje de estos objetos de interés no son realmente planetas. Las posibles detecciones fallidas se dividen en dos grupos: falsos positivos y falsas alarmas.
 
 Los falsos positivos ocurren cuando tenemos curvas de luz que parecen ser producidas por un tránsito de exoplanetas pero no lo son, los dos casos más comunes son lo siguientes:
 
@@ -116,8 +128,8 @@ Por lo general, se utilizan tiempos de exposición de (30s - 120s), dependiendo 
 \begin{figure}[h!]
   \centering
     \includegraphics[max size={0.9\textwidth}{0.9\textheight}]{./figures/transitoXO3.png}
-   \caption{Fig. 2.3. Curva de luz de XO-3, tomada con el filtro R de Johnson en el telescopio de $84~cm$ en el Observatorio Astronómico Nacional (OAN-SPM) el 21 de octubre del 2016.}
-    \label{fig_2_3_XO3}
+   \caption{Curva de luz de XO-3, tomada con el filtro R de Johnson en el telescopio de $84~cm$ en el Observatorio Astronómico Nacional (OAN-SPM) el 21 de octubre del 2016.}
+    \label{fig_2_4_XO3}
 \end{figure}
 
 \section*{II.3 Reducción de imágenes en curvas de luz}
@@ -129,36 +141,82 @@ Como mencionamos en la sección anterior, necesitamos medir con precisión el fl
   \displaystyle f_{\lambda}=W s^{-1}m^{-2}nm^{-1};
 \end{equation}
 
-Para esto, utilizamos cámaras equipadas con CCD's (\textit{Couple Charge Detectors}) los cuales son un conjunto de ``chips'', generalmente de silicio muy sensibles a la luz. Cada CCD está conformado por una matriz de estos ``chips'', mejor conocidos como pixeles (para mayor detalle sobre su funcionamiento veasé \cite{mortara1981evaluations}).
+Para esto, utilizamos cámaras equipadas con CCD's (\textit{Couple Charge Detectors}) los cuales son un conjunto de ``chips'', generalmente de silicio muy sensibles a la luz. Cada CCD está conformado por una matriz de estos ``chips'', mejor conocidos como pixeles (para mayor detalle sobre su funcionamiento véase \cite{mortara1981evaluations}).
 
 Estos dispositivos en combinación con grandes telescopios, nos brindan imágenes de alta calidad. Por lo general, en astronomía se utilizan CCD's monocromáticos debido a que son más sensibles y puede hacerse mejor ciencia con ellos, a diferencia de los CCD's que diferencian colores, como las cámaras comerciales para fotografía convencional.
 
 \begin{figure}[h!]
   \centering
     \includegraphics[scale=8]{./figures/wasp74b.png}
-   \caption{Fig. 2.4. Ejemplo de la imágen de una estrella estudiada en este trabajo, obtenida con una cámara rápida IXON en el telescopio de $84~cm$ en el OAN-SPM.}
-    \label{fig_2_4_wasp74b}
+   \caption{Ejemplo de la imágen de una estrella estudiada en este trabajo, obtenida con una cámara rápida IXON en el telescopio de $84~cm$ en el OAN-SPM.}
+    \label{fig_2_5_wasp74b}
 \end{figure}
 
-Sin embargo, las imágenes por si solas no son muy útiles cuando se quiere calcular propiedades físicas de los objetos observados, es por eso que necesitamos procesarlas para extraer información de ellas. En este trabajo, estudiamos las estrellas mediante curvas de luz, que son la medida del flujo $f_{\lambda}$ durante intervalos de tiempo regulares, las cuales se obtienen mediante un procesado denominado fotometría. Existen distintas metodologías dependiendo del estudio que se esté realizado, a continuación discutiremos brevemente 2 de ellas.
+Sin embargo, las imágenes por si solas no son muy útiles cuando se quiere calcular propiedades físicas de los objetos observados, es por eso que necesitamos procesarlas para extraer información de ellas. En este trabajo, estudiamos las estrellas mediante curvas de luz, que son la medida del flujo $f_{\lambda}$ durante intervalos de tiempo regulares, las cuales se obtienen mediante un procesado denominado fotometría. Existen distintas metodologías dependiendo del objeto de estudio que se esté realizado, en las subsecciones II.3.2 y II.3.3 se explican 2 de ellas.
 
-\subsection*{II.3.1 Fotometría rápida}
-\addcontentsline{toc}{subsection}{II.1.2 Fotometría rápida}
+\subsection*{II.3.1 Preprocesamiento de imágenes}
+\addcontentsline{toc}{subsection}{II.3.1 Preprocesamiento de imágenes}
+
+El preprocesado de las imágenes de ciencia nos ayuda a tener mejores resultados después de la fotometría, este proceso limpia las imágenes de variaciones sistemáticas, aberraciones del espejo, ruido electrónico, entre otras. Para esto, es necesario contar con imágenes de calibración comumente llamadas \textit{bias}, \textit{darks} y \textit{flats}, las cuales describiremos a continuación:
+
+\begin{itemize}
+  \item bias: estas imágenes son resultado de la lectura del CCD, sin exponer el detector a la radiación. Es decir una imágen tomada con cero segundos de exposición. Estas imágenes contienen información sobre el ruido electrónico y el ruido de lectura del CCD. 
+  \item darks: estas imágenes resultan de integrar el CCD \textit{t} segundos de integración, pero de igual manera que los \textit{bias}, sin exponer el detector a ningún tipo de radiación externa. Se recomienda que los \textit{darks} y las imágenes de ciencia tengan el mismo tiempo de exposición \textit{t}.
+  \item flats: estas imágenes resultan de exponer todo el detector a una fuente brillante uniforme. Se busca que todo el detector este sometido a un nivel de radiación similar al objetivo que se va a estudiar. Esto nos ayuda a detectas y corregir las irregularidades en las imágenes por el detector mismo, la óptica del telescopio, polvo, etc. Existen diversas maneras de tomar \textit{flats}, para más detalle véase \cite{chromey1996special}.
+\end{itemize}
+
+Es necesario contar con un conjunto de imágenes de calibración, de 20 a 40, para cada una de las mencionadas anteriormente. Para el tratamiento matemático con estas imágenes, denotaremos a los \textit{bias}, \textit{darks} y \textit{flats} como $B_{t}(x,y)$, $D_{t}(x,y)$ y $F_{t}(x,y)$ respectivamente.
+
+El primer paso en el preprocesamiento es obtener las "\textit{master images}" de cada conjunto. El \textit{bias master} $B_{master}(x,y)$ se obtiene al calcular la mediana por pixel de todo el conjunto de \textit{bias}
+
+\begin{equation}
+  \displaystyle B_{master}(x,y) = \mbox{Mdn} \left[ B_{t}(x,y) \right].
+\end{equation}
+
+Para calcular el \textit{dark master} $D_{master}(x,y)$, restamos el \textit{bias master} al conjunto de \textit{darks} y se calcula la mediana del resultado:
+
+\begin{equation}
+  \displaystyle D_{master}(x,y) = \mbox{Mdn} \left[ D_{t}(x,y) - B_{master}(x,y)\right].
+\end{equation}
+
+Para calcular el \textit{flat master} $F_{master}(x,y)$, primero restamos el \textit{bias master} al conjunto de \textit{flats} y normalizamos a 1 el resultado:
+
+\begin{equation}
+  \displaystyle F^{norm}_{t}(x,y) = \mbox{Norm} \left[ F_{t}(x,y) - B_{master}(x,y)\right],
+\end{equation}
+
+donde $\mbox{Norm}$ representa:
+
+\begin{equation}
+  \displaystyle \mbox{Norm}\left[I_{t}(x,y)\right] =  \dfrac{I_{t}(x,y)}{\dfrac{1}{m*n} \sum_{x=0}^{m}\sum_{y=0}^{n} I_{t}(x,y)}.
+\end{equation}
+
+Después, calculamos la mediana de $F^{norm}_{t}(x,y)$ y normalizamos nuevamente para obtener $F_{master}(x,y)$:
+
+\begin{equation}
+  \displaystyle F_{master}(x,y) = \mbox{Norm} \left[ \mbox{Mdn} \left( F^{norm}_{t}(x,y)\right)\right].
+\end{equation}
+
+Finalmente, utilizamos estas \textit{master images} para limpiar las imágenes de ciencia $O_{t}(x,y)$:
+
+\begin{equation}
+  \displaystyle R_{t}(x,y) = \dfrac{O_{t}(x,y) - B_{master}(x,y) - D_{master}(x,y)}{F_{master}(x,y)}.
+\end{equation}
+
+\subsection*{II.3.2 Fotometría rápida}
+\addcontentsline{toc}{subsection}{II.3.2 Fotometría rápida}
 
 La fotometría se encarga de integrar el flujo $f_{\lambda}$ medido con ayuda del CCD. Con la imágen de una estrella como la que se muestra en la Figura 2.2, se puede obtener una curva de luz mediante la fotometría rápida. Este proceso se realiza tanto como para curvas de luz, como para espectroscopía.
 
 Cada pixel en la imágen tiene asociado un valor comunmente denominado como ``cuentas'', este valor representa el número de electrones producidos en ese pixel durante el proceso de captura de fotones. Un CCD ideal, es uno que por cada fotón produce un electrón, los CCD's de la actualidad están cerca de este limite.
 
-La fotometría rápida consiste en sumar las ``cuentas'' $Pix_{t}(x,y) $ de cada pixel ($x_{i},y_{i}$), donde $ i $ va de 1 hasta $ N $, donde $ N $ es el número de pixeles en cada eje de la imágen de la estrella que se esté estudiando y $ t $ es el número de imágenes. En este caso consideraremos el caso con imágenes simétricas, donde el número de pixeles en el eje x $(N_{x})$, y en el eje y $(N_{y})$ son iguales $N_{x}=N_{y}=N$. 
+La fotometría rápida consiste en sumar las ``cuentas'' de cada pixel ($x_{i},y_{i}$), de $R_{t}(x,y) $, donde $ i $ va de 1 hasta $ N $, donde $ N $ es el número de pixeles en cada eje de la imágen ciencia  y $ t $ es el número de imágenes. En este caso consideraremos el caso con imágenes simétricas, donde el número de pixeles en el eje x $(N_{x})$, y en el eje y $(N_{y})$ son iguales $N_{x}=N_{y}=N$. 
 
 \begin{equation}
-  \displaystyle F_{t} = \sum_{x_{i}}^{N} \sum_{y_{i}}^{N} Pix_{t}(x_{i},y_{i}),\hspace{1cm}i=1,...,N;
+  \displaystyle F_{t} = \sum_{x_{i}}^{N} \sum_{y_{i}}^{N} R_{t}(x_{i},y_{i}),\hspace{1cm}i=1,...,N;
 \end{equation}
 
-La integración de cada imágen produce un solo valor $F_{t}$ en la curva de luz \cite{romanishin2006introduction}. Por ejemplo la Figura 2.1 fue obtenida mediante la fotometría de 624 imágenes de una región de 7x7 pixeles. Este procesado de las imágenes puede realizarse utilizando distintas metodologías. Como su nombre lo indica, la fotometría rápida toma poco tiempo generar la curva de luz y es muy útil para análisis in sitú, sin embargo no permite observar variaciones pequeñas de flujo, púes regularmente el ruido en las imágenes es suficientemente grande para enmascarar dicha señal. En este trabajo, las curvas de luz fueron obtenidas utilizando la metodología de fotometría diferencial.
-
-
-\textcolor{red}{Incluir una seccion con el PRE PROCESAMIENTO CON BIAS,DARKS Y FLATS}
+La integración de cada imágen produce un solo valor $F_{t}$ en la curva de luz \cite{romanishin2006introduction}. Por ejemplo, la Figura 2.1 fue obtenida mediante la fotometría de 624 imágenes de una región de 7x7 pixeles. Este procesado de las imágenes puede realizarse utilizando distintas metodologías. Como su nombre lo indica, la fotometría rápida toma poco tiempo generar la curva de luz y es muy útil para análisis in sitú, sin embargo no permite observar variaciones pequeñas de flujo, púes regularmente el ruido en las imágenes es suficientemente grande para enmascarar dicha señal. En este trabajo, las curvas de luz fueron obtenidas utilizando la metodología de fotometría diferencial.
 
 \subsection*{II.3.1 Fotometría de apertura}
 \addcontentsline{toc}{subsection}{II.3.1 Fotometría de apertura}
@@ -171,8 +229,8 @@ Primeramente definimos 2 máscaras circulares centradas en las coordenadas $(x_{
 \begin{figure}[h!]
   \centering
     \includegraphics[max size={0.7\textwidth}{0.7\textheight}]{./figures/aperturas.png}
-   \caption{Fig. 2.5. Ejemplo de aperturas circulares para realizar fotometría de HAT-P-37B. El anillo formado por las circunferencias en azul se utiliza para calcular la contribución del flujo debido al cielo.}
-    \label{fig_2_5_aperturas}
+   \caption{Ejemplo de aperturas circulares para realizar fotometría de HAT-P-37B. El anillo formado por las circunferencias en azul se utiliza para calcular la contribución del flujo debido al cielo.}
+    \label{fig_2_6_aperturas}
 \end{figure}
 
 
@@ -207,15 +265,15 @@ Idealmente, estas estrellas deben tener una magnitud similar $(\pm 10 \%)$ y est
 \begin{figure} [H]
   \centering
     \includegraphics[max size={1\textwidth}{0.4\textheight}]{./figures/fotometria_apertura.png}
-   \caption{Fig. 2.6. Curva de luz de alta cadencia de Kepler17b obtenida mediante fotometría de apertura. Esta curva de luz se obtuvo utilizando APPHi véase (sección III.4.1).}
-    \label{fig_2_6_foto_apertura}
+   \caption{Curva de luz de alta cadencia de Kepler17b obtenida mediante fotometría de apertura. La observación de Kepler17b se realizó en el sitio 2 de TAOS II, utilizando una cámara \textit{Zyla} de Andor. Esta curva de luz se obtuvo utilizando APPHi véase (sección III.4.1). }
+    \label{fig_2_7_foto_apertura}
 \end{figure}
 
 \begin{figure}[H]
   \centering
     \includegraphics[max size={1\textwidth}{0.4\textheight}]{./figures/fotometria_diferencial.png}
-   \caption{Fig. 2.7. Curva de luz de alta cadencia de Kepler17b obtenida mediante fotometría diferencial. Esta curva de luz se obtuvo utilizando APPHi véase (sección III.4.1).}
-    \label{fig_2_7_foto_diferencial}
+   \caption{Curva de luz de alta cadencia de Kepler17b obtenida mediante fotometría diferencial. La observación de Kepler17b se realizó en el sitio 2 de TAOS II, utilizando una cámara \textit{Zyla} de Andor. Esta curva de luz se obtuvo utilizando APPHi véase (sección III.4.1).}
+    \label{fig_2_8_foto_diferencial}
 \end{figure}
 
 
@@ -234,7 +292,7 @@ Las componentes de baja frecuencia se conocen como ``tendencias'', se define com
 
 Estos fenómenos representados en $R_{t}$, afectan la curva de luz creando un ruido aleatorio, el cual puede tener diferentes distribuciones estadísticas como Gaussiana o de Poisson o una convolución de estas distribuciones \cite{luisier2010image}.
 
-Entender el comportamiento de cada componente es importante cuando se desea realizar una simulación, debido a que si se desea simular una curva de luz, esta debe contener la suma de las distintas componentes que conforman una señal real \textcolor{red}{(véase SECCION TAL)}. Para el caso de las curvas de luz, estas componentes son catalogadas como tipos de ruido. Como se mencionó anteriormente, el ruido en las curvas de luz, cambia de manera significativa dependiendo si las imágenes son de alta o baja cadencia.
+Entender el comportamiento de cada componente es importante cuando se desea realizar una simulación, debido a que si se desea simular una curva de luz, esta debe contener la suma de las distintas componentes que conforman una señal real (véase sección II.2). Para el caso de las curvas de luz, estas componentes son catalogadas como tipos de ruido. Como se mencionó anteriormente, el ruido en las curvas de luz, cambia de manera significativa dependiendo si las imágenes son de alta o baja cadencia.
 
 Los tipos de ruido que están presentes en todas las curvas de luz, son el ruido instrumental, el producido por la masa de aire y el causado por las condiciones climáticas. Estos tipos de ruido afectan por igual a las imágenes de alta y baja cadencia, y el tratamiento estadístico utilizado para eliminarlo es el mismo en ambos tipos de curvas. Sin embargo el ruido en las curvas de luz de alta cadencia, es mucho mas notable que en las de baja cadencia. Esto se debe a que el tiempo de exposición es corto, por lo tanto se captan menos fotones provenientes de la estrella, y la magnitud del ruido de lectura puede llegar a ser comparable con la de la estrella. Esto provoca que la señal de un tránsito en la estrella $F^{t}$  se vea ocultada por el ruido $R_{t}$ \cite{pont2006effect}. Para cuantificar la contribución del ruido, calculamos el coeficiente de señal a ruido (SNR):
 
@@ -258,28 +316,28 @@ Dentro del estudio de las series de tiempo, una herramienta matemática fundamen
 \noindent donde $\mathcal{F}(\omega )$ es la transformada de Fourier de $f(t)$. Sin embargo, al trabajar con series de tiempo numéricas haremos uso de la transformada de Fourier discreta (DFT):  
 
 \begin{equation}
-  \displaystyle \mathcal{F}_{\omega}= \sum_{n=0}^{N-1} f_{t}e^{-\dfrac{i2\pi}{N}\omega t};
+  \displaystyle \mathcal{F}_{\omega}= \sum_{n=0}^{N-1} F_{t}e^{-\dfrac{i2\pi}{N}\omega t};
 \end{equation}
 
 \noindent de la ec. 2.13 podemos observar que es necesario realizar $N$ multiplicaciones y $N$ sumas, lo que resulta en $N^{2}$ operaciones. El método más usual de calcular una transformada de Fourier Discreta es utilizar el algoritmo conocido como \textit{Fast Fourier Transform} (FFT). Como su nombre lo indica, es una manera de calcular la transformada más eficientemente, lo cual es útil cuando analizamos una gran cantidad de datos y/o $N$ es grande. En la FFT se reduce el número de operaciones a $Nlog_{2}N$ \cite{cooley1965algorithm}. 
 
-Esta transformada integral, nos ayuda a convertir una serie de tiempo $f_{t}$, a una serie de frecuencias $\mathcal{F}_{\omega}$, también llamado \textit{espectro de frecuencias}. Las variaciones sistemáticas en la serie de tiempo $f_{t}$ provocan ``picos'' en el espectro de frecuencias, identificar estas componentes de frecuencia nos ayuda a visualizar las diferentes contribuciones de ruido a la curva de luz.
+Esta transformada integral, nos ayuda a convertir una serie de tiempo $F_{t}$, a una serie de frecuencias $\mathcal{F}_{\omega}$, también llamado \textit{espectro de frecuencias}. Las variaciones sistemáticas en la serie de tiempo $F_{t}$ provocan ``picos'' en el espectro de frecuencias, identificar estas componentes de frecuencia nos ayuda a visualizar las diferentes contribuciones de ruido a la curva de luz.
 
 \begin{figure}
   \centering
-    \includegraphics[max size={\textwidth}{0.8\textheight}]{./figures/transformada_fourier.png}
-   \caption{Fig. 2.8.Arriba: Curva de luz de alta cadencia de HAT-p-14b, tomada a 20Hz. Abajo: mostramos su espectro de frecuencias (FFT), con la amplitud en escala logarítmica para mejorar la visualización.}
-    \label{fig_2_8_fourier}
+    \includegraphics[max size={\textwidth}{0.6\textheight}]{./figures/transformada_fourier.png}
+   \caption{Arriba: Curva de luz de alta cadencia de HAT-p-14b, tomada a 20Hz, con el telescopio de 84cm del OAN. Abajo: mostramos su espectro de frecuencias (FFT), con la amplitud en escala logarítmica para mejorar la visualización.}
+    \label{fig_2_9_fourier}
 \end{figure}
 
-En la figura 2.6 podemos apreciar una curva de luz de alta cadencia y su respectivo espectro de frecuencias, como podemos observar, se aprecia una importante componente de bajas frecuencias debido a las tendencias en la curva de luz, provocadas por variables atmosféricas. Es por eso que en este trabajo se modeló el ruido de una manera en la que el ruido simulado tenga componentes que observamos en curvas de luz reales \textcolor{red}{(véase SECCION SIM RUIDO)}, a diferencia de simplemente añadir un ruido con distribución gaussiana (ruido blanco) el cual tiene un espectro de frecuencias plano.
+En la figura 2.6 podemos apreciar una curva de luz de alta cadencia y su respectivo espectro de frecuencias, como podemos observar, se aprecia una importante componente de bajas frecuencias debido a las tendencias en la curva de luz, provocadas por variables atmosféricas. Es por eso que en este trabajo se modeló el ruido de una manera en la que el ruido simulado tenga componentes que observamos en curvas de luz reales (véase III.2.2), a diferencia de simplemente añadir un ruido con distribución gaussiana (ruido blanco) el cual tiene un espectro de frecuencias plano.
 
 En este trabajo se utilizó el análisis de Fourier para encontrar las componentes del ruido y limpiar la curva de luz con una metodología ágil y rápida \cite{kosarev1983optimal}, \cite{brault1971analysis}. 
 
 \section*{II.6 Análisis de componentes principales}
 \addcontentsline{toc}{section}{II.4 Análisis de componentes principales}
 
-Para toda matriz $A$ con dimensiones $m\times n$, su descomposición en valores singulares ó SVD (\textit{del inglés Singular Value Decomposition}) es:
+Para toda matriz $A$ con dimensiones $m\times n$, su descomposición en valores singulares ó SVD (del inglés \textit{Singular Value Decomposition}) es:
 
 \begin{equation}
   \displaystyle A=U\Sigma V^{T};
@@ -308,6 +366,6 @@ Si multiplicamos la ecuación 2.14 por su transpuesta tenemos:
 
 \noindent \textit{donde las columnas de $Q$ son los eigenvectores normalizados de $S$, y $\Lambda$ es la matriz diagonal con los eigenvalores de $S$.}
 
-El significado matemático de la SVD, depende de la forma de $A$. Normalmente $A$ con dimensiones $m\times n$ está compuesta por los datos, donde $m$ es el número de muestras y $n$ el número de variables. Los \textit{vectores singulares} $U$, son también conocidos domo \textit{ejes principales} y la proyección de los datos $A$ sobre estos ejes principales son llamados \textit{componentes principales ($P_{comp}$)}, es decir $(P_{comp}=AU)$.
+El significado matemático de la SVD, depende de la forma de $A$. Normalmente $A$ con dimensiones $m\times n$ está compuesta por los datos, donde $m$ es el número de muestras y $n$ el número de variables. Los \textit{vectores singulares} $U$, son también conocidos domo \textit{ejes principales} y la proyección de los datos $A$ sobre estos ejes principales son llamados \textit{componentes principales ($P_{comp}$)}, es decir $(P_{comp}=AU)$, de ahí el nombre de análisis de componentes principales ó PCA (del inglés \textit{Principal Component Analysis}).
 
 Esta descomposición es utilizada para la extracción de características y disminuir la dimensionalidad de los datos que se estén analizando \cite{mcgurk2010principal}, \cite{medeiros2018principal}. En este trabajo se utilizan las componentes principales para limpiar la curva de luz del ruido sistemático \cite{shin1999iterative}, \cite{bailey2012principal}.
