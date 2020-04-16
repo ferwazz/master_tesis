@@ -5,8 +5,7 @@
 \input{paquetes.tex}
 \input{formatos.tex}
 \usepackage{xcolor}
-%\DefineBibliographyStrings{english}{andothers={et.~al\adddot}}
-% Margenes de acuerdo al reglamento
+
 \setlength{\topmargin}{0 cm}
 \setlength{\textwidth}{16 cm} %margen derecho
 \setlength{\textheight}{20.5 cm}
@@ -17,11 +16,16 @@
 \fancyhf{}
 \fancyhead[LE,RO]{\chaptername\ {\Huge\thechapter}}
 \fancyfoot[C]{\thepage}
+\usepackage{chngcntr}
+\counterwithin{equation}{chapter}
+\counterwithin{table}{chapter}
+
+
 % Inicio Documento ----------------------------------------------------
 \makeindex
 \begin{document}
-\pagenumbering{roman}
 \input{portada.tex}
+\fancyhead[LE,RO]{\chaptername\ {\Huge\thechapter}}
 \pagenumbering{arabic}
 \setstretch{1.25}
 \input{introduccion.tex}

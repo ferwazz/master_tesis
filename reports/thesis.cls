@@ -1082,15 +1082,15 @@
 \def\bibname{Bibliography}
 \def\refname{References}
 \def\indexname{Index}
-\def\figurename{Figure}
-\def\tablename{Table}
+\def\figurename{Figura}
+\def\tablename{Tabla}
 \def\chaptername{Chapter}
 \def\appendixname{Appendix}
 \def\partname{Part}
 \def\abstractname{Abstract}
 \def\draftname{preliminary draft}
-\def\figureshortname{Fig.}                      % <-- thesis
-\def\tableshortname{Tab.}                       % <-- thesis
+\def\figureshortname{Figura}                      % <-- thesisdf
+\def\tableshortname{Tabla}                       % <-- thesisdf
 \def\prefacename{Preface}                       % <-- thesis
 \newcommand{\today}{\ifcase\month\or
   January\or February\or March\or April\or May\or June\or
