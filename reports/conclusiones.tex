@@ -1,4 +1,25 @@
 \chapter*{\textbf{Capítulo V: Conclusiones}}
+\label{ch:Conclusiones}
 \addcontentsline{toc}{chapter}{\textbf{V. Conclusiones}}
 \chead{Conclusiones}
+\setcounter{chapter}{5}
+\setcounter{equation}{0}
+\setcounter{figure}{0}
+\setcounter{table}{0}
+
+En este trabajo nos enfocamos en implementar herramientas de computo para el análisis eficiente de curvas de luz de alta cadencia. Para la detección de posibles candidatos a tránsitos de exoplanetas, dividimos el esfuerzo en dos componentes principales: la mejora de la señal a ruido (SNR) y el criterio para la validación de los posibles candidatos.
+
+
+En la literatura, existen diversas técnicas para el suavizado de series de tiempo. Las metodologías presentadas en este trabajo no pretenden ser las mejores para el análisis, sin embargo, como vemos en la sección IV, estas tienen un buen desempeño. En promedio, se logró mejorar la SNR en un 500\% en curvas de luz reales. En algunos de esos casos ($\sim 30$\%), esto fue suficiente para observar a simple vista la firma del tránsito. En el futuro se pretende indagar en nuevas metodologías, y refactorizar el código implementado con el fin de aumentar le eficiencia.
+
+Para la validación de posibles candidatos a tránsitos, se utilizó el modelo del trapezoide como primera aproximación a una señal observada debido a un tránsito de exoplaneta. Simplificar esta parte del modelo, nos permite aumentar la eficiencia significativamente sin descuidar la confiabilidad del método. Es importante recalcar que con la metodología planteada en este trabajo, no se pretende calcular magnitudes físicas precisas. El propósito es analizar una gran cantidad de datos en poco tiempo, y etiquetar posibles estrellas de interés, para en un futuro realizar más observaciones y análisis solo a estos objetivos pre-seleccionados. Esto es importante en proyectos con grandes bases de datos como \textit{Kepler}, \textit{TESS} y TAOS II donde la cantidad de objetivos es tan grande, que la implementación de pipelines de procesos de búsqueda rápida es indispensable.
+
+
+Como se mencionó anteriormente, un factor importante que se mantuvo a consideración fue la eficiencia: esta metodología está pensada para implementarse con la base datos de TAOS II, la cual observará alrededor de $\sim 30,000$ estrellas por noche, con 3 diferentes telescopios. Esto significa que es necesario tener una metodología que sea capaz de analizar cerca de 100,000 curvas de luz de alta cadencia en menos de 24 horas, esto si queremos evitar el cuello de botella con los datos. Es por eso que como trabajo a futuro, se planea implementar nuevamente esta metodología, de una manera más eficiente, con computo paralelizable y/o en lenguajes de programación más eficiente como $C$.
+
+Los campos de observación de TAOS II no tienen traslape con otros proyectos (a excepción de \textit{TESS} el cual cubre el 90\% de la bóveda celeste). Esto es muy importante, debido a que, cualquier detección que logremos en TAOS II, podrá ser un nuevo descubrimiento. Otra ventaja es que TAOS II, cuenta con 3 telescopios observando el mismo campo de observación, esto nos ayuda a tener una mayor confiabilidad en los resultados, porque podremos confirmar el candidato con tres observaciones simultáneas, esto reducirá significativamente la cantidad de falsos positivos. También, se contarán con telescopios más grandes y mejores detectores que con los que evaluamos la metodología presentada en este trabajo, po lo que esperamos tener mejores resultados con los datos de TAOS II.
+
+
+
+
 
