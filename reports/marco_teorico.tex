@@ -85,7 +85,7 @@ Por último, la relación masa-radio, por ejemplo $R_{*}=kM_{*}^{x}$ ($x\sim 0.8
     \label{fig_2_2_transito_curva}
 \end{figure}
  
-Utilizando la información contenida en las curvas de luz de tránsitos, podemos calcular el radio del planeta $R_{p}$ y el periodo orbital $P$, \textcolor{red}{ si se tienen múltiples observaciones simultáneas del evento; POR QUÉ?}, y si el radio de la estrella $R_{*}$ es conocido. Para los demás parámetros orbitales se necesita información complementaria de la dinámica de los cuerpos, normalmente obtenida mediante la técnica de velocidad radial. Es por este motivo que para la confirmación de un exoplaneta, este debe ser detectado por un mínimo de 2 técnicas diferentes.
+Utilizando la información contenida en las curvas de luz de tránsitos, podemos calcular cantidades físicas como el radio del planeta $R_{p}$ y el periodo orbital $P$. El radio del planeta $R_{p}$ se obtiene midiendo en la variación del flujo $\Delta F$ proveniente de la estrella eclipsada (\ref{ec:profundidadTransito}). El periodo orbital $P$ si se tienen múltiples observaciones del tránsito en diferentes épocas. Para los demás parámetros orbitales se necesita información complementaria de la dinámica de los cuerpos, normalmente obtenida mediante la técnica de velocidad radial. Es por este motivo que para la confirmación de un exoplaneta, este debe ser detectado por un mínimo de 2 técnicas diferentes.
 
 \subsection*{II.1.2 Efecto del oscurecimiento del limbo en las curvas de luz}
 \addcontentsline{toc}{subsection}{II.1.2 Efecto del oscurecimiento del limbo en las curvas de luz}
@@ -108,15 +108,14 @@ Para los propósitos de este trabajo, el modelo de LD que se utilice no es impor
 
 Los grandes proyectos como \textit{TESS} y \textit{Kepler}, observan miles, incluso cientos de miles de estrellas de manera simultánea, esto aumenta significativamente la probabilidad de encontrar sistemas planetarios, cuyo plano orbital se encuentra lo suficientemente alineado con la linea de visión ($i\sim 90^{\circ}$), para poder observar un tránsito exoplanetario (véase Fig 2.1). Por lo general, los datos recolectados por estos grandes proyectos, son preprocesados de manera automática, y se archivan las curvas de luz de interés en las cuales se observan algunas características similares a las que tendría un tránsito real. En el caso de \textit{Kepler}, la estrella se cataloga como \textit{Kepler Object of Interest (KOI)}, sin embargo, un porcentaje de estos objetos de interés no son realmente planetas. Las posibles detecciones fallidas se dividen en dos grupos: falsos positivos y falsas alarmas.
 
-Los falsos positivos ocurren cuando tenemos curvas de luz que parecen ser producidas por un tránsito de exoplanetas pero no lo son, los dos casos más comunes son lo siguientes:
+Los falsos positivos ocurren cuando tenemos curvas de luz que parecen ser producidas por un tránsito de exoplanetas pero no lo son. Por ejemplo, para el telescopio espacial \textit{Kepler} se estima que cerca del 10\% de todos los candidatos son falsos positivos \citep{fressin2013false}. Los dos casos más comunes son lo siguientes:
 
 \begin{itemize}
 \item \textbf{Estrellas binarias eclipsantes}: son eventos muy similares a los tránsitos, la diferencia es que una estrella es eclipsada por otra estrella compañera. En algunos casos es evidente a simple vista, que la curva de luz no tiene la forma que produciría un planeta. Sin embargo, algunas veces la caída del brillo puede ser muy similar a la producida por un tránsito exoplanetario. Estos falsos positivos son descartados después de un análisis más detallado de la curva de luz, al observar la forma y profundidad del tránsito secundario o analizando las variaciones de fase \citep{bryson2017kepler}.
 \item \textbf{Binarias eclipsantes o tránsitos de fondo}: ocurren cuando ya sea un sistema binario eclipsante o un tránsito sucede en una estrella que ocupan el mismo espacio en el cielo nocturno, es decir objetos que están tan cerca en el plano del cielo que parecen ser un solo objetivo. Este fenómeno es un caso particular del primer falso positivo más común.
 \end{itemize}
 
-Algunas veces también se observan falsas alarmas, las cuales son curvas de luz con variaciones en el flujo que no son debidas a ningún tipo de tránsito. Pueden ser causadas por variabilidad estelar, condiciones atmosféricas para el caso de telescopios terrestres y/o fallas instrumentales. Por ejemplo, para el telescopio espacial \textit{Kepler} se estima que cerca del 10\% de todos los candidatos son falsos positivos \textcolor{red}{en este párrafo estás hablando de falsas alarmas no de falsos positivos, considera donde poner esta cifra} \citep{fressin2013false}.
-
+Algunas veces también se observan falsas alarmas, las cuales son curvas de luz con variaciones en el flujo que no son debidas a ningún tipo de tránsito. Pueden ser causadas por variabilidad estelar, condiciones atmosféricas para el caso de telescopios terrestres y/o fallas instrumentales. 
 
 \section*{II.2 Observación convencional de tránsitos de exoplanetas}
 \addcontentsline{toc}{section}{II.2 Observación convencional de tránsitos de exoplanetas}
@@ -125,7 +124,7 @@ Los proyectos dedicados a la detección de tránsitos de exoplanetas (véase I.2
 
 Para detectar exitosamente un tránsito exoplanetario, se necesita medir con precisión el flujo proveniente de su estrella anfitriona. Por ejemplo, el tránsito de Júpiter frente a al Sol, provoca una caída en el flujo de $\sim 1\%$. Es por esto que se necesitan técnicas fotométricas para aumentar la precisión de la curva de luz. Debido a este mismo motivo, se vuelve complicado detectar planetas más pequeños desde telescopios en Tierra.
 
-Por lo general, se utilizan tiempos de exposición de (30s - 120s), dependiendo de la magnitud de la estrella observada. Cuando el planeta es suficientemente grande, y se tiene una buena SNR (del inglés \textit{Signal to Noise Ratio}) se puede observar a simple vista el tránsito en la curva de luz, en la \textcolor{red}{Figura 2.1, debería ser 2.4} se muestra un ejemplo de una curva de luz del exoplaneta XO-3 \citep{johns2008xo} utilizando 30 segundos de exposición tomada desde el telescopio de $84~cm$ en el Observatorio Astronómico Nacional (OAN-SPM) el 21 de octubre del 2016, en la cual se puede apreciar el tránsito sin ningún post-procesamiento en la curva de luz.
+Por lo general, se utilizan tiempos de exposición de (30s - 120s), dependiendo de la magnitud de la estrella observada. Cuando el planeta es suficientemente grande, y se tiene una buena SNR (del inglés \textit{Signal to Noise Ratio}) se puede observar a simple vista el tránsito en la curva de luz, en la \ref{fig_2_4_XO3}, se muestra un ejemplo de una curva de luz del exoplaneta XO-3 \citep{johns2008xo} utilizando 30 segundos de exposición tomada desde el telescopio de $84~cm$ en el Observatorio Astronómico Nacional (OAN-SPM) el 21 de octubre del 2016, en la cual se puede apreciar el tránsito sin ningún post-procesamiento en la curva de luz.
 
 \begin{figure}[h!]
   \centering
@@ -137,15 +136,23 @@ Por lo general, se utilizan tiempos de exposición de (30s - 120s), dependiendo 
 \section*{II.3 Reducción de imágenes en curvas de luz}
 \addcontentsline{toc}{section}{II.3 Reducción de imágenes en curvas de luz}
 
-Como mencionamos en la sección anterior, necesitamos medir con precisión el flujo $f_{\lambda}$ recibido de las estrellas. Es decir, medir la energía por segundo, por unidad de área, \textcolor{red}{ por unidad de longitud de onda, POR QUÉ LONGITUD DE ONDA??}:
+Como mencionamos en la sección anterior, necesitamos medir con precisión el flujo $F_{\lambda}$ recibido de las estrellas. Es decir, medir la energía por segundo, por unidad de área, \textcolor{red}{ por unidad de longitud de onda, POR QUÉ LONGITUD DE ONDA??}:
 
 \begin{equation}
-  \displaystyle f_{\lambda}=W s^{-1}m^{-2}nm^{-1}.
+  \displaystyle F_{\lambda}=W s^{-1}m^{-2}nm^{-1}.
 \end{equation}
 
 Para esto, utilizamos cámaras equipadas con CCD's (\textit{Couple Charge Detectors}) los cuales son un conjunto de ``chips'', generalmente de silicio muy sensibles a la luz. Cada CCD está conformado por una matriz de estos ``chips'', mejor conocidos como pixeles (para mayor detalle sobre su funcionamiento véase \cite{mortara1981evaluations}).
 
-Estos dispositivos en combinación con grandes telescopios, nos brindan imágenes de alta calidad. Por lo general, en astronomía se utilizan CCD's monocromáticos debido a que son más sensibles y puede hacerse mejor ciencia con ellos, a diferencia de los CCD's a colores, como las cámaras comerciales para fotografía convencional.
+Estos dispositivos en combinación con grandes telescopios, nos brindan imágenes de alta calidad. Por lo general, en astronomía se utilizan CCD's monocromáticos debido a que son más sensibles y puede hacerse mejor ciencia con ellos, a diferencia de los CCD's a colores, como las cámaras comerciales para fotografía convencional. Como consecuencia de esto, con la fotometría convencional medimos la intensidad del flujo integrado $F$ que se define como:
+
+
+\begin{equation}
+  \displaystyle F = \int_{0}^{\inf} F_{\lambda}d\lambda
+\end{equation}
+
+Sin embargo, el detector es sensible a un rango finito del espectro electromagnético.
+
 
 \begin{figure}[h!]
   \centering
@@ -154,7 +161,7 @@ Estos dispositivos en combinación con grandes telescopios, nos brindan imágene
     \label{fig_2_5_wasp74b}
 \end{figure}
 
-Sin embargo, las imágenes por si solas no son muy útiles cuando se quiere calcular propiedades físicas de los objetos observados, es por eso que necesitamos procesarlas para extraer información de ellas. En este trabajo, estudiamos las estrellas mediante curvas de luz, que son la medida del flujo $f_{\lambda}$ durante intervalos de tiempo regulares, las cuales se obtienen mediante un procesado denominado fotometría. Existen distintas metodologías dependiendo del objeto que se esté estudiando, en las subsecciones II.3.2 y II.3.3 se explican 2 de ellas.
+Sin embargo, las imágenes por si solas no son muy útiles cuando se quiere calcular propiedades físicas de los objetos observados, es por eso que necesitamos procesarlas para extraer información de ellas. En este trabajo, estudiamos las estrellas mediante curvas de luz, que son la medida del flujo $F$ durante intervalos de tiempo regulares, las cuales se obtienen mediante un procesado denominado fotometría. Existen distintas metodologías dependiendo del objeto que se esté estudiando, en las subsecciones (II.3.2) y (II.3.3) se explican 2 de ellas.
 
 \subsection*{II.3.1 Preprocesamiento de imágenes}
 \addcontentsline{toc}{subsection}{II.3.1 Preprocesamiento de imágenes}
@@ -208,7 +215,7 @@ Finalmente, utilizamos estas \textit{master images} para limpiar las imágenes d
 \subsection*{II.3.2 Fotometría rápida}
 \addcontentsline{toc}{subsection}{II.3.2 Fotometría rápida}
 
-La fotometría se encarga de integrar el flujo $f_{\lambda}$ medido con ayuda del CCD. Con la imagen de una estrella como la que se muestra en la Figura 2.2, se puede obtener una curva de luz mediante la fotometría rápida. Este proceso se realiza tanto como para curvas de luz, como para espectroscopía.
+La fotometría se encarga de integrar el flujo $F_{\lambda}$ medido con ayuda del CCD. Con la imagen de una estrella como la que se muestra en la Figura 2.2, se puede obtener una curva de luz mediante la fotometría rápida. Este proceso se realiza tanto como para curvas de luz, como para espectroscopía.
 
 Cada pixel en la imagen tiene asociado un valor comunmente denominado como ``cuentas'', este valor representa el número de electrones producidos en ese pixel durante el proceso de captura de fotones. Un CCD ideal, es uno que por cada fotón produce un electrón, los CCD's de la actualidad están cerca de este límite.
 
@@ -218,14 +225,14 @@ La fotometría rápida consiste en sumar las ``cuentas'' de cada pixel ($x_{i},y
   \displaystyle F_{t} = \sum_{x_{i}}^{N} \sum_{y_{i}}^{N} R_{t}(x_{i},y_{i}),\hspace{1cm}i=1,...,N;
 \end{equation}
 
-La integración de cada imagen produce un solo valor $F_{t}$ en la curva de luz \citep{romanishin2006introduction}. Por ejemplo, la \textcolor{red}{Figura 2.1, COrregir esta referencia} fue obtenida mediante la fotometría de 624 imágenes de una región de 7x7 pixeles. Este procesado de las imágenes puede realizarse utilizando distintas metodologías. Como su nombre lo indica, la fotometría rápida toma poco tiempo generar la curva de luz y es muy útil para análisis in sitú, sin embargo, no permite observar variaciones pequeñas de flujo, púes regularmente el ruido en las imágenes es suficientemente grande para enmascarar dicha señal. En este trabajo, las curvas de luz fueron obtenidas utilizando la metodología de fotometría de apertura diferencial.
+La integración de cada imagen produce un solo valor $F_{t}$ en la curva de luz \citep{romanishin2006introduction}. Por ejemplo, la \ref{fig_2_4_XO3} fue obtenida mediante la fotometría de 624 imágenes de una región de 7x7 pixeles. Este procesado de las imágenes puede realizarse utilizando distintas metodologías. Como su nombre lo indica, la fotometría rápida toma poco tiempo generar la curva de luz y es muy útil para análisis in sitú, sin embargo, no permite observar variaciones pequeñas de flujo, púes regularmente el ruido en las imágenes es suficientemente grande para enmascarar dicha señal. En este trabajo, las curvas de luz fueron obtenidas utilizando la metodología de fotometría de apertura diferencial.
 
 \subsection*{II.3.1 Fotometría de apertura}
 \addcontentsline{toc}{subsection}{II.3.1 Fotometría de apertura}
 
-Con el fin de mejorar la SNR en la curva de luz resultante de la fotometría, este proceso se mejora realizando lo que se conoce como fotometría de apertura, lo cual consiste en utilizar aperturas circulares para integrar el flujo de la estrella, y además se resta la contribución debido al cielo \textcolor{red}{Aunque en alta cadencia el Cielo prácticamente no contribuye}.
+Con el fin de mejorar la SNR en la curva de luz resultante de la fotometría, este proceso se mejora realizando lo que se conoce como fotometría de apertura, lo cual consiste en utilizar aperturas circulares para integrar el flujo de la estrella, y además se resta la contribución debido al cielo, aunque en fotometría de alta cadencia, la contribución del cielo es prácticamente nula.
 
-Primeramente definimos 2 máscaras circulares centradas en las coordenadas $(x_{c},y_{c})$ del centroide $ C_{t} $ de la estrella. El anillo formado por los círculos azules de la \textcolor{red}{Figura 2.3, debe ser \ref{fig_2_6_aperturas}},  se utiliza para restar la contribución del flujo debido al cielo $(S_{t})$, siendo $D_{t}$ el círculo exterior y $A_{t}$ el interior. La apertura de medición $M_{t}$ mostrada con un círculo rojo en la Figura 2.3 contiene información tanto de la estrella como del cielo $(F_{t}+S_{t})$ con $F_{t}$ el flujo de la estrella, de la imagen $t$.
+Primeramente definimos 2 máscaras circulares centradas en las coordenadas $(x_{c},y_{c})$ del centroide $ C_{t} $ de la estrella. El anillo formado por los círculos azules de la \ref{fig_2_6_aperturas},  se utiliza para restar la contribución del flujo debido al cielo $(S_{t})$, siendo $D_{t}$ el círculo exterior y $A_{t}$ el interior. La apertura de medición $M_{t}$ mostrada con un círculo rojo en la Figura 2.3 contiene información tanto de la estrella como del cielo $(F_{t}+S_{t})$ con $F_{t}$ el flujo de la estrella, de la imagen $t$.
 
 
 \begin{figure}[h!]
@@ -336,9 +343,8 @@ En la figura 2.6 podemos apreciar una curva de luz de alta cadencia y su respect
 En este trabajo se utilizó el análisis de Fourier para encontrar las componentes del ruido y limpiar la curva de luz con una metodología ágil y rápida \cite{kosarev1983optimal}, \cite{brault1971analysis}. U
 
 \section*{II.6 Análisis de componentes principales}
-\addcontentsline{toc}{section}{II.4 Análisis de componentes principales}
+\addcontentsline{toc}{section}{II.6 Análisis de componentes principales}
 
-\textcolor{red}{ESTA SECCION DEBERIA IR DENTRO DE LA METODOLOGIA, EN LA PARTE DE PCA, AQUÍ ESTÁ DEMASIADO AISLADA, A MENOS QUE SE INCLUYA AQUÍ TODO LO DE PROMEDIO MOVIL Y FILTRADO DE FOURIER}
 
 Para toda matriz $A$ con dimensiones $m\times n$, su descomposición en valores singulares ó SVD (del inglés \textit{Singular Value Decomposition}) es:
 
