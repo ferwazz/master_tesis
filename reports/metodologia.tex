@@ -9,22 +9,51 @@
 
 En este capítulo se expone la metodología seguida para la obtención de los resultados de este trabajo, adem\'as de los conocimientos teóricos básicos y las herramientas numéricas para el análisis de los datos obtenidos.
 
+\section*{III.1 Análisis de datos observacionales}
+\addcontentsline{toc}{section}{III.1 Análisis de datos observacionales}
 
-\section*{III.1 Datos observacionales, estudios preparatorios para TAOS II}
-\addcontentsline{toc}{section}{III.1 Datos observacionales, estudios preparatorios para TAOS II}
+En este capítulo se plantea la metodología seguida para procesar los datos observacionales resultado de las múltiples temporadas en el OAN-SPM, así como las simulaciones. De los 8 objetos descritos en la sección III.2.2, se obtuvieron un total de 32 curvas de luz de alta cadencia (20 fps) y con una duración de aproximadamente 2 horas cada una. Esto con el propósito de igualar las condiciones que se tendrán en TAOS II.
 
-Este trabajo está pensado para llevarse acabo con datos del proyecto TAOS~II, cuando entre en completo funcionamiento. Como parte de este trabajo de tesis, se realizaron observaciones de tránsitos de exoplanetas a una cadencia de 20 fps \textcolor{red}{y escala de placa de 0.61\''/pix}, es decir, bajo las mismas condiciones que se tendrán en TAOS~II \cite{lehner2012transneptunian}. Todo esto con el fin, de que cuando el proyecto comience, se tengan las herramientas y metodología para analizar los datos.
+\subsection*{III.1.1 Fotometría con APPHi}
+\addcontentsline{toc}{subsection}{III.1.1 Fotometría con APPHi}
 
-Hay que destacar que TAOS~II, como ya se mencionó antes, tendrá curvas de luz de 2 horas de duraci\'on por campo de observación, esto para observar con la menor masa de aire posible. Debido a esto será muy difícil observar un tránsito completo, se espera observar la entrada o la salida del exoplaneta frente al disco estelar. 
+APPHi del inglés \textit{Automated Photometry Pipeline for High Cadence, Large Volume Data} es un código desarrollado en C, el cual consta de dos principales programas, \textit{APPHi field} y \textit{APPHi star} los cuales funcionan de acuerdo al diagrama de flujo mostrado en la igura \ref{fig:3.10_aphhi_diagrama}.  Este pipeline fotométrico se utilizará como herramienta para procesar el gran volumen de datos que va generar el proyecto TAOS II \cite{lehner2016status}. Este código consta de 3 partes principales, preprocesamiento de las imágenes, localización de las estrellas en el campo de observación y la fotometría para generar las curvas de luz.
 
-A una cadencia de 20 fps, esto se traduce en curvas con $N=144,000$ muestras. Además, por campo de observación se espera observar alrededor de 10,000 estrellas simultáneamente \textcolor{red}{en tres telescopios....ESTO ES ALGO QUE VALE LA PENA MENCIONAR PARA DESCARTAR FALSOS POSITIVOS, ES ALGO DE LO QUE NO HEMOS HABLADO PERO ES MUY IMPORTANTE}. Por este motivo, los análisis y la metodología presentadas en este trabajo, se enfocan en detectar las firmas de tránsitos de exoplanetas de la manera más eficiente posible. \textcolor{red}{Aunque por su naturaleza los datos de TAOS~II no presentan ventajas fométricas para la detección de tránsitos por exoplanetas, el hecho de que este proyecto cuente con tres telescopios que estarán observando las mismas estrellas a la vez, constituye una gran ventaja para descartar falsos positivos}.
+Primero las imágenes son preprocesadas de la manera convencional, utilizando imágenes de calibración (bias, flats y darks) \cite{romanishin2006introduction}. Después de limpiar las imágenes, APPHi localiza de manera automática los centroides correspondientes para cada estrella en el campo de observación usando el método del centro de masa \cite{chong2004introduction}. Este centroide se recalcula para cada imágen, para mejorar la curva de luz. Este proceso iterativo disminuye los efectos telúricos producidos por la atmósfera y el movimiento mecánico del instrumento, los cuales se vuelven significativos a altas cadencias. 
 
-\subsection*{III.1.1 Telescopio e instrumentos en la temporada de observación}
-\addcontentsline{toc}{subsection}{III.1.1 Telescopio e instrumentos en la temporada de observación}
+\begin{figure}[H]
+  \centering
+    \includegraphics[max size={\textwidth}{0.7\textheight}]{./figures/apphi_diagrama.png}
+   \caption{Diagrama de flujo para ambos programas (\textit{APPHi field} y \textit{APPHi star}), donde D, B, F y Z representan los darks, bias, flats e imágenes de estudio respectivamente. Imágen tomada de \cite{sanchez2019apphi}. }
+    \label{fig:3.10_aphhi_diagrama}
+\end{figure}
+
+Este proceso resulta en cubos de imágenes centradas por estrella, a partir de los cuales se realiza la fotometría de apertura. Este proceso sigue la metodología descrita en la subsección II.3.1 y en \cite{romanishin2006introduction}. 
+
+APPHi realiza de manera automática otros procesos posteriores a la fotometría para mejorar la SNR. Uno de ellos es la fotometría diferencial, utilizando curvas de luz de estrellas cercanas como se explicó en la subsección II.3.2. Otro método que se aplica directamente a las imágenes es la técnica \textit{Shift \& Add} \cite{kluckers1996comparison}. 
+
+Para ejecutar APPHi desde la línea de comando se utiliza:\\
+
+\texttt{APPhi\_field bias.txt darks.txt flats.txt night.txt}\\
+
+\noindent donde cada uno de los archivos \texttt{.txt} contiene la lista de imágenes correspondientes en formato FITS. El resultado del procesado de las imágenes es un archivo HDF5 por cada estrella en el campo de observación. Este archivo contiene las imágenes de la estrella, las coordenadas del centroide para cada imágen, la curva de luz obtenida por fotometría de apertura y fotometría diferencial \citep{sanchez2019apphi}. Todas las curvas de luz analizadas en este trabajo de tesis fueron obtenidas utilizando APPHi, el cual se encuentra disponible en \texttt{http://taos2.astrosen.unam.mx/APPHi.html}.
+
+
+\section*{III.2 Datos observacionales, estudios preparatorios para TAOS II}
+\addcontentsline{toc}{section}{III.2 Datos observacionales, estudios preparatorios para TAOS II}
+
+Este trabajo está pensado para llevarse acabo con datos del proyecto TAOS II, cuando entre en completo funcionamiento. Como parte de este trabajo de tesis, se realizaron observaciones de tránsitos de exoplanetas a una cadencia de 20 fps y escala de placa de 0.61\''/pixel, es decir, bajo las mismas condiciones que se tendrán en TAOS II \cite{lehner2012transneptunian}. Todo esto con el fin, de que cuando el proyecto comience, se tengan las herramientas y metodología para analizar los datos.
+
+Hay que destacar que TAOS II, como ya se mencionó antes, tendrá curvas de luz de 2 horas de duraci\'on por campo de observación, esto para observar con la menor masa de aire posible. Debido a esto será muy difícil observar un tránsito completo, se espera observar la entrada o la salida del exoplaneta frente al disco estelar. 
+
+A una cadencia de 20 fps, esto se traduce en curvas con $N=144,000$ muestras. Además, por campo de observación se espera observar alrededor de 10,000 estrellaS en tres telescopios simultáneamente. Por este motivo, los análisis y la metodología presentadas en este trabajo, se enfocan en detectar las firmas de tránsitos de exoplanetas de la manera más eficiente posible. Aunque por su naturaleza los datos de TAOS II no presentan ventajas fotométricas para la detección de tránsitos por exoplanetas, el hecho de que este proyecto cuente con tres telescopios que estarán observando las mismas estrellas a la vez, constituye una gran ventaja para descartar falsos positivos.
+
+\subsection*{III.2.1 Telescopio e instrumentos en la temporada de observación}
+\addcontentsline{toc}{subsection}{III.2.1 Telescopio e instrumentos en la temporada de observación}
 
 La mayoría de las observaciones se realizaron en el telescopio de $84~cm$ en el OAN-SPM (Figura 3.1). Utilizando la rueda de filtros MEXMAN, este instrumento permite intercambiar el filtro que se antepone al detector. En total se cuenta con dos ruedas de filtros con 8 posiciones, lo cual resulta en 14 filtros en total (dos posiciones están normalmente vacías). 
 
-Como detector se utilizaron dos cámaras en distintas temporadas. La primera de ellas fue del 1 al 6 de agosto del 2016, usando una cámara rápida iXon Ultra 888 de la marca ANDOR, capaz de tomar imágenes de muy corta exposición, con cadencias de hasta 300 imágenes por segundo (fps del inglés \textit{frames per second}). Esta cámara fue la única disponible en el OAN-SPM que podía trabajar a 20 fps, hasta que llegaron las cámaras provisionales del proyecto TAOS~II. A su vez, las imágenes se tomaron en un \textit{binning}\footnote{Binning es una manera de medir el CCD, uniendo la constibución de varios pixeles adyacentes.} de 3x3, con esto, se logró igualar la escala de placa del telescopio de 84 cm, con los telescopios de TAOS~II en donde el campo de visión fue de $~3.5$ minutos de arco.
+Como detector se utilizaron dos cámaras en distintas temporadas. La primera de ellas fue del 1 al 6 de agosto del 2016, usando una cámara rápida iXon Ultra 888 de la marca ANDOR, capaz de tomar imágenes de muy corta exposición, con cadencias de hasta 300 imágenes por segundo (fps del inglés \textit{frames per second}). Esta cámara fue la única disponible en el OAN-SPM que podía trabajar a 20 fps, hasta que llegaron las cámaras provisionales del proyecto TAOS II. A su vez, las imágenes se tomaron en un \textit{binning}\footnote{Binning es una manera de medir el CCD, uniendo la constibución de varios pixeles adyacentes.} de 3x3, con esto, se logró igualar la escala de placa del telescopio de 84 cm, con los telescopios de TAOS II en donde el campo de visión fue de $~3.5$ minutos de arco.
 
 \begin{figure}[h!]
 \centering
@@ -37,12 +66,10 @@ La segunda temporada de observación ocurrió del 26 de mayo al 05 de junio del 
 
 El 18 de junio del 2018 se obtuvo una curva de luz de alta cadencia (20 fps) de Kepler17b en tránsito. Se utilizó el telescopio del sitio 2 de TAOS II, en donde se instaló una cámara provisional \textit{Zyla} de Andor.
 
-\subsection*{III.1.2 Descripción de objetos observados}
-\addcontentsline{toc}{subsection}{III.1.2 Descripción de objetos observados}
+\subsection*{III.2.2 Descripción de objetos observados}
+\addcontentsline{toc}{subsection}{III.2.2 Descripción de objetos observados}
 
-A continuación en la Tabla 3.1 se muestra un resumen de los parámetros de los objetivos observados en las múltiples temporadas, algunos objetivos fueron observados en varias ocasiones y bajo distintas condiciones dependiendo del detector utilizado.
-
-
+A continuación en la tabla \ref{tab:tab_objetivos} se muestra un resumen de los parámetros de los objetivos observados en las múltiples temporadas, algunos objetivos fueron observados en varias ocasiones y bajo distintas condiciones dependiendo del detector utilizado.
 
 \begin{table}
 \hspace{-1.7cm}
@@ -69,11 +96,11 @@ Kepler 17b & $2.45\pm 0.014 $ & $1.31\pm 0.018 $ & 1.48 & 2.13 & $1.16\pm 0.06$ 
 \label{tab:tab_objetivos}
 \end{table}
 
-\subsection*{III.1.3 Descripción de datos, influencia del seeing y ruido sistemático}
-\addcontentsline{toc}{subsection}{III.1.3 Descripción de datos, influencia del seeing y ruido sistemático}
+\subsection*{III.2.3 Descripción de datos, influencia del seeing y ruido sistemático}
+\addcontentsline{toc}{subsection}{III.2.3 Descripción de datos, influencia del seeing y ruido sistemático}
 
 
-Debido al corto tiempo de exposición, el número de cuentas por estrella es pequeño, por lo cual, el ruido electr\'onico se vuelve un factor importante. Por otro lado, las perturbaciones atmosf\'ericas afectan el \textit{seeing} que es una medida de la estabilidad de la atm\'osfera. Esto afecta a las im\'agenes de alta cadencia de dos maneras: 1) cambiando de posici\'on la estrella en el detector o deform\'andola, lo cual se convierte en una fuerte contribici\'on al ruido cuando se lleva a cabo la fotomtr\'ia de apertura \textcolor{red}{Aquí también puede ir nuestro artículo de referencia}. El \textit{seeing} durante las temporadas fue bueno \textcolor{red}{NO se si esta oración sea correcta, pues no hicimos ninguna evaluación del seeing}, aunque se presentan ligeras variaciones en la posición de la estrella de toma a toma, este es el motivo por el cual no vemos la estrella como una circunferencia perfecta. Este ruido se ve reflejado a la hora de obtener la curva de luz de las imágenes. La cantidad de ruido se puede cuantificar calculando la SNR (2.11), la cual está en función de la magnitud aparente de la estrella.
+Debido al corto tiempo de exposición, el número de cuentas por estrella es pequeño, por lo cual, el ruido electr\'onico se vuelve un factor importante. Por otro lado, las perturbaciones atmosf\'ericas afectan el \textit{seeing} que es una medida de la estabilidad de la atm\'osfera. Esto afecta a las im\'agenes de alta cadencia de dos maneras: 1) cambiando de posici\'on la estrella en el detector o deform\'andola, lo cual se convierte en una fuerte contribici\'on al ruido cuando se lleva a cabo la fotomtr\'ia de apertura \textcolor{red}{Aquí también puede ir nuestro artículo de referencia}. El clima durante las temporadas fue bueno a tal punto de que no hubo contratiempos en las observaciones, aunque se presentan ligeras variaciones en la posición de la estrella de toma a toma. Estas variaciones se ven reflejadas a la hora de obtener la curva de luz de las imágenes. La cantidad de ruido se puede cuantificar calculando la SNR (2.11), la cual está en función de la magnitud aparente de la estrella.
 
 \begin{figure}[H]
   \centering
@@ -85,21 +112,21 @@ Debido al corto tiempo de exposición, el número de cuentas por estrella es peq
 
 Utilizamos fotometría diferencial para reducir los ruidos sistemáticos, sin embargo, no todos los campos observados contaban con buenas estrellas de comparación, por lo que en algunos casos se utilizó simplemente fotometría de apertura. Como se aprecia en las Figuras \ref{fig_2_7_foto_apertura} y \ref{fig_2_8_foto_diferencial}, las curvas de luz resultantes están dominadas por ruido. El propósito de este trabajo de tesis es idear metodologías para caracterizar el ruido y removerlo de las curvas de luz para poder detectar tránsitos de exoplanetas, es decir, detectar variaciones en el flujo de $(\sim 1-2 \%)$. Como se muestra mas adelante, algunas técnicas de las que utilizamos en esta tesis permiten mejorar las curvas de luz sacrificando cadencia, sin embargo, ya que los tránsitos son señales de baja frecuencia, esto no afecta la firma de los mismos
 
-\section*{III.2 Análisis de ruido en curvas de luz de alta cadencia}
-\addcontentsline{toc}{section}{III.2 Análisis de ruido en curvas de luz de alta cadencia}
+\section*{III.3 Análisis de ruido en curvas de luz de alta cadencia}
+\addcontentsline{toc}{section}{III.3 Análisis de ruido en curvas de luz de alta cadencia}
 
 A continuación se muestra la metodología para la caracterización del ruido, a partir de las curvas de luz resultantes de las temporadas de observación.
 
-\subsection*{III.2.1 Distribución temporal del ruido}
-\addcontentsline{toc}{subsection}{III.2.1 Distribución temporal del ruido}
+\subsection*{III.3.1 Distribución temporal del ruido}
+\addcontentsline{toc}{subsection}{III.3.1 Distribución temporal del ruido}
 
 El primer paso para la caracterización del ruido, fue saber que tipo de distribuciones podemos encontrar en los datos. En esta subsección analizaremos el ejemplo de la curva de luz de WASP-74b (ver Tabla \ref{tab:tab_objetivos} para más detalle) calculada usando fotometría diferencial de las imágenes obtenidas el 27 de mayo del 2017. La metodología explicada a continuación se utiliz\'o para caracterizar el ruido en todas las curvas de luz.
 
-\begin{equation}
+\begin{equation}\label{ec:gaussiana}
   \displaystyle G(x)=Ae^{-\dfrac{(x-\mu)^{2}}{2\sigma^{2}}};
 \end{equation}
 
-Un ruido con una distribución gaussiana (3.1) es conocido como ruido blanco. Se puede apreciar un ejemplo en la figura \ref{fig:3.3_ruido_gauss}.
+Un ruido con una distribución gaussiana \ref{ec:gaussiana} es conocido como ruido blanco. Se puede apreciar un ejemplo en la figura \ref{fig:3.3_ruido_gauss}.
 
 \begin{figure}[H]
   \centering
@@ -117,9 +144,9 @@ Esta es la manera mas común y simple de modelar el ruido, sin embargo, al anali
     \label{fig:3.4_wasp-74b-curva}
 \end{figure}
 
-Esta misma distribución se encontró en diferentes curvas de luz, por lo que se ajustó un modelo de ruido con dos componentes gaussianas (3.2) a las distribuciones temporales de las curvas de luz \textcolor{red}{La ecuación se ve desacomodada en el PDF}. 
+Esta misma distribución se encontró en diferentes curvas de luz, por lo que se ajustó un modelo de ruido con dos componentes gaussianas \ref{ec:componentes_gauss} a las distribuciones temporales de las curvas de luz. 
 
-\begin{equation}
+\begin{equation}\label{ec:componentes_gauss}
   m(t)= A_{1}e^{-\dfrac{(t-\mu_{1})^{2}}{2\sigma_{1}^{2}}} + A_{2}e^{-\dfrac{(t-\mu_{2})^{2}}{2\sigma_{2}^{2}}} = G_{1}(t)+G_{2}(t);
 \end{equation}
 
@@ -128,7 +155,7 @@ El resultado del ajuste de $m(t)$ al histograma de la curva de WASP-74b se muest
 \begin{figure}[H]
   \centering
     \includegraphics[max size={\textwidth}{0.7\textheight}]{./figures/ajuste_modelo_gaussiano.png}
-   \caption{Arriba: Los puntos rojos son la distribución temporal de la curva de luz de WASP-74b. La linea azul sólida, es $m(t)$ resultado de un ajuste no lineal utilizando el algoritmo de Levenberg-Marquardt. Abajo: se aprecia los residuales de la diferencia entre la distribución y el modelo.\textcolor{red}{Estás seguro que los valores de los residuales son correctos??? me parecen muy altos...} }
+   \caption{Arriba: Los puntos rojos son la distribución temporal de la curva de luz de WASP-74b. La linea azul sólida, es $m(t)$ resultado de un ajuste no lineal utilizando el algoritmo de Levenberg-Marquardt. Abajo: se aprecia los residuales de la diferencia entre la distribución y el modelo.\textcolor{red}{Estás seguro que los valores de los residuales son correctos??? me parecen muy altos... FER = asi salen con esta curva..} }
     \label{fig:3.5_wasp-74b-ajuste_residuales}
 \end{figure}
 
@@ -143,17 +170,17 @@ La contribución de cada componente $m(t)$ se aprecia en la figura \ref{fig:3.6_
     \label{fig:3.6_wasp-74b-curva}
 \end{figure}
 
-Ajustando $m(t)$ a todas las curvas de luz, se encontraron restricciones para el momento en que estemos modelando el ruido (véase III.2.3).\textcolor{red}{Qué quisiste decir aquí?? puedes ampliarlo?? } 
+Ajustando $m(t)$ a todas las curvas de luz, se encontraron las cotas la amplitud $(A_{1},A_{2})$, las medias  $(\mu_{1},\mu_{2})$ y la desviaciones $(\sigma_{1},\sigma_{2})$ de la función de distribución $m(t)$, para el momento en que estemos modelando el ruido (véase III.3.3).
 
-\subsection*{III.2.2 Espectro de frecuencias del ruido}
-\addcontentsline{toc}{subsection}{III.2.1 Espectro de frecuencias del ruido}
+\subsection*{III.3.2 Espectro de frecuencias del ruido}
+\addcontentsline{toc}{subsection}{III.3.2 Espectro de frecuencias del ruido}
 
 El ruido blanco como el de la figura \ref{fig:3.3_ruido_gauss} tiene un espectro de frecuencias plano, incluso la suma de 2 componentes de ruido gaussiano sigue teniendo un espectro de potencias plano como se aprecia en la figura \ref{fig:3.7_wasp-74b-curva}.
 
 \begin{figure}[H]
   \centering
     \includegraphics[max size={\textwidth}{0.7\textheight}]{./figures/ejemplo_espectro_gauss.png}
-   \caption{Arriba: se muestra una curva de ruido blanco con dos componentes $G_{1}$ y $G_{2}$. Abajo: el espectro de frecuencias de la curva de luz, el cual permanece blanco sin importar el número de componentes gaussianas\textcolor{red}{no entendí la explicación sobre el espectro}.}
+   \caption{Arriba: se muestra una curva de ruido blanco con dos componentes $G_{1}$ y $G_{2}$. Abajo: el espectro de frecuencias de la curva de luz, el cual permanece plano sin importar el número de componentes gaussianas.}
     \label{fig:3.7_wasp-74b-curva}
 \end{figure}
 
@@ -161,17 +188,16 @@ Sin embargo, al analizar las curvas de luz se encontró que un espectro de frecu
 
 Entonces si queremos simular ruido, que posea características que se aprecian en una curva de luz real, necesitamos más que una simple distribución gaussiana, por lo que esta distribución temporal es solo el punto de partida para generar un ruido sintético. 
 
-Para añadir estas contribuciones de baja frecuencia, se modeló una envolvente exponencial de la forma \textcolor{red}{la ecuación se ve rara en el PDF}:
+Para añadir estas contribuciones de baja frecuencia, se modeló una envolvente exponencial de la forma:
 
-\begin{equation}
+\begin{equation}\label{ec:envolvente_exponencial}
   \displaystyle E(f)= C + a_{1}e^{-\dfrac{f}{b_{1}}} + a_{2}e^{-\dfrac{f}{b_{2}}};
 \end{equation}
 
-la función envolvente (3.19)\textcolor{red}{No encuentro esta referencia, deberías usar las referencias cruzadas de latex...}, está compuesta por dos componentes que decaen de manera exponencial hacia las altas frecuencias. Estas componentes son provocadas por fenómenos de baja frecuencia en la curva de luz, como tendencias o un posible tránsito. La envolvente tiene una asíntota horizontal en $C$, que representa el valor mínimo del espectro de frecuencias observado.
+la función envolvente \ref{ec:envolvente_exponencial}, está compuesta por dos componentes que decaen de manera exponencial hacia las altas frecuencias. Estas componentes son provocadas por fenómenos de baja frecuencia en la curva de luz, como tendencias o un posible tránsito. La envolvente tiene una asíntota horizontal en $C$, que representa el valor mínimo del espectro de frecuencias observado.
 
-Utilizando esta envolvente, se altera el espectro de frecuencias de acuerdo a lo analizado en las curvas de luz de las observaciones. De manera similar a la metodología implementada para las distribuciones temporales\textcolor{red}{cuáles distribuciones temporales??}, se calcularon los parámetros de $E(f)$ para todas las curvas de luz y se obtuvieron restricciones para la posterior simulación de ruido sintético.
+Utilizando esta envolvente, se altera el espectro de frecuencias de acuerdo a lo analizado en las curvas de luz de las observaciones. De manera similar a la metodología implementada para las distribuciones temporales $m_{t}$ (véase III.3.1), se calcularon los parámetros de $E(f)$ para todas las curvas de luz y se obtuvieron restricciones para la asíntota $C$, las amplitudes $a_{1}$ y $a_{2}$ y los factores $b_{1}$ y $b_{2}$ para la posterior simulación de ruido (véase III.3.3).
 
-\textcolor{red}{otra vez, por favor explica la ecuacion, describe cada factor}
 \begin{figure}[H]
   \centering
     \includegraphics[max size={\textwidth}{0.7\textheight}]{./figures/curva_ajuste_espectro.png}
@@ -179,38 +205,39 @@ Utilizando esta envolvente, se altera el espectro de frecuencias de acuerdo a lo
     \label{fig:3.8_wasp-74b-curva}
 \end{figure}
 
-En la figura \ref{fig:3.8_comp_espectros}\textcolor{red}{en el PDF aparece 3.9}, podemos observar la envolvente exponencial $E(f)$, del espectro de potencias de la curva de luz de WASP-74b. Como se puede apreciar en la parte superior (temporal), esta curva contiene una ligera tendencia, y variaciones de flujo en el rango de 1-3 minutos. Estas variaciones contribuyen a que la amplitud del espectro en bajas frecuencias sea significativamente mayor que en altas frecuencias. La contribución de un tránsito de exoplaneta al espectro de frecuencias se encontraría en la región de frecuencias alrededor de $f < 0.01$.
+En la figura \ref{fig:3.8_wasp-74b-curva}, podemos observar la envolvente exponencial $E(f)$, del espectro de potencias de la curva de luz de WASP-74b. Como se puede apreciar en la parte superior (temporal), esta curva contiene una ligera tendencia, y variaciones de flujo en el rango de 1-3 minutos. Estas variaciones contribuyen a que la amplitud del espectro en bajas frecuencias sea significativamente mayor que en altas frecuencias. La contribución de un tránsito de exoplaneta al espectro de frecuencias se encontraría en la región de frecuencias alrededor de $f < 0.01$.
 
-\subsection*{III.2.3 Simulación de ruido}
-\addcontentsline{toc}{subsection}{III.2.3 Simulación de ruido}
+\subsection*{III.3.3 Simulación de ruido}
+\addcontentsline{toc}{subsection}{III.3.3 Simulación de ruido}
 
-Utilizando los resultados obtenidos y siguiendo la metodología de las secciones anteriores (III.2.2 y III.2.3) se implementó un algoritmo para generar ruido con características que podemos observar y medir en curvas de luz reales.
+Utilizando los resultados obtenidos y siguiendo la metodología de las secciones anteriores (III.3.1 y III.3.2) se implementó un algoritmo para generar ruido con características que podemos observar y medir en curvas de luz reales.
 
-Primeramente, para simular un ruido $R(t)$, dada una función de distribución $m(t)$ (por ejemplo ec. 3.18 \textcolor{red}{NO encuentro esta ecuación}), calculamos la función de distribución acumulativa:
+Primeramente, para simular un ruido $R(t)$, dada una función de distribución $m(t)$, por ejemplo \ref{ec:componentes_gauss}, calculamos la función de distribución acumulativa:
 
-\begin{equation}
+\begin{equation}\label{ec:distribucion_acumulada}
   \displaystyle M(t)= \int m(t)dt;
 \end{equation}
 
 \noindent y después normalizamos $M(t)$:
 
-\begin{equation}
+\begin{equation}\label{ec:normalizacion_distribucion}
   \displaystyle M_{norm}(t)= \dfrac{M(t)}{\mbox{MAX}(M(t))}.
 \end{equation}
 
-Para generar el vector de ruido, se realiza un muestreo de puntos aleatorios $t_{i}$ con distribución uniforme $\mathcal{U}(a,b)$, evaluados en la función inversa de la distribución acumulada normalizada, denotada como: $M^{-1}_{norm}$. Resumiendo, a continuación se muestran  los pasos a seguir \textcolor{red}{OJO:Las referencias a las ecuaciones siguientes están mal numeradas}:*************
+Para generar el vector de ruido, se realiza un muestreo de puntos aleatorios $t_{i}$ con distribución uniforme $\mathcal{U}(a,b)$, evaluados en la función inversa de la distribución acumulada normalizada, denotada como: $M^{-1}_{norm}$. Resumiendo, a continuación se muestran  los pasos a seguir:\\
 
 \begin{itemize}
-  \item Elegir la distribución del ruido deseado, (en este caso usamos $m(t)$ (3.17)).
-  \item Calcular la función de distribución acumulada $M(t)$ (3.19).
-  \item Normalizar $M(t)$ (3.20).
+  \item Elegir la distribución del ruido deseado, (en este caso usamos $m(t)$ \ref{ec:componentes_gauss}).
+  \item Calcular la función de distribución acumulada $M(t)$ \ref{ec:distribucion_acumulada}.
+  \item Normalizar $M(t)$ \ref{ec:normalizacion_distribucion}.
   \item Encontrar la función inversa de $M_{norm}(t)$.
   \item Evaluar $t_{i}$ con $i=1,..,N$ puntos en $M^{-1}_{norm}(t_{i})$
 \end{itemize}
 
-\textcolor{red}{según entiendo, tu simulación del ruido se basa en dos gaussianas y una envolvente exponencial negativa... es importante explicarlo así para una mejor comprensión en la lectura... }El resultado es una serie de tiempo $R(t)$ normalizada, de longitud $N$ con distribución $m(t)$. Los valores para la amplitud $(A_{1},A_{2})$, las medias   $(\mu_{1},\mu_{2})$ y la desviaciones $(\sigma_{1},\sigma_{2})$ de la función de distribución $m(t)$ \textcolor{red}{y los factores $a_1,b_1,a_2,b_2$ aunque estos son de la envolvente}, pueden ser elegidos de manera arbitraria\textcolor{red}{pero dentro de un rango específico donde caben todas nuestras observaciones, auqnue no se si este rango solo lo obtuviste para las envolventes. Esto es MUYYY importante}, dado que podemos cambiar la SNR de la serie de tiempo simplemente con: $R(t)*\sigma$. Para una curva normalizada $(\mu=1)$ la SNR es igual a $\sigma^{-1}$. Con esto podemos elegir la SNR que se necesite.
 
-Sin embargo, como mencionamos anteriormente, para representar las adecuadamente las observaciones necesitamos una serie de tiempo de ruido simulado $R(t)$ con un espectro \textbf{no}  plano. Para obtener dicha serie de tiempo calculamos la FFT de $R(t)$ y multiplicamos su espectro de frecuencias por una envolvente $E(f)$. El desglose detallado de los pasos a seguir es el siguiente:
+El resultado es una serie de tiempo $R(t)$ normalizada, de longitud $N$ con distribución $m(t)$. Dado que podemos cambiar la SNR de la serie de tiempo simplemente con: $R(t)*\sigma$. Para una curva normalizada $(\mu=1)$ la SNR es igual a $\sigma^{-1}$. Con esto podemos elegir la SNR que se necesite.
+
+Sin embargo, como mencionamos anteriormente, para representar adecuadamente las observaciones necesitamos una serie de tiempo de ruido simulado $R(t)$ con un espectro no plano. Para obtener dicha serie de tiempo calculamos la FFT de $R(t)$ y multiplicamos su espectro de frecuencias por una envolvente $E(f)$. El desglose detallado de los pasos a seguir es el siguiente:
 
 \begin{itemize}
   \item Calcular la FFT de $R(t)$ la cual denotaremos como $\mathcal{R}(f)$.
@@ -222,7 +249,8 @@ Sin embargo, como mencionamos anteriormente, para representar las adecuadamente 
   \item Elegir $\sigma$ para obtener la SNR deseada.
 \end{itemize}
 
-Esto resulta en una serie de tiempo, con $SNR=\sigma^{-1}$, con algunos ruidos sistemáticos aleatorios. En la figura 3.8\textcolor{red}{ creo que debe ser 3.9} se muestra una comparación del espectro de frecuencias de la curva de luz de WASP-74b comparado con el ruido simulado, usando la envolvente $E(f)$ calculada de su espectro.
+Esto resulta en una serie de tiempo, con $SNR=\sigma^{-1}$, con algunos ruidos sistemáticos aleatorios. En la figura \ref{fig:3.8_comp_espectros} se muestra una comparación del espectro de frecuencias de la curva de luz de WASP-74b comparado con el ruido simulado, usando la envolvente $E(f)$ calculada de su espectro.
+
 
 \begin{figure}[H]
   \centering
@@ -231,7 +259,9 @@ Esto resulta en una serie de tiempo, con $SNR=\sigma^{-1}$, con algunos ruidos s
     \label{fig:3.8_comp_espectros}
 \end{figure}
 
-Utilizando esta metodología, se creó una base de datos de ruidos simulados para asegurar reproducibilidad y posteriormente hacer estadística. Se variaron los parámetros $(C,a_{1},b_{1},a_{2},b_{2})$ de manera uniforme dentro de los intervalos que comprenden los valores de cada curva de luz en los datos reales:
+Los valores para la amplitud $(A_{1},A_{2})$, las medias  $(\mu_{1},\mu_{2})$ y la desviaciones $(\sigma_{1},\sigma_{2})$ de la función de distribución $m(t)$ y la asíntota $C$, las amplitudes $a_{1}$ y $a_{2}$ y los factores $b_{1}$ y $b_{2}$ de la envolvente exponencial $E(f)$ son elegidos de manera arbitrarea dentro de un rango específico, el cual se obtuvo a partir de ajustar $m(t)$ y $E(f)$ a los datos observacionales. 
+
+Utilizando esta metodología, se creó una base de datos de ruidos simulados para asegurar reproducibilidad y posteriormente hacer estadística. Se variaron los parámetros $(C,a_{1},b_{1},a_{2},b_{2})$ de manera uniforme dentro de los intervalos:
 
 \begin{equation}
   \begin{split}
@@ -246,8 +276,8 @@ Utilizando esta metodología, se creó una base de datos de ruidos simulados par
 estos intervalos se calcularon a partir de los espectros de los datos observacionales. Se generaron 100 curvas de ruido por cada valor de SNR. Los valores de SNR utilizados fueron 10, 20, 50, 80 y 100.
 
 
-\section*{III.3 Simulación de tránsitos de exoplanetas}
-\addcontentsline{toc}{section}{III.3 Simulación de tránsitos de exoplanetas}
+\section*{III.4 Simulación de tránsitos de exoplanetas}
+\addcontentsline{toc}{section}{III.4 Simulación de tránsitos de exoplanetas}
 
 
 Como se mencionó anteriormente (sección II.1), la curva de luz de un tránsito de exoplaneta depende de múltiples factores cómo el tamaño de la estrella, el tamaño del planeta, la velocidad orbital del planeta, el ángulo con respecto a la línea de visión etc.
@@ -255,12 +285,12 @@ Como se mencionó anteriormente (sección II.1), la curva de luz de un tránsito
 Para la simulación de curvas de luz en este trabajo, se utilizó la paquetería BATMAN (del inglés \textit{BAsic Transit Model cAlculatioN}) desarrollada en \textit{Python} \cite{kreidberg2015batman}. Este algoritmo utiliza el modelo analítico propuesto en \cite{mandel2002analytic}
 
 
-\subsection*{III.3.1 Descripción y uso de BATMAN}
-\addcontentsline{toc}{subsection}{III.3.1 Descripción y uso de BATMAN}
+\subsection*{III.4.1 Descripción y uso de BATMAN}
+\addcontentsline{toc}{subsection}{III.4.1 Descripción y uso de BATMAN}
 
 BATMAN es un paquete para \textit{Python}, con el cual se modelan tránsitos de exoplanetas y sus curvas de luz. El código usa extensiones en C para aumentar la velocidad de calculo y esta paralelizado con OpenMP \cite{kreidberg2015batman}. BATMAN puede calcular curvas de luz para cualquier ley de oscurecimiento de limbo radial, usando un nuevo algoritmo de integración que no puede ser calculado analíticamente.
 
-Para utilizar BATMAN, se requiere ingresar los parámetros físicos de los cuáles depende el tránsito, tales como: el periodo orbital $(P)$, el radio del planeta $(R_{p})$ y el semieje mayor $(a)$, ambos en unidades del radio de la estrella anfitriona $(R_{*})$;  la excentricidad de la órbita $(\epsilon)$, la inclinación orbital $(i)$ y la longitud del periastro $(\bar{\omega})$ ambos en grados. Además se puede seleccionar la ley de oscurecimiento radial \textcolor{red}{explicar en que consiste dicha ley}. En la figura 3.9 se muestra un ejemplo de curvas de luz simuladas con BATMAN. 
+Para utilizar BATMAN, se requiere ingresar los parámetros físicos de los cuáles depende el tránsito, tales como: el periodo orbital $(P)$, el radio del planeta $(R_{p})$ y el semieje mayor $(a)$, ambos en unidades del radio de la estrella anfitriona $(R_{*})$;  la excentricidad de la órbita $(\epsilon)$, la inclinación orbital $(i)$ y la longitud del periastro $(\bar{\omega})$ ambos en grados. Además se puede seleccionar la ley de oscurecimiento radial (véase II.1.2). En la figura \ref{fig:3.9_comp_radios} se muestra un ejemplo de curvas de luz simuladas con BATMAN. 
 
 \begin{figure}
   \centering
@@ -270,37 +300,6 @@ Para utilizar BATMAN, se requiere ingresar los parámetros físicos de los cuál
 \end{figure}
 
 Utilizando BATMAN se creó una base de datos de tránsitos simulados, con un total de 625 curvas diferentes, utilizando 25 diferentes valores de las observables $\Delta F$ y $P$.
-
-\section*{III.4 Análisis de datos observacionales}
-\addcontentsline{toc}{section}{III.4 Análisis de datos observacionales}
-
-En este capítulo se plantea la metodología seguida para procesar los datos observacionales resultado de las múltiples temporadas en el OAN-SPM, \textcolor{red}{así como las simulaciones}. De los 8 objetos descritos en la sección III.1.2, se obtuvieron un total de 32 curvas de luz de alta cadencia (20 fps) y con una duración de aproximadamente 2 horas cada una. Esto con el propósito de igualar las condiciones que se tendrán en TAOS II.
-
-\subsection*{III.4.1 Fotometría con APPHi}
-\addcontentsline{toc}{subsection}{III.4.1.1 Fotometría con APPHi}
-
-\textcolor{red}{ESTA SECCIÓN DEBERÍA IR AL PRINCIPIO DE LA METODOLOGÍA PORQUE REPRESENTA EL PUNTO DE PARTIDA PARA EL RESTO DEL ANÁLSIS, ES DECIR, LA OBTENCIÓN DE LAS CURVAS DE LUZ}
-
-APPHi del inglés \textit{Automated Photometry Pipeline for High Cadence, Large Volume Data} es un código desarrollado en C, el cual consta de dos principales programas, \textit{APPHi field} y \textit{APPHi star} los cuales funcionan de acuerdo al diagrama de flujo mostrado en la igura \ref{fig:3.10_aphhi_diagrama}.  Este pipeline fotométrico se utilizará como herramienta para procesar el gran volumen de datos que va generar el proyecto TAOS II \cite{lehner2016status}. Este código consta de 3 partes principales, preprocesamiento de las imágenes, localización de las estrellas en el campo de observación y la fotometría para generar las curvas de luz.
-
-Primero las imágenes son preprocesadas de la manera convencional, utilizando imágenes de calibración (bias, flats y darks) \cite{romanishin2006introduction}. Después de limpiar las imágenes, APPHi localiza de manera automática los centroides correspondientes para cada estrella en el campo de observación usando el método del centro de masa \cite{chong2004introduction}. Este centroide se recalcula para cada imágen, para mejorar la curva de luz. Este proceso iterativo disminuye los efectos telúricos producidos por la atmósfera y el movimiento mecánico del instrumento, los cuales se vuelven significativos a altas cadencias. 
-
-\begin{figure}[H]
-  \centering
-    \includegraphics[max size={\textwidth}{0.7\textheight}]{./figures/apphi_diagrama.png}
-   \caption{Diagrama de flujo para ambos programas (\textit{APPHi field} y \textit{APPHi star}), donde D, B, F y Z representan los darks, bias, flats e imágenes de estudio respectivamente. Imágen tomada de \cite{sanchez2019apphi}. }
-    \label{fig:3.10_aphhi_diagrama}
-\end{figure}
-
-Este proceso resulta en cubos de imágenes centradas por estrella, a partir de los cuales se realiza la fotometría de apertura. Este proceso sigue la metodología descrita en la subsección II.3.1 y en \cite{romanishin2006introduction}. 
-
-APPHi realiza de manera automática otros procesos posteriores a la fotometría para mejorar la SNR. Uno de ellos es la fotometría diferencial, utilizando curvas de luz de estrellas cercanas como se explicó en la subsección II.3.2. Otro método que se aplica directamente a las imágenes es la técnica \textit{Shift \& Add} \cite{kluckers1996comparison}. 
-
-Para ejecutar APPHi desde la línea de comando se utiliza:\\
-
-\texttt{APPhi\_field bias.txt darks.txt flats.txt night.txt}\\
-
-\noindent donde cada uno de los archivos \texttt{.txt} contiene la lista de imágenes correspondientes en formato FITS. El resultado del procesado de las imágenes es un archivo HDF5 por cada estrella en el campo de observación. Este archivo contiene las imágenes de la estrella, las coordenadas del centroide para cada imágen, la curva de luz obtenida por fotometría de apertura y fotometría diferencial \citep{sanchez2019apphi}. Todas las curvas de luz analizadas en este trabajo de tesis fueron obtenidas utilizando APPHi, el cual se encuentra disponible en \texttt{http://taos2.astrosen.unam.mx/APPHi.html}.
 
 \section*{III.5 Reducción de ruido en curvas de luz}
 \addcontentsline{toc}{section}{III.5 Reducción de ruido en curvas de luz}
@@ -318,7 +317,7 @@ Por ejemplo, las curvas de luz de este trabajo fueron tomadas a una cadencia de 
   \displaystyle F_{prom}(t)=  \dfrac{\sum\limits_{i=m}^{m+n} F(t_{i})}{n}\hspace{1cm}m=0,n,2n,...,N-n;
 \end{equation}
 
-Esto resulta en una curva con longitud $N_{prom}=N/n$. Esta misma metodología aplicado a las imágenes, es el método \textit{Shift \& Add} de \cite{kluckers1996comparison}. \textcolor{red}{Sin embargo, el ruido electrónico resultante de la lectura de cada imagen es imposible de remover con esta técnica, por lo tanto, una curva de luz obtenida de imágenes con 60s de exposición es siempre menos ruidosa que una obtenida promediando 1200 puntos de imágenes de 0.05 s de exposición}
+Esto resulta en una curva con longitud $N_{prom}=N/n$. Esta misma metodología aplicado a las imágenes, es el método \textit{Shift \& Add} de \cite{kluckers1996comparison}. Sin embargo, el ruido electrónico resultante de la lectura de cada imagen es imposible de remover con esta técnica, por lo tanto, una curva de luz obtenida de imágenes con 60 segundos de exposición es siempre menos ruidosa que una obtenida promediando 1200 imágenes de 0.05 segundos de exposición.
 
 Para evitar perder resolución temporal, se utiliza la técnica promedio móvil \cite{borucki2009kepler}. Esta técnica consiste en igualmente promediar la contribución de $n$ muestras, pero desplazando el promediado 1 muestra, en vez de $n$ como en el ejemplo anterior, es decir:
 
@@ -331,7 +330,7 @@ Lo cual resulta en una curva de luz $F_{mov}(t)$ de longitud  $N_{mov}=N-n$. Otr
 \begin{figure}[H]
   \centering
     \includegraphics[max size={\textwidth}{0.7\textheight}]{./figures/wasp_prom_mov.png}
-   \caption{Curva de luz de WASP-74 tomada el día 28 de mayo del 2017. En azul se muestra la curva de luz original obtenida mediante fotometría de apertura. En naranja la curva resultado del promedio móvil, y el verde la curva resultado de tomar la mediana en lugar del promedio \textcolor{red}{Yo veo azul rojo y negro, Que pasa??}. En el recuadro se muestra la SNR calculada para cada curva de utilizando (2.11).  }
+   \caption{Curva de luz de WASP-74 tomada el día 28 de mayo del 2017. En azul se muestra la curva de luz original obtenida mediante fotometría de apertura. En rojo la curva resultado del promedio móvil, y en negro la curva resultado de tomar la mediana en lugar del promedio. En el recuadro se muestra la SNR calculada para cada curva de utilizando (2.11). }
     \label{fig:3.11_prom_mov}
 \end{figure}
 
@@ -343,7 +342,7 @@ Esta metodología es útil para el suavizado de curvas en general. Sin embargo, 
 
 Un tránsito inmerso en una curva de luz de alta cadencia, puede interpretarse como una variación de baja frecuencia en el brillo de la estrella. Partiendo de esta suposición, la firma del tránsito, debe poder distinguirse en el espectro de frecuencias, particularmente en la zona de bajas frecuencias $(\sim 1x10^{-4} Hz)$.
 
-En una curva de luz de alta cadencia, se pueden observar a simple vista variaciones de alta frecuencia, las cuales ocultan el tránsito. Estas contribuciones de alta frecuencia pueden ser atenuadas utilizando un filtro de Fourier, específicamente un filtro pasa-bajas \citep{thompson1983low}. La Figura 3.12 \textcolor{red}{está mal la referencia} muestra un ejemplo del filtro pasa-bajas utilizado.
+En una curva de luz de alta cadencia, se pueden observar a simple vista variaciones de alta frecuencia, las cuales ocultan el tránsito. Estas contribuciones de alta frecuencia pueden ser atenuadas utilizando un filtro de Fourier, específicamente un filtro pasa-bajas \citep{thompson1983low}. La Figura \ref{fig:3.13_filtro_cuadrado} muestra un ejemplo del filtro pasa-bajas utilizado.
 
 \begin{figure}[h!]
 \centering
@@ -353,18 +352,18 @@ En una curva de luz de alta cadencia, se pueden observar a simple vista variacio
 \end{figure}
 
 Para aplicar el filtro $\mathcal{H}(f)$ a $F(t)$, primero se calcula su FFT para obtener: $\mathcal{F}(f)$.
-Después multiplicamos el filtro, por el espectro de frecuencias para obtener el espectro filtrado $\mathcal{F}_{fil}(f)$\textcolor{red}{ No le vas a poner número a la ecuación??}:
+Después multiplicamos el filtro, por el espectro de frecuencias para obtener el espectro filtrado $\mathcal{F}_{fil}(f)$:
 
-\begin{equation*}
+\begin{equation}
   \mathcal{F}_{fil}(f)=\mathcal{H}(f) \times \mathcal{F}(f)
-\end{equation*}
+\end{equation}
 
 finalmente regresamos al dominio del tiempo con la FFT inversa. Este proceso es análogo a utilizar una función $Sinc(t)$ como función ventana y usar la convolución en el dominio del tiempo. Este proceso es conocido como \textit{Windowed Fast Fourier Transform} (WFFT) \citep{owen2007practical}. Sin embargo, el proceso descrito anteriormente es computacionalmente más eficiente y obtenemos los mismos resultados, un ejemplo de la aplicación de este filtrado se muestra en al figura \ref{fig:3.13_curva_fourier}.
 
 \begin{figure}[h!]
   \centering
     \includegraphics[max size={\textwidth}{0.7\textheight}]{./figures/wasp_four_fil.png}
-   \caption{Curva de luz de WASP-74 tomada el día 28 de mayo del 2017. En azul se muestra la curva de luz original obtenida mediante fotometría de apertura. En naranja \textcolor{red}{No es rojo} la curva resultado del filtrado de Fourier, utilizando una frecuencia de corte $FC=2x10^{-3}$.}
+   \caption{Curva de luz de WASP-74 tomada el día 28 de mayo del 2017. En azul se muestra la curva de luz original obtenida mediante fotometría de apertura. En rojo la curva resultado del filtrado de Fourier, utilizando una frecuencia de corte $FC=2x10^{-3}$.}
     \label{fig:3.13_curva_fourier}
 \end{figure}
 
@@ -372,6 +371,39 @@ Este filtrado es llamado ideal por su simplicidad, sin embargo, no hay necesidad
 
 \subsubsection*{III.5.3 Identificación de firma de tránsito usando PCA}
 \addcontentsline{toc}{subsubsection}{III.5.3 Identificación de firma de tránsito usando PCA}
+
+Para toda matriz $A$ con dimensiones $m\times n$, su descomposición en valores singulares ó SVD (del inglés \textit{Singular Value Decomposition}) es:
+
+\begin{equation}\label{ec:svd}
+  \displaystyle A=U\Sigma V^{T};
+\end{equation}
+
+\noindent donde:\\
+
+\begin{itemize}
+  \item $U$ es llamado \textit{vector singular} y es ortogonal $(UU^{T}=I)$,
+  \item $\Sigma$ está compuesta por los valores singulares de $U$ y es diagonal no negativa,
+  \item $V$ es también un \textit{vector singular} y es ortogonal $(VV^{T}=I)$.
+\end{itemize}
+
+Si multiplicamos la ecuación \ref{ec:svd} por su transpuesta tenemos:
+
+\begin{equation}
+  \displaystyle AA^{T}=U\Sigma V^{T} V\Sigma U^{T} = U \Sigma^{2} U^{T};
+\end{equation}
+
+\noindent el resultado es el conocido teorema de diagonalización para matrices simétricas que dice: \textit{Sea S una matriz cuadrada de $M\times M$ con $M$ eigenvectores linealmente independientes, entonces existe una descomposición simétrica tal que:}
+
+\begin{equation*}
+  \displaystyle S=Q\Lambda Q^{T};
+\end{equation*}
+
+
+\noindent \textit{donde las columnas de $Q$ son los eigenvectores normalizados de $S$, y $\Lambda$ es la matriz diagonal con los eigenvalores de $S$.}
+
+El significado matemático de la SVD, depende de la forma de $A$. Normalmente $A$ con dimensiones $m\times n$ está compuesta por los datos, donde $m$ es el número de muestras y $n$ el número de variables. Los \textit{vectores singulares} $U$, son también conocidos domo \textit{ejes principales} y la proyección de los datos $A$ sobre estos ejes principales son llamados \textit{componentes principales ($P_{comp}$)}, es decir $(P_{comp}=AU)$, de ahí el nombre de análisis de componentes principales ó PCA (del inglés \textit{Principal Component Analysis}).
+
+Esta descomposición es utilizada para la extracción de características y disminuir la dimensionalidad de los datos que se estén analizando (\cite{mcgurk2010principal}; \cite{medeiros2018principal}). En este trabajo se utilizan las componentes principales para limpiar la curva de luz del ruido sistemático (\cite{shin1999iterative}; \cite{bailey2012principal}).
 
 Existen metodologías para reducir el ruido en series de tiempo utilizando análisis de componentes pricipales (PCA) \cite{shin1999iterative}, \cite{bailey2012principal}. Sin embargo, el PCA puede emplearse de manera más conveniente, si se conocen las características de la señal que buscamos inmersa en el ruido, en este caso, tránsitos de exoplanetas.
 
@@ -393,7 +425,7 @@ Primero se necesita construir una matriz $X$ con muestras $\{x_{i}|i=1,...,N\}$.
   \end{pmatrix}
 \end{equation}
 
-donde $n$ es el número de puntos en la curva simulada $\{v^{N}_{i}|i=1,...,n\}$. Por cual entonces, $X$ tiene dimensiones $N\times n$, y su SVD\textcolor{red}{Creo que es la primera vez que usas este acrónimo, en esta sección, hay que definirlo}  está dada por:
+donde $n$ es el número de puntos en la curva simulada $\{v^{N}_{i}|i=1,...,n\}$. Por cual entonces, $X$ tiene dimensiones $N\times n$, y su SVD  está dada por:
 
 \begin{equation}
   \displaystyle X=U\Sigma V^{T};
@@ -413,7 +445,7 @@ donde C tiene dimensiones $k\times l$, si utilizamos una sola curva de luz $l=1$
   \displaystyle F'_{t}=C^{T} \times V^{T};
 \end{equation}
 
-Este proceso utiliza las componentes principales de los tránsitos simulados para reconstruir la curva de luz con ruido\textcolor{red}{Qué quisiste decir aquí??}. Esto no es análogo a una reducción de ruido. Si la curva $F_{t}$ que se va analizar no contiene las características que se están buscando (las características de $X$), el resultado es una curva $F'_{t}$ que no posee ningún patrón específico. Esto no se convierte en un problema, dado que solo estamos interesados a las curvas que sí presenten las características de un tránsito.
+Este proceso utiliza las componentes principales de los tránsitos simulados para reconstruir la curva de luz, resaltando las componentes principales. Esto no es análogo a una reducción de ruido. Si la curva $F_{t}$ que se va analizar no contiene las características que se están buscando (las características de $X$), el resultado es una curva $F'_{t}$ que no posee ningún patrón específico. Esto no se convierte en un problema, dado que solo estamos interesados a las curvas que sí presenten las características de un tránsito.
 
 
 \section*{III.6 Criterio de validación para candidatos a tránsitos de exoplanetas}
@@ -424,7 +456,7 @@ Después de aplicar las metodologías para mejorar la SNR, se necesita un proces
 \subsection*{III.6.1 Modelo del trapezoide}
 \addcontentsline{toc}{subsection}{III.6.1 Modelo del trapezoide}
 
-Las curvas de luz de alta candencia son mucho mas tardadas de procesar por el número de mediciones que se realizan. Como se mencionó anteriormente, TAOS~II tendrá curvas de luz de 2 horas de longitud, lo cual se traduce en curvas con $N=144,000$ muestras. Además, por campo de observación se espera observar alrededor de 10,000 estrellas simultáneamente. Teniendo en cuenta la eficiencia del algoritmo, se utilizó el modelo más simple para un tránsito de exoplaneta, un trapezoide. Este modelo es muy utilizado en el procesamiento de señales producidas por tránsitos de exoplanetas, por ejemplo los trabajos \cite{alapini2010transiting}, \cite{hippke2019optimized}, \cite{kipping2016observational} y \cite{morton2012efficient}.
+Las curvas de luz de alta candencia son mucho mas tardadas de procesar por el número de mediciones que se realizan. Como se mencionó anteriormente, TAOS II tendrá curvas de luz de 2 horas de longitud, lo cual se traduce en curvas con $N=144,000$ muestras. Además, por campo de observación se espera observar alrededor de 10,000 estrellas simultáneamente. Teniendo en cuenta la eficiencia del algoritmo, se utilizó el modelo más simple para un tránsito de exoplaneta, un trapezoide. Este modelo es muy utilizado en el procesamiento de señales producidas por tránsitos de exoplanetas, por ejemplo los trabajos \cite{alapini2010transiting}, \cite{hippke2019optimized}, \cite{kipping2016observational} y \cite{morton2012efficient}.
 
 
 Como se explicó en la sección II.1, a partir de curvas de luz de tránsitos solo podemos conocer el periodo orbital $P$ y la profundidad del tránsito $\Delta F$, la cual está en función del radio del planeta $R_{p}$ y el radio de la estrella $R_{*}$. Por lo que el modelo del trapezoide es suficiente para validar un posible candidato a tránsito.
@@ -444,4 +476,4 @@ donde $\sigma_{12}$ es la covarianza entre la curva de luz y el modelo ajustado,
 \displaystyle \sigma_{xy}= \sum\limits_{i}^{n} \frac{1}{n}(x_{i}-\bar{x})(y_{i}-\bar{y});
 \end{equation}
   
-donde $\sigma_{1}$ y $\sigma_{2}$ son la desviación estándar de la curva de luz y el modelo respectivamente. A partir de simulaciones, se calculó el limite inferior para el coeficiente de correlación, para evaluar si la estrella y su curva de luz se cataloga como objeto de interés, para elaborar un análisis más detallado (véase IV.2)\textcolor{red}{Esto va a cambiar cuando organices el capítulo de resultados}.
+donde $\sigma_{1}$ y $\sigma_{2}$ son la desviación estándar de la curva de luz y el modelo respectivamente. A partir de simulaciones, se calculó el limite inferior para el coeficiente de correlación, para evaluar si la estrella y su curva de luz se cataloga como objeto de interés, para elaborar un análisis más detallado (véase IV.1.2)
