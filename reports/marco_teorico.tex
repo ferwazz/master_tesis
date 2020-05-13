@@ -97,7 +97,7 @@ Es posible incorporar el efecto del LD a la descripción matemática del tránsi
 \begin{figure}[h!]
   \centering
     \includegraphics[max size={0.9\textwidth}{0.9\textheight}]{./figures/limbDarkening.png}
-   \caption{Efecto del oscurecimiento del limbo (LD) en curvas de luz de tránsitos simulados. Se muestran 3 modelos distintos, en azul tenemos LD constante, en naranja un modelo lineal, en verde un modelo cuadrático y en rojo un modelo no-lineal. \textcolor{red}{Aquí valdría la pena agregar una curva que no considere el LD...}}
+   \caption{Efecto del oscurecimiento del limbo (LD) en curvas de luz de tránsitos simulados. Se muestran 3 modelos distintos, en azul tenemos LD constante, en naranja un modelo lineal, en verde un modelo cuadrático y en rojo un modelo no-lineal.}
     \label{fig_2_3_limbDarkening}
 \end{figure}
 
@@ -136,7 +136,7 @@ Por lo general, se utilizan tiempos de exposición de (30s - 120s), dependiendo 
 \section*{II.3 Reducción de imágenes en curvas de luz}
 \addcontentsline{toc}{section}{II.3 Reducción de imágenes en curvas de luz}
 
-Como mencionamos en la sección anterior, necesitamos medir con precisión el flujo $F_{\lambda}$ recibido de las estrellas. Es decir, medir la energía por segundo, por unidad de área, \textcolor{red}{ por unidad de longitud de onda, POR QUÉ LONGITUD DE ONDA??}:
+Como mencionamos en la sección anterior, necesitamos medir con precisión el flujo $F_{\lambda}$ recibido de las estrellas. Es decir, medir la energía por segundo, por unidad de área,
 
 \begin{equation}
   \displaystyle F_{\lambda}=W s^{-1}m^{-2}nm^{-1}.
@@ -232,30 +232,37 @@ La integración de cada imagen produce un solo valor $F_{t}$ en la curva de luz 
 
 Con el fin de mejorar la SNR en la curva de luz resultante de la fotometría, este proceso se mejora realizando lo que se conoce como fotometría de apertura, lo cual consiste en utilizar aperturas circulares para integrar el flujo de la estrella, y además se resta la contribución debido al cielo, aunque en fotometría de alta cadencia, la contribución del cielo es prácticamente nula.
 
-Primeramente definimos 2 máscaras circulares centradas en las coordenadas $(x_{c},y_{c})$ del centroide $ C_{t} $ de la estrella. El anillo formado por los círculos azules de la \ref{fig_2_6_aperturas},  se utiliza para restar la contribución del flujo debido al cielo $(S_{t})$, siendo $D_{t}$ el círculo exterior y $A_{t}$ el interior. La apertura de medición $M_{t}$ mostrada con un círculo rojo en la Figura 2.3 contiene información tanto de la estrella como del cielo $(F_{t}+S_{t})$ con $F_{t}$ el flujo de la estrella, de la imagen $t$.
+Primeramente definimos 2 máscaras circulares centradas en las coordenadas $(x_{c},y_{c})$ del centroide $ C_{t} $ de la estrella. La apertura de medición $Area_{M_{t}}$ mostrada con un área roja en la \ref{fig_2_6_aperturas} contiene información tanto de la estrella, como del cielo, es decir:
+
+\begin{equation}
+  \displaystyle M_{t} = F_{t}+S_{t}
+\end{equation}
+
+donde $M_{t}$ es el flujo integrado dentro de la apertura $Area_{M_{t}}$, $F_{t}$ y $S_{t}$ son el flujo en la t-íesima imágen debido a la apertura estrella y al cielo respectivamente.
 
 
 \begin{figure}[h!]
   \centering
     \includegraphics[max size={0.7\textwidth}{0.7\textheight}]{./figures/aperturas.png}
-   \caption{Ejemplo de aperturas circulares para realizar fotometría de HAT-P-37B. El anillo formado por las circunferencias en azul se utiliza para calcular la contribución del flujo debido al cielo.\textcolor{red}{usar colores de mejor contraste para el anillo y etiquetar/resaltar las áreas correspondientes}}
+   \caption{Ejemplo de aperturas circulares para realizar fotometría de HAT-P-37B. El anillo azul, formado por las circunferencias $D_{t}$ y $A_{t}$, se utiliza para calcular la contribución del flujo debido al cielo $S_{t}$.}
     \label{fig_2_6_aperturas}
 \end{figure}
+%photo_full.i
 
+El área del anillo formado por los círculos azules, se utiliza para restar la contribución del flujo debido al cielo $(S_{t})$, siendo $D_{t}$ el círculo exterior y $A_{t}$ el interior, denotaremos esta área como $Area_{D_{t}-A_{t}}$, representado por el área azul en la \ref{fig_2_6_aperturas}. Para esto, es necesario primero calcular el flujo del cielo por unidad de área $S^{Area}_{t}$, integrando la contribución de los pixeles dentro del área $Area_{D_{t}-A_{t}}$.
 
-Denotaremos el área entre $D_{t}$ y $A_{t}$ como $Area_{D_{t}-A_{t}}$, esta área en conjunto con $S_{t}$ se puede calcular la contribución del flujo debido al cielo por unidad de área $S^{Area}_{t}$.
 
 \begin{equation}
   \displaystyle S^{Area}_{t} = \dfrac{S_{t}}{Area_{D_{t}-A_{t}}};
 \end{equation}
 
-El brillo del cielo por unidad de área $S^{Area}_{t}$ multiplicado por el área de $M_{t}$ denotada como $Area_{M_{t}}$	nos da la contribución del cielo dentro de $M_{t}$, es decir \textcolor{red}{esta ecuación no está clara, contiene el término $F_t$ dentro y no decribe bien el proceso, que debe ser así... se obtiene la mediana o la media del flujo del área del anillo para obtener el el valor por pixel, que luego se multiplica por el área del círculo central para obtener la contribución del cielo... Tienes que definir cada uno de los términos con palabras y en la figura}:
+donde $S_{t}$ es el flujo integrado dentro de la región $Area_{D_{t}-A_{t}}$. El brillo del cielo por unidad de área $S^{Area}_{t}$ multiplicado por el área $Area_{M_{t}}$	nos da la contribución del cielo dentro de  $Area_{M_{t}}$, es decir 
 
 \begin{equation}
   \displaystyle F_{t} = F_{t} + S_{t} - \left( S^{Area}_{t}\times Area_{M_{t}}\right);
 \end{equation}
 
-Con esta metodología podemos obtener $F_{t}$ libre de contribución del cielo. Este proceso se repite para las $t$ imágenes. Si existe movimiento de la estrella debido a perturbaciones atmosféricas, o mal guiado, el centroide $ C_{t} $ se recalcula en cada imágen.
+Con esta metodología podemos obtener una aproximación del flujo estelar $F_{t}$ libre de contribución del cielo. Este proceso se repite para las $t$ imágenes. Si existe movimiento de la estrella debido a perturbaciones atmosféricas, o mal guiado, el centroide $C_{t}$ se recalcula en cada imágen.
 
 
 \subsection*{II.3.2 Fotometría diferencial}
@@ -341,40 +348,3 @@ Esta transformada integral, nos ayuda a convertir una serie de tiempo $F_{t}$, a
 En la figura 2.6 podemos apreciar una curva de luz de alta cadencia y su respectivo espectro de frecuencias. Como podemos observar, se aprecia una importante componente de bajas frecuencias debido a las tendencias en la curva de luz, provocadas por variables atmosféricas. Es por eso que en este trabajo se modeló el ruido de una manera en la que el ruido simulado tenga componentes que observamos en curvas de luz reales (véase III.2.2), a diferencia de simplemente añadir un ruido con distribución gaussiana (ruido blanco) el cual tiene un espectro de frecuencias plano.
 
 En este trabajo se utilizó el análisis de Fourier para encontrar las componentes del ruido y limpiar la curva de luz con una metodología ágil y rápida \cite{kosarev1983optimal}, \cite{brault1971analysis}. U
-
-\section*{II.6 Análisis de componentes principales}
-\addcontentsline{toc}{section}{II.6 Análisis de componentes principales}
-
-
-Para toda matriz $A$ con dimensiones $m\times n$, su descomposición en valores singulares ó SVD (del inglés \textit{Singular Value Decomposition}) es:
-
-\begin{equation}
-  \displaystyle A=U\Sigma V^{T};
-\end{equation}
-
-\noindent donde:\\
-
-\begin{itemize}
-  \item $U$ es llamado \textit{vector singular} y es ortogonal $(UU^{T}=I)$,
-  \item $\Sigma$ está compuesta por los valores singulares de $U$ y es diagonal no negativa,
-  \item $V$ es también un \textit{vector singular} y es ortogonal $(VV^{T}=I)$.
-\end{itemize}
-
-Si multiplicamos la ecuación 2.14 por su transpuesta tenemos:
-
-\begin{equation}
-  \displaystyle AA^{T}=U\Sigma V^{T} V\Sigma U^{T} = U \Sigma^{2} U^{T};
-\end{equation}
-
-\noindent el resultado es el conocido teorema de diagonalización para matrices simétricas que dice: \textit{Sea S una matriz cuadrada de $M\times M$ con $M$ eigenvectores linealmente independientes, entonces existe una descomposición simétrica tal que:}
-
-\begin{equation*}
-  \displaystyle S=Q\Lambda Q^{T};
-\end{equation*}
-
-
-\noindent \textit{donde las columnas de $Q$ son los eigenvectores normalizados de $S$, y $\Lambda$ es la matriz diagonal con los eigenvalores de $S$.}
-
-El significado matemático de la SVD, depende de la forma de $A$. Normalmente $A$ con dimensiones $m\times n$ está compuesta por los datos, donde $m$ es el número de muestras y $n$ el número de variables. Los \textit{vectores singulares} $U$, son también conocidos domo \textit{ejes principales} y la proyección de los datos $A$ sobre estos ejes principales son llamados \textit{componentes principales ($P_{comp}$)}, es decir $(P_{comp}=AU)$, de ahí el nombre de análisis de componentes principales ó PCA (del inglés \textit{Principal Component Analysis}).
-
-Esta descomposición es utilizada para la extracción de características y disminuir la dimensionalidad de los datos que se estén analizando (\cite{mcgurk2010principal}; \cite{medeiros2018principal}). En este trabajo se utilizan las componentes principales para limpiar la curva de luz del ruido sistemático (\cite{shin1999iterative}; \cite{bailey2012principal}).
