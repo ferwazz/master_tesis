@@ -32,3 +32,5 @@ reports/tesis.bbl
 *.log
 
 data/train_pca_mandel_entradas.hdf5
+
+reports/tesis.pdf

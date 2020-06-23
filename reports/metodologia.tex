@@ -12,16 +12,16 @@ En este capítulo se expone la metodología seguida para la obtención de los re
 \section*{III.1 Análisis de datos observacionales}
 \addcontentsline{toc}{section}{III.1 Análisis de datos observacionales}
 
-En este capítulo se plantea la metodología seguida para procesar los datos observacionales resultado de las múltiples temporadas en el OAN-SPM, así como las simulaciones. De los 8 objetos descritos en la sección III.2.2, se obtuvieron un total de 32 curvas de luz de alta cadencia (20 fps) y con una duración de aproximadamente 2 horas cada una. Esto con el propósito de igualar las condiciones que se tendrán en TAOS II.
+A continuación se plantea la metodología seguida para procesar los datos observacionales resultado de las múltiples temporadas en el OAN-SPM, así como las simulaciones. De los 8 objetos descritos en la sección III.2.2, se obtuvieron un total de 32 curvas de luz de alta cadencia ($\sim$ 20 fps) y con una duración de aproximadamente 2 horas cada una. Esto con el propósito de igualar las condiciones que se tendrán en el proyecto TAOS II.
 
 \subsection*{III.1.1 Fotometría con APPHi}
 \addcontentsline{toc}{subsection}{III.1.1 Fotometría con APPHi}
 
-APPHi del inglés \textit{Automated Photometry Pipeline for High Cadence, Large Volume Data} es un código desarrollado en C, el cual consta de dos principales programas, \textit{APPHi field} y \textit{APPHi star} los cuales funcionan de acuerdo al diagrama de flujo mostrado en la igura \ref{fig:3.10_aphhi_diagrama}.  Este pipeline fotométrico se utilizará como herramienta para procesar el gran volumen de datos que va generar el proyecto TAOS II \cite{lehner2016status}. Este código consta de 3 partes principales, preprocesamiento de las imágenes, localización de las estrellas en el campo de observación y la fotometría para generar las curvas de luz.
+APPHi del inglés \textit{Automated Photometry Pipeline for High Cadence, Large Volume Data} es un código desarrollado en C, el cual consta de dos principales programas, \textit{APPHi field} y \textit{APPHi star} los cuales funcionan de acuerdo al diagrama de flujo mostrado en la figura \ref{fig:3.10_aphhi_diagrama}.  Este pipeline fotométrico se utilizará como herramienta para procesar el gran volumen de datos que va generar el proyecto TAOS II \cite{lehner2016status}. Este código consta de 3 partes principales, preprocesamiento de las imágenes, localización de las estrellas en el campo de observación y la fotometría para generar las curvas de luz.
 
-Primero las imágenes son preprocesadas de la manera convencional, utilizando imágenes de calibración (bias, flats y darks) \cite{romanishin2006introduction}. Después de limpiar las imágenes, APPHi localiza de manera automática los centroides correspondientes para cada estrella en el campo de observación usando el método del centro de masa \cite{chong2004introduction}. Este centroide se recalcula para cada imágen, para mejorar la curva de luz. Este proceso iterativo disminuye los efectos telúricos producidos por la atmósfera y el movimiento mecánico del instrumento, los cuales se vuelven significativos a altas cadencias. 
+Primero las imágenes son preprocesadas de la manera convencional, utilizando imágenes de calibración (bias, flats y darks) como se describe en \cite{romanishin2006introduction}. Después de limpiar las imágenes, APPHi localiza de manera automática los centroides correspondientes para cada estrella en el campo de observación usando el método del centro de masa \cite{chong2004introduction}. Este centroide se recalcula para cada imágen, para mejorar la curva de luz. Este proceso iterativo disminuye los efectos telúricos producidos por la atmósfera y el movimiento mecánico del instrumento, los cuales se vuelven significativos a altas cadencias. 
 
-\begin{figure}[H]
+\begin{figure}
   \centering
     \includegraphics[max size={\textwidth}{0.7\textheight}]{./figures/apphi_diagrama.png}
    \caption{Diagrama de flujo para ambos programas (\textit{APPHi field} y \textit{APPHi star}), donde D, B, F y Z representan los darks, bias, flats e imágenes de estudio respectivamente. Imágen tomada de \cite{sanchez2019apphi}. }
@@ -42,34 +42,34 @@ Para ejecutar APPHi desde la línea de comando se utiliza:\\
 \section*{III.2 Datos observacionales, estudios preparatorios para TAOS II}
 \addcontentsline{toc}{section}{III.2 Datos observacionales, estudios preparatorios para TAOS II}
 
-Este trabajo está pensado para llevarse acabo con datos del proyecto TAOS II, cuando entre en completo funcionamiento. Como parte de este trabajo de tesis, se realizaron observaciones de tránsitos de exoplanetas a una cadencia de 20 fps y escala de placa de 0.61\''/pixel, es decir, bajo las mismas condiciones que se tendrán en TAOS II \cite{lehner2012transneptunian}. Todo esto con el fin, de que cuando el proyecto comience, se tengan las herramientas y metodología para analizar los datos.
+Si bien la metodología diseñada en este trabajo está pensado para llevarse acabo con datos del proyecto TAOS II, cuando este en completo funcionamiento. Como parte de este trabajo de tesis, se realizaron observaciones de tránsitos de exoplanetas a una cadencia de 20 fps y escala de placa de 0.61''/pix, es decir, bajo las mismas condiciones que se tendrán en TAOS II \cite{lehner2012transneptunian}. Todo esto con el fin, de que cuando el proyecto comience, se tengan las herramientas y metodología para analizar los datos.
 
-Hay que destacar que TAOS II, como ya se mencionó antes, tendrá curvas de luz de 2 horas de duraci\'on por campo de observación, esto para observar con la menor masa de aire posible. Debido a esto será muy difícil observar un tránsito completo, se espera observar la entrada o la salida del exoplaneta frente al disco estelar. 
+Hay que destacar que TAOS II, como ya se mencionó antes, tendrá curvas de luz de 2 horas de duraci\'on por campo de observación, esto para observar con la menor masa de aire posible. Debido a esto será muy difícil observar un tránsito completo, se espera observar cuando mucho la entrada o la salida del exoplaneta frente al disco estelar. 
 
-A una cadencia de 20 fps, esto se traduce en curvas con $N=144,000$ muestras. Además, por campo de observación se espera observar alrededor de 10,000 estrellaS en tres telescopios simultáneamente. Por este motivo, los análisis y la metodología presentadas en este trabajo, se enfocan en detectar las firmas de tránsitos de exoplanetas de la manera más eficiente posible. Aunque por su naturaleza los datos de TAOS II no presentan ventajas fotométricas para la detección de tránsitos por exoplanetas, el hecho de que este proyecto cuente con tres telescopios que estarán observando las mismas estrellas a la vez, constituye una gran ventaja para descartar falsos positivos.
+A una cadencia de 20 fps, esto se traduce en curvas con $N=144,000$ muestras o datos en cada curva. Además, por campo de observación se espera observar alrededor de 10,000 estrellas en tres telescopios simultáneamente. Por este motivo, los análisis y la metodología presentadas en este trabajo, se enfocan en detectar las firmas de tránsitos de exoplanetas de la manera más eficiente posible desde el punto de vista observacional. Aunque por el esquema de observación que se busca usar, los datos de TAOS II no presentan ventajas fotométricas para la detección de tránsitos por exoplanetas, el hecho de que este proyecto cuente con tres telescopios que estarán observando las mismas estrellas a la vez, constituye una gran ventaja para descartar falsos positivos.
 
 \subsection*{III.2.1 Telescopio e instrumentos en la temporada de observación}
 \addcontentsline{toc}{subsection}{III.2.1 Telescopio e instrumentos en la temporada de observación}
 
-La mayoría de las observaciones se realizaron en el telescopio de $84~cm$ en el OAN-SPM (Figura 3.1). Utilizando la rueda de filtros MEXMAN, este instrumento permite intercambiar el filtro que se antepone al detector. En total se cuenta con dos ruedas de filtros con 8 posiciones, lo cual resulta en 14 filtros en total (dos posiciones están normalmente vacías). 
+La mayoría de las observaciones se realizaron en el telescopio de 84 cm en el OAN-SPM (Figura 3.1). Utilizando la rueda de filtros MEXMAN, este instrumento permite intercambiar el filtro que se antepone al detector desde la interfaz de usuario. En total se cuenta con dos ruedas de filtros con 8 posiciones, lo cual resulta en 14 filtros en total (dos posiciones están normalmente vacías). 
 
 Como detector se utilizaron dos cámaras en distintas temporadas. La primera de ellas fue del 1 al 6 de agosto del 2016, usando una cámara rápida iXon Ultra 888 de la marca ANDOR, capaz de tomar imágenes de muy corta exposición, con cadencias de hasta 300 imágenes por segundo (fps del inglés \textit{frames per second}). Esta cámara fue la única disponible en el OAN-SPM que podía trabajar a 20 fps, hasta que llegaron las cámaras provisionales del proyecto TAOS II. A su vez, las imágenes se tomaron en un \textit{binning}\footnote{Binning es una manera de medir el CCD, uniendo la constibución de varios pixeles adyacentes.} de 3x3, con esto, se logró igualar la escala de placa del telescopio de 84 cm, con los telescopios de TAOS II en donde el campo de visión fue de $~3.5$ minutos de arco.
 
-\begin{figure}[h!]
+\begin{figure}
 \centering
   \includegraphics[max size={0.7\textwidth}{0.7\textheight}]{./figures/84cm.jpg}
  \caption{Telescopio de 84 cm, en el OAN-SPM, cámara rápida iXon y rueda de filtros MEXMAN.}
   \label{fig:3.1}
 \end{figure}
 
-La segunda temporada de observación ocurrió del 26 de mayo al 05 de junio del 2017, igualmente en el telescopio de 84 cm. El detector fue una cámara \textit{frame transfer} de la marca \textit{Spectral Instruments}. El campo de la cámara fue disminuido para alcanzar la cadencia necesaria (20 fps), al igual el \textit{binning} de las imágenes variaba dependiendo de la magnitud de la estrella.
+La segunda temporada de observación ocurrió del 26 de mayo al 05 de junio del 2017, igualmente en el telescopio de 84 cm. El detector fue una cámara CCD de \textit{frame transfer} de la marca \textit{Spectral Instruments}. El campo de la cámara fue disminuido para alcanzar la cadencia necesaria (20 fps), al igual el \textit{binning} de las imágenes variaba dependiendo de la magnitud de la estrella.
 
-El 18 de junio del 2018 se obtuvo una curva de luz de alta cadencia (20 fps) de Kepler17b en tránsito. Se utilizó el telescopio del sitio 2 de TAOS II, en donde se instaló una cámara provisional \textit{Zyla} de Andor.
+El 18 de junio del 2018 se obtuvo una curva de luz de alta cadencia (20 fps) de Kepler-17b en tránsito. Se utilizó el telescopio del sitio 2 de TAOS II, en donde se instaló una cámara provisional \textit{Zyla} de Andor.
 
 \subsection*{III.2.2 Descripción de objetos observados}
 \addcontentsline{toc}{subsection}{III.2.2 Descripción de objetos observados}
 
-A continuación en la tabla \ref{tab:tab_objetivos} se muestra un resumen de los parámetros de los objetivos observados en las múltiples temporadas, algunos objetivos fueron observados en varias ocasiones y bajo distintas condiciones dependiendo del detector utilizado.
+En la tabla \ref{tab:tab_objetivos} se muestra un resumen de los parámetros de los sistemas observados en las múltiples temporadas, algunos objetivos fueron observados en varias ocasiones y bajo distintas condiciones atmosféricas y dependiendo del detector utilizado.
 
 \begin{table}
 \hspace{-1.7cm}
@@ -79,7 +79,7 @@ A continuación en la tabla \ref{tab:tab_objetivos} se muestra un resumen de los
  & \multicolumn{4}{c}{Parámetros del} & \multicolumn{3}{c}{Parámetros de la} &  \\
  & \multicolumn{4}{c}{planeta} & \multicolumn{3}{c}{estrella} & \\
 \hline 
-Nombre & $M_{p} (M_{J}) $ & $R_{p} (R_{J}) $ &  P (días) & $\Delta F (\%)$ & $M_{*} (M_{\odot})$ & $M_{v}$ & $T_{s}$ & Referencia \\ 
+Nombre & $M_{p} (M_{J}) $ & $R_{p} (R_{J}) $ &  P (días) & $\Delta F (\%)$ & $M_{*} (M_{\odot})$ & $m_{\rm V}$ & $T_{s}$ & Referencia \\ 
 \hline 
 HAT-P-14b & $2.2\pm 0.04 $ & $1.2\pm 0.04 $ & 4.62 & 0.55 & $1.38\pm 0.045$ & 9.9 & F & \cite{torres2010hat} \\ 
 HAT-P-31b & $2.1^{+0.105}_{-0.07} $ & $1.07^{+0.24}_{-0.16} $ & 5 & 1.08 & $1.21\pm 0.063$ & 11.6 & - & \cite{kipping2011hat} \\
@@ -92,7 +92,7 @@ Kepler 17b & $2.45\pm 0.014 $ & $1.31\pm 0.018 $ & 1.48 & 2.13 & $1.16\pm 0.06$ 
 \hline 
 \end{tabular} 
 \end{footnotesize}
-\caption{Resumen de propiedades físicas de los objetos observados en distintas temporadas en el OAN-SPM. $M_{p}$ es la masa del planeta en unidades de masas de Júpiter, $R_{p}$ es el radio del planeta en radios de Júpiter, P es el periodo orbital en días, $\Delta F$ es el cambio en el flujo de la estrella debido al transito en porcentaje, $M_{*}$ es la masa de la estrella anfitriona en unidades de masas solares, $M_{v}$ y $T_{s}$ son la magnitud y el tipo espectral de la estrella respectivamente.}
+\caption{Resumen de propiedades físicas de los objetos observados en distintas temporadas en el OAN-SPM. $M_{p}$ es la masa del planeta en unidades de masas de Júpiter, $R_{p}$ es el radio del planeta en radios de Júpiter, P es el periodo orbital en días, $\Delta F$ es el cambio en el flujo de la estrella debido al transito en porcentaje, $M_{*}$ es la masa de la estrella anfitriona en unidades de masas solares, $m_{\rm V}$ y $T_{s}$ son la magnitud aparente y el tipo espectral de la estrella respectivamente.}
 \label{tab:tab_objetivos}
 \end{table}
 
@@ -100,7 +100,7 @@ Kepler 17b & $2.45\pm 0.014 $ & $1.31\pm 0.018 $ & 1.48 & 2.13 & $1.16\pm 0.06$ 
 \addcontentsline{toc}{subsection}{III.2.3 Descripción de datos, influencia del seeing y ruido sistemático}
 
 
-Debido al corto tiempo de exposición, el número de cuentas por estrella es pequeño, por lo cual, el ruido electr\'onico se vuelve un factor importante. Por otro lado, las perturbaciones atmosf\'ericas afectan el \textit{seeing} que es una medida de la estabilidad de la atm\'osfera. Esto afecta a las im\'agenes de alta cadencia de dos maneras: 1) cambiando de posici\'on la estrella en el detector o deform\'andola, lo cual se convierte en una fuerte contribici\'on al ruido cuando se lleva a cabo la fotomtr\'ia de apertura \textcolor{red}{Aquí también puede ir nuestro artículo de referencia}. El clima durante las temporadas fue bueno a tal punto de que no hubo contratiempos en las observaciones, aunque se presentan ligeras variaciones en la posición de la estrella de toma a toma. Estas variaciones se ven reflejadas a la hora de obtener la curva de luz de las imágenes. La cantidad de ruido se puede cuantificar calculando la SNR (2.11), la cual está en función de la magnitud aparente de la estrella.
+Debido al corto tiempo de exposición, el número de cuentas por estrella es pequeño, por lo cual, el ruido electr\'onico se vuelve un factor importante. Por otro lado, las perturbaciones atmosf\'ericas afectan el \textit{seeing} que es una medida de la estabilidad de la atm\'osfera. Esto afecta a las im\'agenes de alta cadencia de dos maneras: 1) cambiando de posici\'on la estrella en el detector o deform\'andola, lo cual se convierte en una fuerte contribici\'on al ruido cuando se lleva a cabo la fotomtr\'ia de apertura \cite{guerrero2020effects}. El clima durante las temporadas fue bueno a tal punto de que no hubo contratiempos en las observaciones, aunque se presentan ligeras variaciones en la posición de la estrella de toma a toma. Estas variaciones se ven reflejadas a la hora de obtener la curva de luz de las imágenes. La cantidad de ruido se puede cuantificar calculando la SNR (2.11), la cual está en función de la magnitud aparente de la estrella.
 
 \begin{figure}[H]
   \centering
@@ -155,7 +155,7 @@ El resultado del ajuste de $m(t)$ al histograma de la curva de WASP-74b se muest
 \begin{figure}[H]
   \centering
     \includegraphics[max size={\textwidth}{0.7\textheight}]{./figures/ajuste_modelo_gaussiano.png}
-   \caption{Arriba: Los puntos rojos son la distribución temporal de la curva de luz de WASP-74b. La linea azul sólida, es $m(t)$ resultado de un ajuste no lineal utilizando el algoritmo de Levenberg-Marquardt. Abajo: se aprecia los residuales de la diferencia entre la distribución y el modelo.\textcolor{red}{Estás seguro que los valores de los residuales son correctos??? me parecen muy altos... FER = asi salen con esta curva..} }
+   \caption{Arriba: Los puntos rojos son la distribución temporal de la curva de luz de WASP-74b. La linea azul sólida, es $m(t)$ resultado de un ajuste no lineal utilizando el algoritmo de Levenberg-Marquardt. Abajo: se aprecia los residuales de la diferencia entre la distribución y el modelo.}
     \label{fig:3.5_wasp-74b-ajuste_residuales}
 \end{figure}
 
@@ -198,14 +198,40 @@ la función envolvente \ref{ec:envolvente_exponencial}, está compuesta por dos 
 
 Utilizando esta envolvente, se altera el espectro de frecuencias de acuerdo a lo analizado en las curvas de luz de las observaciones. De manera similar a la metodología implementada para las distribuciones temporales $m_{t}$ (véase III.3.1), se calcularon los parámetros de $E(f)$ para todas las curvas de luz y se obtuvieron restricciones para la asíntota $C$, las amplitudes $a_{1}$ y $a_{2}$ y los factores $b_{1}$ y $b_{2}$ para la posterior simulación de ruido (véase III.3.3).
 
-\begin{figure}[H]
+\begin{figure}
   \centering
     \includegraphics[max size={\textwidth}{0.7\textheight}]{./figures/curva_ajuste_espectro.png}
-   \caption{Arriba: se muestra una curva de luz de WASP-74b. Abajo: la zona de bajas frecuencias del espectro de la curva de luz, la linea roja es el ajuste de la envolvente exponencial $E(f)$ del espectro.}
+   \caption{Arriba: se muestra una curva de luz de WASP-74b. Abajo: la zona de bajas frecuencias del espectro de la curva de luz, la linea negra es el ajuste de la envolvente exponencial $E(f)$ del espectro. La linea roja indica el espectro del tránsito inmerso en la curva de luz.}
     \label{fig:3.8_wasp-74b-curva}
 \end{figure}
 
-En la figura \ref{fig:3.8_wasp-74b-curva}, podemos observar la envolvente exponencial $E(f)$, del espectro de potencias de la curva de luz de WASP-74b. Como se puede apreciar en la parte superior (temporal), esta curva contiene una ligera tendencia, y variaciones de flujo en el rango de 1-3 minutos. Estas variaciones contribuyen a que la amplitud del espectro en bajas frecuencias sea significativamente mayor que en altas frecuencias. La contribución de un tránsito de exoplaneta al espectro de frecuencias se encontraría en la región de frecuencias alrededor de $f < 0.01$.
+En la figura \ref{fig:3.8_wasp-74b-curva}, podemos observar la envolvente exponencial $E(f)$, del espectro de potencias de la curva de luz de WASP-74b. Como se puede apreciar en la parte superior (temporal), esta curva contiene una ligera tendencia, y variaciones de flujo en el rango de 1-3 minutos. Estas variaciones contribuyen a que la amplitud del espectro en bajas frecuencias sea significativamente mayor que en altas frecuencias, esto se ve reflejado en los parámetros $C$, $a_{1}$ y $a_{2}$. La línea roja es la contribución de un tránsito al espectro, esta se encuentra en la región de bajas frecuencias, alrededor de $f < 0.01$. En la tabla \ref{tab:parametros_exponencial} se muestran los valores de los parámetros de $E(f)$ obtenidos de los datos observacionales.
+
+\begin{table}
+	\centering
+	\begin{tabular}{ccccccccc}
+	\hline 
+	Fecha & Nombre & $C$ & $a_{1}$ & $b_{1}$ & $a_{2}$ & $b_{2}$\\ 
+	\hline
+	06/Ago/2016 & WASP-74b & 5 & 25 & 0.155 & 105 & .0089\\ 
+	06/Ago/2016 & HAT-P-32b & 5.56 & 15 & 0.095 & 31.85 & .0079 \\
+	07/Ago/2016 & HAT-P-37 & 43 & 0 & - & 0 & - \\ 
+	28/May/2017 & HAT-P-14b & 3 & 10 & 0.25 & 51.2 & 0.0049 \\ 
+	29/May/2017 & WASP-74b & 5 & 15 & 2.55 & 100 & 0.02 \\
+  31/May/2017 & WASP-48b & 10 & 15 & 0.085 & 120 & 0.01\\  
+	31/May/2017 & WASP-74b & 5 & 5 & 2.50 & 26 & 0.06 \\
+	02/Jun/2017 & WASP-48b & 4 & 15 & 0.043 & 41 & 0.0035 \\ 
+	05/Jun/2017 & HAT-P-31b & 3.5 & 11.6 & 0.277 & 85 & 0.0083 \\
+	08/Jun/2018 & Kepler-17b & 10 & 30 & 0.155 & 180 & 0.0029\\ 
+	\hline  
+	\end{tabular} 
+	\caption{Resumen de los parámetros $(C,a_{1},b_{1},a_{2},b_{2})$ calculados al ajustar la envolvente \ref{ec:envolvente_exponencial} al espectro de potencias de las curvas de luz de tránsitos de exoplanetas obtenidas mediante múltiples temporadas en el OAN-SPM.}
+	\label{tab:parametros_exponencial}
+	\end{table}
+
+
+
+
 
 \subsection*{III.3.3 Simulación de ruido}
 \addcontentsline{toc}{subsection}{III.3.3 Simulación de ruido}
@@ -255,21 +281,21 @@ Esto resulta en una serie de tiempo, con $SNR=\sigma^{-1}$, con algunos ruidos s
 \begin{figure}[H]
   \centering
     \includegraphics[max size={\textwidth}{0.7\textheight}]{./figures/comparacion_espectros.png}
-   \caption{Arriba: se muestra la FFT de la curva de luz de WASP-74b. Abajo: el espectro de frecuencias de la serie de tiempo $R(t)$ generada utilizando la metodología planteada en esta sección. Ambas gráficas son un acercamiento a la zona de bajas frecuencias para mejorar la visualización. La linea roja es la misma envolvente exponencial $E(f)$ para ambos espectros.\textcolor{red}{valdría la pena agregar las curvas de luz para comparar}}
+   \caption{Arriba: se muestra la FFT de la curva de luz de WASP-74b. Abajo: el espectro de frecuencias de la serie de tiempo $R(t)$ generada utilizando la metodología planteada en esta sección. Ambas gráficas son un acercamiento a la zona de bajas frecuencias para mejorar la visualización. La linea roja es la misma envolvente exponencial $E(f)$ para ambos espectros.}
     \label{fig:3.8_comp_espectros}
 \end{figure}
 
 Los valores para la amplitud $(A_{1},A_{2})$, las medias  $(\mu_{1},\mu_{2})$ y la desviaciones $(\sigma_{1},\sigma_{2})$ de la función de distribución $m(t)$ y la asíntota $C$, las amplitudes $a_{1}$ y $a_{2}$ y los factores $b_{1}$ y $b_{2}$ de la envolvente exponencial $E(f)$ son elegidos de manera arbitrarea dentro de un rango específico, el cual se obtuvo a partir de ajustar $m(t)$ y $E(f)$ a los datos observacionales. 
 
-Utilizando esta metodología, se creó una base de datos de ruidos simulados para asegurar reproducibilidad y posteriormente hacer estadística. Se variaron los parámetros $(C,a_{1},b_{1},a_{2},b_{2})$ de manera uniforme dentro de los intervalos:
+Utilizando los resultados de \ref{tab:parametros_exponencial}, se creó una base de datos de ruidos simulados para asegurar reproducibilidad y posteriormente hacer estadística. Se variaron los parámetros $(C,a_{1},b_{1},a_{2},b_{2})$ de manera uniforme dentro de los intervalos:
 
 \begin{equation}
   \begin{split}
-  0.85 \leq C \leq 10 \\
+  0.5 \leq C \leq 50 \\
   0 \leq a_{1} \leq 30 \\
   0.02 \leq b_{1} \leq 2.5 \\
-  0 \leq a_{2} \leq 150 \\
-  0.0029 \leq b_{2} \leq 0.06 \\
+  0 \leq a_{2} \leq 180 \\
+  0.002 \leq b_{2} \leq 0.06 \\
   \end{split}
 \end{equation}
 
@@ -340,7 +366,7 @@ Esta metodología es útil para el suavizado de curvas en general. Sin embargo, 
 \subsection*{III.5.2 Identificación de firma de tránsito usando filtro de Fourier}
 \addcontentsline{toc}{subsection}{III.5.2 Identificación de firma de tránsito usando filtro de Fourier}
 
-Un tránsito inmerso en una curva de luz de alta cadencia, puede interpretarse como una variación de baja frecuencia en el brillo de la estrella. Partiendo de esta suposición, la firma del tránsito, debe poder distinguirse en el espectro de frecuencias, particularmente en la zona de bajas frecuencias $(\sim 1x10^{-4} Hz)$.
+Un tránsito inmerso en una curva de luz de alta cadencia, puede interpretarse como una variación de baja frecuencia en el brillo de la estrella. Partiendo de esta suposición, la firma del tránsito, debe poder distinguirse en el espectro de frecuencias, particularmente en la zona de bajas frecuencias $(\sim 1\times 10^{-4} Hz)$.
 
 En una curva de luz de alta cadencia, se pueden observar a simple vista variaciones de alta frecuencia, las cuales ocultan el tránsito. Estas contribuciones de alta frecuencia pueden ser atenuadas utilizando un filtro de Fourier, específicamente un filtro pasa-bajas \citep{thompson1983low}. La Figura \ref{fig:3.13_filtro_cuadrado} muestra un ejemplo del filtro pasa-bajas utilizado.
 
@@ -363,7 +389,7 @@ finalmente regresamos al dominio del tiempo con la FFT inversa. Este proceso es 
 \begin{figure}[h!]
   \centering
     \includegraphics[max size={\textwidth}{0.7\textheight}]{./figures/wasp_four_fil.png}
-   \caption{Curva de luz de WASP-74 tomada el día 28 de mayo del 2017. En azul se muestra la curva de luz original obtenida mediante fotometría de apertura. En rojo la curva resultado del filtrado de Fourier, utilizando una frecuencia de corte $FC=2x10^{-3}$.}
+   \caption{Curva de luz de WASP-74 tomada el día 28 de mayo del 2017. En azul se muestra la curva de luz original obtenida mediante fotometría de apertura. En rojo la curva resultado del filtrado de Fourier, utilizando una frecuencia de corte $FC=2\times 10^{-3}$.}
     \label{fig:3.13_curva_fourier}
 \end{figure}
 
@@ -372,7 +398,7 @@ Este filtrado es llamado ideal por su simplicidad, sin embargo, no hay necesidad
 \subsubsection*{III.5.3 Identificación de firma de tránsito usando PCA}
 \addcontentsline{toc}{subsubsection}{III.5.3 Identificación de firma de tránsito usando PCA}
 
-Para toda matriz $A$ con dimensiones $m\times n$, su descomposición en valores singulares ó SVD (del inglés \textit{Singular Value Decomposition}) es:
+Para toda matriz $A$ con dimensiones $m\times n$, su descomposición en valores singulares ó SVD (del inglés \textit{Singular Value Decomposition}) \cite{golub1971singular} es:
 
 \begin{equation}\label{ec:svd}
   \displaystyle A=U\Sigma V^{T};
@@ -477,3 +503,17 @@ donde $\sigma_{12}$ es la covarianza entre la curva de luz y el modelo ajustado,
 \end{equation}
   
 donde $\sigma_{1}$ y $\sigma_{2}$ son la desviación estándar de la curva de luz y el modelo respectivamente. A partir de simulaciones, se calculó el limite inferior para el coeficiente de correlación, para evaluar si la estrella y su curva de luz se cataloga como objeto de interés, para elaborar un análisis más detallado (véase IV.1.2)
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -44,11 +44,12 @@
 
 \newpage 
 \thispagestyle{plain}
-\centerline{AGRADECIMIENTOS}
+\centerline{Agradecimientos}
 \vskip 2cm
 
-\singlespacing
+Quiero agradecer a todo el equipo de TAOS II en el Instituto de Astronomía de la UNAM sede Ensenada, por sus comentarios y enseñanzas. En especial quiero agradecer a mis directores de tesis Joel Humberto Castro y Mauricio Reyes Ruiz sin los cuales, este trabajo no hubiera sido posible.
 
+Agradezco también al Consejo Nacional de Ciencia y Tecnología (CONACYT) y a los proyectos PAPIIT IN110217 y IN107316 por el apoyo económico para realizar mis estudios de maestría y diversas actividades.
 
 \thispagestyle{plain}
 \tableofcontents
@@ -57,18 +58,20 @@
 
 \thispagestyle{plain}
 \listoffigures
+\addcontentsline{toc}{chapter}{\textbf{Lista de figuras}}
 \thispagestyle{plain}\thispagestyle{plain}
 
 \thispagestyle{plain}
 \newpage
 
-\chapter*{\textbf{Resumen}}
+\thispagestyle{plain}
+\centerline{\textbf{Resumen}}
 \addcontentsline{toc}{chapter}{\textbf{Resumen}}
 \fancyhead[C]{Resumen}
 
 La detección y caracterización de exoplanetas ha tenido un gran crecimiento en los últimos años, proyectos como \textit{Kepler} nos brindaron una visión amplia de las posibilidades cuando de encontrar sistemas planetarios se refiere. La sonda espacial \textit{TESS} mapeará cerca del 90\% de la bóveda celeste, en la búsqueda de exoplanetas por el método del tránsito \cite{ricker2014transiting}. En este trabajo se presenta un algoritmo rápido y exclusivo para la detección de tránsitos de exoplanetas en curvas de luz de alta cadencia como las que estará generando el proyecto TAOS II.  
 
-El proyecto \textit{Transneptunian Automated Occultation Survey} (TAOS II), es producto de la colaboración internacional (TAIWAN, EU, MEXICO), en el cual se busca descubrir y censar los objetos pequeños (~0.5 km – 10km) del cinturón de Kuiper por el método de ocultación estelar \cite{lehner2012transneptunian}. El proyecto cuenta con 3 telescopios de 1.3 m instalados en el Observatorio Astronómico Nacional, en la Sierra de San Pedro Mártir (OAN-SPM). Este proyecto generará una gran cantidad de datos fotométricos (2.5 TB por noche) en imágenes de alta cadencia (20 Hz) de alrededor de 10,000 estrellas por cada campo de observación. Es aquí donde se hace evidente la necesidad de \textit{pipelines} que faciliten el manejar y trabajar con grandes volúmenes de datos. 
+El proyecto \textit{Transneptunian Automated Occultation Survey} (TAOS II), es producto de la colaboración internacional (Taiwán, Estados Unidos, Canadá y México), en el cual se busca descubrir y censar los objetos pequeños (~0.5 km – 10km) del cinturón de Kuiper por el método de ocultación estelar \cite{lehner2012transneptunian}. El proyecto cuenta con 3 telescopios de 1.3 m instalados en el Observatorio Astronómico Nacional, en la Sierra de San Pedro Mártir (OAN-SPM). Este proyecto generará una gran cantidad de datos fotométricos (2.5 TB por noche) en imágenes de alta cadencia (20 Hz) de alrededor de 10,000 estrellas por cada campo de observación. Es aquí donde se hace evidente la necesidad de \textit{pipelines} que faciliten el manejar y trabajar con grandes volúmenes de datos. 
 
 En las curvas de luz de alta cadencia, al tener menor tiempo de exposición, el ruido debido a perturbaciones en la atmósfera, ruido electrónico y de lectura, se vuelven un factor importante. Al ganar resolución temporal de los eventos, se pierde calidad en la medición del flujo estelar. Este ruido en la curva de luz puede enmascarar cualquier señal causada por el tránsito de un exoplaneta en su estrella madre. Por lo que para poder detectarlos, es necesario, además de la reducción fotométrica, aplicar un algoritmo de reducción de ruido en curvas de luz. En este trabajo se implementaron 3 métodos diferentes: filtro de Fourier, promedio móvil y análisis de componentes principales; para mejorar el cociente de señal a ruido (SNR) y detectar firmas de tránsitos por exoplanetas en las curvas de luz de alta cadenacia. 
 

@@ -19,7 +19,7 @@ Con el propósito de evaluar estadísticamente el desempeño de la metodología 
 
 Esto nos genera una distribución 2500 SNR's por cada valor de $\Delta F$, para resumir este resultado, presentamos el intervalo que contiene el 90\% de los resultados, excluyendo los casos más extremos. Es decir, cada intervalo de las tablas \ref{tab_mejora_snr_10} y \ref{tab_mejora_snr_100} está compuesto por el percentil 5, 50 y 95.  
 
-\begin{table}[H]
+\begin{table}
 	\centering
 	\begin{tabular}{ccccccccc}
 	\hline 
@@ -36,7 +36,7 @@ Esto nos genera una distribución 2500 SNR's por cada valor de $\Delta F$, para 
 	\end{table}
 
 
-\begin{table}[H]
+\begin{table}
 	\centering
 	\begin{tabular}{ccccccccc}
 	\hline 
@@ -164,7 +164,7 @@ Se presenta un ejemplo del resultado del filtrado de ruido en la curva de luz de
 \subsubsection*{IV.2.1.1 Resultados del filtro de Fourier}
 \addcontentsline{toc}{subsubsection}{IV.2.1.1 Resultados del filtro de Fourier}
 
-En la figura \ref{fig_transito_fou} podemos apreciar el resultado del filtro pasabajas de Fourier, aplicado a la curva de luz de HAT-P-37b. A pesar de ser una curva con mucho ruido, se puede apreciar a simple vista la forma del tránsito. Se utilizó una frecuencia de corte $FC$ de $2x10^{-3}$. También se muestra el modelo teórico del tránsito en negro, simulado usando los parámetros presentados en \cite{bakos2012hat} y \textit{BATMAN} (véase III.3.1). La similitud entre el modelo y la curva filtrada es alto, el coeficiente de correlación es de $C=0.982$.
+En la figura \ref{fig_transito_fou} podemos apreciar el resultado del filtro pasabajas de Fourier, aplicado a la curva de luz de HAT-P-37b. A pesar de ser una curva con mucho ruido, se puede apreciar a simple vista la forma del tránsito. Se utilizó una frecuencia de corte $FC$ de $2\times 10^{-3}$. También se muestra el modelo teórico del tránsito en negro, simulado usando los parámetros presentados en \cite{bakos2012hat} y \textit{BATMAN} (véase III.3.1). La similitud entre el modelo y la curva filtrada es alto, el coeficiente de correlación es de $C=0.982$.
 
 \begin{figure}[h!]
 	\centering
@@ -200,7 +200,14 @@ En la figura \ref{fig_transito_pca} podemos apreciar el resultado del filtrado u
 		\label{fig_transito_pca}
 \end{figure}
 
-Esta metodología funciona para la visualización, y como método de comparación entre los modelos teóricos y las curvas de luz. Si las curva de luz, contiene componentes principales similares a las del modelo, se producirá una curva similar a la que se observa en la figura \ref{fig_transito_pca}. Si la curva es solo ruido, el resultado será una curva errática sin ningún parecido con el modelo.\textcolor{red}{HAY QUE PRESENTAR UN EJEMPLO DE ESTO}
+Esta metodología funciona para la visualización, y como método de comparación entre los modelos teóricos y las curvas de luz. Si las curva de luz, contiene componentes principales similares a las del modelo, se producirá una curva similar a la que se observa en la figura \ref{fig_transito_pca}. Si la curva es solo ruido, el resultado será una curva errática sin ningún parecido con el modelo como se muestra en la figura \ref{fig_puro_ruido_pca}.
+
+\begin{figure}[h!]
+	\centering
+		\includegraphics[max size={0.9\textwidth}{0.9\textheight}]{./figures/PCA_puro_ruido.png}
+		\caption{Arriba: Ruido simulado con componentes de baja frecuencia en su espectro. La línea negra representa el modelo teórico de HAT-P-37b, utilizando los parámetros presentados en \cite{bakos2012hat}. Abajo: en azul se muestra el resultado de PCA a una curva sin tránsito inmerso.}
+		\label{fig_puro_ruido_pca}
+\end{figure}
 
 
 \subsubsection*{IV.2.1.4 Resumen de resultados con datos observacionales}
@@ -208,29 +215,27 @@ Esta metodología funciona para la visualización, y como método de comparació
 
 En la tabla \ref{tab_resultados_obs} se presentan todos los resultados de la mejora de la SNR utilizando las metodologías descritas anteriormente, para todo el conjunto de curvas de luz reales (véase III.1)
 
-\begin{table}
+\begin{table}[h!]
 	\centering
-	\begin{footnotesize}
 	\begin{tabular}{ccccccccc}
 	\hline 
 	Fecha & Nombre & SNR & $\mbox{SNR}_{Fourier}$ &  $\mbox{SNR}_{mov}$ & $\mbox{SNR}_{PCA}$\\ 
 	\hline
-	06/Ago/2016 & WASP74b$^{1}$ & 47.03 & 226.50 & 212.93 & 279.51 \\ 
-	06/Ago/2016 & WASP74b$^{2}$ & 39.82 & 114.47 & 114.73 & 156.30 \\
+	06/Ago/2016 & WASP-74b$^{1}$ & 47.03 & 226.50 & 212.93 & 279.51 \\ 
+	06/Ago/2016 & WASP-74b$^{2}$ & 39.82 & 114.47 & 114.73 & 156.30 \\
 	06/Ago/2016 & HAT-P-32b & 14.55 & 29.68 & 29.43 & 31.85 \\
 	07/Ago/2016 & HAT-P-37$^{1}$ & 11.66 & 176.44 & 166.00 & 180.11 \\ 
 	07/Ago/2016 & HAT-P-37$^{2}$ & 11.73 & 124.75 & 116.64 & 135.51 \\ 
 	28/May/2017 & HAT-P-14b & 61.40 & 154.80 & 158.96 & - \\ 
-	29/May/2017 & WASP74b & 9.46 & 93.33 & 82.86 & 93.86 \\
-	31/May/2017 & WASP48b & 7.74 & 61.25 & 48.16 & 63.29 \\  
-	31/May/2017 & WASP74b & 14.70 & 41.36 & 42.60 & 47.97 \\
+	29/May/2017 & WASP-74b & 9.46 & 93.33 & 82.86 & 93.86 \\
+	31/May/2017 & WASP-48b & 7.74 & 61.25 & 48.16 & 63.29 \\  
+	31/May/2017 & WASP-74b & 14.70 & 41.36 & 42.60 & 47.97 \\
 	02/Jun/2017 & WASP-48b$^{1}$ & 11.07 & 28.10 & 22.91 & 32.71 \\
-	02/Jun/2017 & WASP48b$^{2}$ & 7.67 & 20.37 & 14.78 & 20.32 \\
+	02/Jun/2017 & WASP-48b$^{2}$ & 7.67 & 20.37 & 14.78 & 20.32 \\
 	05/Jun/2017 & HAT-P-31b & 6.17 & 68.05 & 43.67 & 80.09 \\
-	08/Jun/2018 & Kepler17b & 146.52 & 523.31 & 512.25 & 602.00 \\ 
+	08/Jun/2018 & Kepler-17b & 146.52 & 523.31 & 512.25 & 602.00 \\ 
 	\hline 
 	\end{tabular} 
-	\end{footnotesize}
 	\caption{Resumen de los resultados para mejorar la SNR en las curvas de luz de tránsitos de exoplanetas obtenidas en múltiples temporadas en el OAN-SPM. SNR indica el valor de ruido después de la fotometría. $\mbox{SNR}_{Fourier}$, $\mbox{SNR}_{mov}$ y $\mbox{SNR}_{PCA}$ indican el valor de ruido resultado del filtrado de Fourier, promedio móvil y PCA respectivamente. Los superíndices indican que la misma curva se dividió en 2 segmentos de 2 horas cada uno, los cuales se analizaron de manera independiente.}
 	\label{tab_resultados_obs}
 	\end{table}
@@ -251,19 +256,19 @@ Se aplicó un ajuste del modelo trapezoidal (véase III.6.1) a las curvas filtra
 	\hline 
 	Fecha & Nombre & $\Delta F$ (\%) & $\Delta F_{Fourier}$ (\%) &  $\Delta F_{mov}$ (\%) & $\Delta F_{PCA}$ (\%) \\ 
 	\hline
-	06/Ago/2016 & WASP74b$^{1}$ & 1.04 & - & - & - \\ 
-	06/Ago/2016 & WASP74b$^{2}$ & 1.04 & - & - & - \\
+	06/Ago/2016 & WASP-74b$^{1}$ & 1.04 & - & - & - \\ 
+	06/Ago/2016 & WASP-74b$^{2}$ & 1.04 & - & - & - \\
 	06/Ago/2016 & HAT-P-32b$^{1}$ & 2.44 & - & - & - \\
 	07/Ago/2016 & HAT-P-37$^{1}$ & 2.04 & 1.63 & 1.67 & 1.75 \\ 
 	07/Ago/2016 & HAT-P-37$^{2}$ & 2.04 & 1.74 & 1.84 & 1.91 \\ 
 	28/May/2017 & HAT-P-14b$^{1}$ & 0.5 & - & - & - \\ 
-	29/May/2017 & WASP74b$^{2}$ & 1.04 & 2.42 & 2.59 & 1.62 \\ 
-	31/May/2017 & WASP48b$^{2}$ & 1.0 & - & - & - \\  
-	31/May/2017 & WASP74b$^{1}$ & 1.04 & 6.47 & 6.28 & 6.59 \\
+	29/May/2017 & WASP-74b$^{2}$ & 1.04 & 2.42 & 2.59 & 1.62 \\ 
+	31/May/2017 & WASP-48b$^{2}$ & 1.0 & - & - & - \\  
+	31/May/2017 & WASP-74b$^{1}$ & 1.04 & 6.47 & 6.28 & 6.59 \\
 	02/Jun/2017 & WASP-48b$^{1}$ & 1.0 & 6.63 & 5.33 & 7.5 \\
-	02/Jun/2017 & WASP48b$^{2}$ & 1.0 & - & - & - \\
+	02/Jun/2017 & WASP-48b$^{2}$ & 1.0 & - & - & - \\
 	05/Jun/2017 & HAT-P-31b$^{1}$ & 1.23 & - & - & - \\
-	08/Jun/2018 & Kepler17b$^{1}$ & 2.13 & - & - & - \\ 
+	08/Jun/2018 & Kepler-17b$^{1}$ & 2.13 & - & - & - \\ 
 	\hline 
 	\end{tabular} 
 	\caption{Resultados de $\Delta F$ obtenidos ajustando el modelo del trapezoide a las curvas de luz de tránsitos. $\Delta F_{Fourier}$, $\Delta F_{mov}$ y $\Delta F_{PCA}$ representan el valor de $\Delta F$ obtenido después del filtrado de Fourier, promedio móvil y PCA respectivamente. El superíndice $^{1}$ indica que a curva de luz fue obtenida mediante el inicio del tránsito y $^{2}$ indica que la curva contenía el final del tránsito.}
@@ -272,4 +277,4 @@ Se aplicó un ajuste del modelo trapezoidal (véase III.6.1) a las curvas filtra
 
 El ajuste trapezoidal, nos regresa como resultado dos parámetros, $\Delta F$ y $t_{c}$ (véase II.1.1). En estos resultados evaluamos solamente el valor de $\Delta F$, esto nos brinda información sobre la magnitud del cambio en el flujo de la estrella observada, el cual es uno de los principales criterios para la selección de un posible candidato a tránsito. 
 
-Los signos (-) en la tabla \ref{tab_resultados_profundidad}, indican que el método de ajuste falló. Esto ocurre cuando el ajuste del modelo nos da como resultado un valor de $\Delta F$ fuera de los límites permitidos. En este estudio fijamos los límites de $\Delta F$ como 0.2\%-5\%, y para $t_{c}$ como 15-60 minutos, siendo estos los límites inferior y superior respectivamente. Esto nos indica que la detectabilidad fue baja (38\%), en la mayoría de los casos negativos, las curvas de luz tenían tendencias de baja frecuencia después del proceso de fotometría.
+Los signos (-) en la tabla \ref{tab_resultados_profundidad}, indican que el método de ajuste falló. Esto ocurre cuando el ajuste del modelo nos da como resultado un valor de $\Delta F$ fuera de los límites permitidos. Esto nos indica que la detectabilidad en los datos observacionales fue baja (38\%), en la mayoría de los casos negativos, las curvas de luz tenían tendencias de baja frecuencia después del proceso de fotometría. Esto también puede apreciarse en la tabla \ref{tab:parametros_exponencial}, existe una correlación entre la magnitud de los parámetros ($a_{1},a_{2}$) y los fallos en la identificación de los tránsitos. Cuando la región de bajas frecuencias (línea roja en \ref{fig:3.8_wasp-74b-curva}) se encuentra contaminada, es muy difícil recuperar la señal del tránsito inmersa en el ruido.
