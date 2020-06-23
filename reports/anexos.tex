@@ -1,5 +1,33 @@
 \chapter*{\textbf{Anexos}}
 \addcontentsline{toc}{chapter}{\textbf{Anexos}}
 \chead{Anexos}
+\setcounter{chapter}{6}
+\setcounter{equation}{0}
+\setcounter{figure}{0}
+\setcounter{table}{0}
 
-Código en Python del algoritmo de detección de candidatos a tránsitos y el método de mejora de la SNR.
+\section*{Paquetería HCLcat}
+\addcontentsline{toc}{section}{Paquetería HCLcat}
+
+HCLcat (del inglés \textit{High Cadende Light curves analityc tools}) es una colección de módulos en Python los cuales se utilizaron para generar los resultados obtenidos en este trabajo. Esta paquetería está en \href{https://github.com/ferwazz/HCLcat}{GitHub} y se puede instalar utilizando el comando:\\
+
+\texttt{pip install git+https://github.com/ferwazz/HCLcat.git}\\
+
+A continuación se describirán algunos de los módulos disponibles:\\
+
+\begin{itemize}
+\item \begin{verbatim} doble_gaussian(x,a,mu,sigma,a2,mu2,sigma2) \end{verbatim} Modelo de dos gaussianas como \ref{ec:componentes_gauss}.
+	\item \begin{verbatim} snr(x): \end{verbatim} Calcula la SNR de una curva de luz.
+	\item \begin{verbatim} set_noise_level(curve,noise): \end{verbatim} Regresa la curva de luz normalizada con SNR igual a \texttt{noise}.
+	\item \begin{verbatim} genruido(noise,lenght=144000): \end{verbatim} Genera una curva de ruido, con distribución doble gaussiana.
+	\item \begin{verbatim} remove_outliers(x,std_limit=5): \end{verbatim} Remueve outliers de una curva \texttt{x}, basado en su desviación estándar \texttt{std\_limit}.
+	\item \begin{verbatim} prom_mov(x,mov,method=prom): \end{verbatim} Aplica un promedio móvil a una curva. \texttt{mov} define el tamaño de la ventana de promediado. Si \texttt{method=prom} calcula una media de los valores en la ventana \texttt{mov}, si \texttt{method='med'} calcula la mediana.
+	\item \begin{verbatim} dexp(x,base,a,b,a2,b2): \end{verbatim} Modelo de evolvente exponencial para el espectro \ref{ec:envolvente_exponencial}.
+	\item \begin{verbatim} ruido_real(noise,base,a,b,a2,b2,lenght=288000): \end{verbatim} Genera una curva de ruido simulado, con componentes de baja frecuencia en su espectro.
+	\item \begin{verbatim} fourierfilter(x,cutfreq): \end{verbatim} Aplica un filtrado pasa bajas de Fourier, dada la frecuencia de corte \texttt{cutfreq}.
+	\item \begin{verbatim} pca_train(data_train): \end{verbatim} Calcula las componentes principales de la matriz de datos \texttt{data\_train}.
+	\item \begin{verbatim} pca_filter(data_noised,comp): \end{verbatim} Dadas las componentes principales \texttt{comp}, se reconstruye la curva \texttt{data\_noised}.
+	\item \begin{verbatim} medio_trapezoid(x,depth,down,tc): \end{verbatim} Modelo del trapezoide (mitad) para ajustar a los posibles candidatos a tránsitos.
+\end{itemize}
+
+Se planea mantener el repositorio y agregar nuevos módulos para el procesamiento de datos de alta cadencia y la búsqueda de características como posibles tránsitos de exoplanetas, variabilidad, etc.

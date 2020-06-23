@@ -11,7 +11,7 @@
 
 \addcontentsline{toc}{section}{II.1 Señales observadas por tránsitos de exoplanetas}
 
-Como se mencionó anteriormente, el método del tránsito es la técnica más popular y exitosa para descubrir nuevos planetas. Un tránsito ocurre cuando un exoplaneta está alineado de manera particular con la línea de observación ($i\sim 90^{\circ}$) y el planeta bloquea parte de la luz de la estrella, lo cual provoca una ligera disminución en su brillo. Como se muestra en la figura 2.1, si $i$ disminuye el tránsito deja de ser visible por el observador, por lo que la probabilidad de observar un tránsito, está en función del ángulo de inclinación con respecto a la perpendicular de la línea de visión.
+Como se mencionó anteriormente, el método del tránsito es la técnica más popular y exitosa para descubrir nuevos planetas. Un tránsito ocurre cuando la órbita de un exoplaneta está orientada de manera particular con la línea de observación ($i\sim 90^{\circ}$) y el planeta bloquea parte de la luz de la estrella, al pasar entre esta y el observador lo cual provoca una ligera disminución en su brillo. Como se muestra en la figura 2.1, si la inclinación $i$ disminuye el tránsito deja de ser visible por el observador, por lo que la probabilidad de observar un tránsito, está en función del ángulo de inclinación con respecto a la perpendicular de la línea de visión.
 
 
 \begin{figure}[H]
@@ -41,7 +41,7 @@ Bajo estas aproximaciones, podemos describir la curva de luz de un tránsito a p
 
 \begin{equation}
 	\label{ec:profundidadTransito}
-  \displaystyle \dfrac{\Delta F}{F}=\left(\dfrac{R_*}{R_p} \right)^{2} ;
+  \displaystyle \dfrac{\Delta F}{F}=\left(\dfrac{R_p}{R_*} \right)^{2} ;
 \end{equation}
 
 De esta relación podemos claramente ver que si conocemos el radio de la estrella $R_{*}$, podemos entonces calcular el radio del planeta $R_{p}$. También esta es la razón por la cual el proyecto \textit{TESS} se enfoca en estrellas pequeñas, porque de esta manera es más sencillo medir $\Delta F$ provocados por planetas más pequeños.
@@ -60,14 +60,14 @@ esta relación se puede reducir a:
 \displaystyle t_{T}=\dfrac{P}{\pi}\sqrt{\left(\dfrac{R_{*}}{a} \right)^{2}- \mbox{cos}^{2}i};
 \end{equation}
 
-solo considerando que $a\gg R_{*}\gg R_{p}$ \citep{winn2010transits}, donde $P$ es el periodo orbital dado por la tercera ley de Kepler \ref{ec:kepler3}, $a$ es el semi-eje e $i$ la inclinación de la órbita. Usando $i$, podemos definir $b=\dfrac{a}{R_{*}}\mbox{cos}~i$ conocido como parámetro de impacto, el cual es comúnmente más utilizado para cuantificar la inclinación de la órbita. El periodo orbital se define como:
+\noindent sólo considerando que $a\gg R_{*}\gg R_{p}$ \citep{winn2010transits}, donde $P$ es el periodo orbital dado por la tercera ley de Kepler \ref{ec:kepler3}, $a$ es el semi-eje e $i$ la inclinación de la órbita. Usando $i$, podemos definir $b=\dfrac{a}{R_{*}}\mbox{cos}~i$ conocido como parámetro de impacto, el cual es comúnmente más utilizado para cuantificar la inclinación de la órbita. El periodo orbital se define como:
 
 \begin{equation}
   \label{ec:kepler3}
   \displaystyle P=\sqrt{\dfrac{4\pi^{2}a^{3}}{GM_{*}}};
   \end{equation} 
   
-donde $G$ es la constante de la gravitación universal ($G=6.674x10^{-11}\dfrac{Nm^{2}}{kg^{2}}$), y $M_{*}$ la masa de la estrella.
+\noindent donde $G$ es la constante de la gravitación universal ($G=6.674\times 10^{-11}\dfrac{Nm^{2}}{kg^{2}}$), y $M_{*}$ la masa de la estrella.
 
 El tiempo total $t_{T}$ puede desglosarse en 2 diferentes procesos. El tiempo de que le toma al planeta estar completamente sobre el disco solar, el cual denotaremos como $t_{c}$ y la parte ``plana'' del tránsito $t_{F}$, donde:
 
@@ -129,7 +129,7 @@ Por lo general, se utilizan tiempos de exposición de (30s - 120s), dependiendo 
 \begin{figure}[h!]
   \centering
     \includegraphics[max size={0.9\textwidth}{0.9\textheight}]{./figures/transitoXO3.png}
-   \caption{Curva de luz de XO-3, tomada con el filtro R de Johnson en el telescopio de $84~cm$ en el Observatorio Astronómico Nacional (OAN-SPM) el 21 de octubre del 2016.}
+   \caption{Curva de luz de XO-3, tomada con el filtro R de Johnson en el telescopio de 84 cm en el Observatorio Astronómico Nacional (OAN-SPM) el 21 de octubre del 2016.}
     \label{fig_2_4_XO3}
 \end{figure}
 
@@ -158,7 +158,7 @@ Sin embargo, el detector es sensible a un rango finito del espectro electromagn�
   \centering
     \includegraphics[scale=8]{./figures/wasp74b.png}
    \caption{Ejemplo de la imágen de una estrella estudiada en este trabajo, obtenida con una cámara rápida IXON en el telescopio de $84~cm$ en el OAN-SPM.}
-    \label{fig_2_5_wasp74b}
+    \label{fig_2_5_WASP-74b}
 \end{figure}
 
 Sin embargo, las imágenes por si solas no son muy útiles cuando se quiere calcular propiedades físicas de los objetos observados, es por eso que necesitamos procesarlas para extraer información de ellas. En este trabajo, estudiamos las estrellas mediante curvas de luz, que son la medida del flujo $F$ durante intervalos de tiempo regulares, las cuales se obtienen mediante un procesado denominado fotometría. Existen distintas metodologías dependiendo del objeto que se esté estudiando, en las subsecciones (II.3.2) y (II.3.3) se explican 2 de ellas.
@@ -219,7 +219,7 @@ La fotometría se encarga de integrar el flujo $F_{\lambda}$ medido con ayuda de
 
 Cada pixel en la imagen tiene asociado un valor comunmente denominado como ``cuentas'', este valor representa el número de electrones producidos en ese pixel durante el proceso de captura de fotones. Un CCD ideal, es uno que por cada fotón produce un electrón, los CCD's de la actualidad están cerca de este límite.
 
-La fotometría rápida consiste en sumar las ``cuentas'' de cada pixel ($x_{i},y_{i}$), de $R_{t}(x,y) $, donde $ i $ va de 1 hasta $ N $, donde $ N $ es el número de pixeles en cada eje de la imagen ciencia  y $ t $ es el número de imágenes. En este caso consideraremos el caso con imágenes simétricas, donde el número de pixeles en el eje x $(N_{x})$, y en el eje y $(N_{y})$ son iguales $N_{x}=N_{y}=N$. 
+La fotometría rápida consiste en sumar las ``cuentas'' de cada pixel ($x_{i},y_{i}$), de $R_{t}(x,y) $, donde $ i $ va de 1 hasta $ N $, donde $ N $ es el número de pixeles en cada eje de la imagen ciencia  y $ t $ es el número de imágenes. En este caso consideraremos el caso con imágenes simétricas, donde el número de pixeles en el eje $x$ $(N_{x})$, y en el eje $y$ $(N_{y})$ son iguales $N_{x}=N_{y}=N$. 
 
 \begin{equation}
   \displaystyle F_{t} = \sum_{x_{i}}^{N} \sum_{y_{i}}^{N} R_{t}(x_{i},y_{i}),\hspace{1cm}i=1,...,N;
@@ -277,17 +277,17 @@ Si en el campo de observación hay $ N $ estrellas, denotaremos la curva de luz 
 Idealmente, estas estrellas deben tener una magnitud similar $(\pm 10 \%)$ y estar cerca de una de otra ($<3$ arcmin) para que la contribución debido a la atmósfera sea comparable.
 
 
-\begin{figure} [H]
+\begin{figure}[H]
   \centering
-    \includegraphics[max size={1\textwidth}{0.4\textheight}]{./figures/fotometria_apertura.png}
-   \caption{Curva de luz de alta cadencia de Kepler17b obtenida mediante fotometría de apertura. La observación de Kepler17b se realizó en el sitio 2 de TAOS II, utilizando una cámara \textit{Zyla} de Andor. Esta curva de luz se obtuvo utilizando APPHi véase (sección III.4.1). }
+    \includegraphics[max size={1\textwidth}{0.36\textheight}]{./figures/fotometria_apertura.png}
+   \caption{Curva de luz de alta cadencia de Kepler-17b obtenida mediante fotometría de apertura. La observación de Kepler-17b se realizó en el sitio 2 de TAOS II, utilizando una cámara \textit{Zyla} de Andor. Esta curva de luz se obtuvo utilizando APPHi véase (sección III.4.1). }
     \label{fig_2_7_foto_apertura}
 \end{figure}
 
 \begin{figure}[H]
   \centering
-    \includegraphics[max size={1\textwidth}{0.4\textheight}]{./figures/fotometria_diferencial.png}
-   \caption{Curva de luz de alta cadencia de Kepler17b obtenida mediante fotometría diferencial. La observación de Kepler17b se realizó en el sitio 2 de TAOS II, utilizando una cámara \textit{Zyla} de Andor. Esta curva de luz se obtuvo utilizando APPHi véase (sección III.4.1).}
+    \includegraphics[max size={1\textwidth}{0.36\textheight}]{./figures/fotometria_diferencial.png}
+   \caption{Curva de luz de alta cadencia de Kepler-17b obtenida mediante fotometría diferencial. La observación de Kepler-17b se realizó en el sitio 2 de TAOS II, utilizando una cámara \textit{Zyla} de Andor. Esta curva de luz se obtuvo utilizando APPHi véase (sección III.4.1).}
     \label{fig_2_8_foto_diferencial}
 \end{figure}
 
@@ -303,7 +303,7 @@ El análisis de las series de tiempo se basa en suponer que el flujo observado e
 
 \noindent donde $F^\_{t}$ es el flujo real de la estrella, sin ningún tipo de contribución debido a la atmósfera o el instrumento de medición. Todas estas contribuciones que añaden ruido al flujo observado están representadas por $R_{t}$. A su vez, $R_{t}$ está conformado por ruido de alta o baja frecuencia. 
 
-Las componentes de baja frecuencia se conocen como ``tendencias'', se define como un cambio suave del flujo en la curva de luz a largo plazo que afecta a todas las estrellas del campo en forma similar. Generalmente provocadas por condiciones climáticas como la masa de aire, la cual cambia lentamente en unas horas de observación. Otras variables climáticas como densidad del aire, presión y cantidad de agua en la atmósfera cambian más rápidamente, en escalas de tiempo de minutos. Las componentes de alta frecuencia se deben principalmente a ruido electrónico al momento de la lectura del CCD y a la aberraciones del frente de onda causados por la atm\'osfera. Tiempos de exposición largos $(T_{exp} \sim 100 s)$ disminuyen la contribución del ruido de lectura, sin embargo en este trabajo nos enfocaremos en estudiar curvas de luz de alta cadencia $(T_{exp} < 1 s)$, por lo tanto, la imagen se lee mas veces por unidad de tiempo, lo cual incrementa en esa misma medida el ruido electr\'onico \textcolor{red}{(aquí puede quedar nuestro paper de efectos atmosféricos, no tardan en publicarlo)}.
+Las componentes de baja frecuencia se conocen como ``tendencias'', se define como un cambio suave del flujo en la curva de luz a largo plazo que afecta a todas las estrellas del campo en forma similar. Generalmente provocadas por condiciones climáticas como la masa de aire, la cual cambia lentamente en unas horas de observación. Otras variables climáticas como densidad del aire, presión y cantidad de agua en la atmósfera cambian más rápidamente, en escalas de tiempo de minutos. Las componentes de alta frecuencia se deben principalmente a ruido electrónico al momento de la lectura del CCD y a la aberraciones del frente de onda causados por la atm\'osfera. Tiempos de exposición largos $(T_{exp} \sim 100 s)$ disminuyen la contribución del ruido de lectura, sin embargo en este trabajo nos enfocaremos en estudiar curvas de luz de alta cadencia $(T_{exp} < 1 s)$, por lo tanto, la imagen se lee mas veces por unidad de tiempo, lo cual incrementa en esa misma medida el ruido electr\'onico \cite{guerrero2020effects}.
 
 Estos fenómenos representados en $R_{t}$, afectan la curva de luz creando un ruido aleatorio, el cual puede tener diferentes distribuciones estadísticas como Gaussiana o de Poisson o una convolución de estas distribuciones \cite{luisier2010image}.
 
@@ -345,6 +345,6 @@ Esta transformada integral, nos ayuda a convertir una serie de tiempo $F_{t}$, a
     \label{fig_2_9_fourier}
 \end{figure}
 
-En la figura 2.6 podemos apreciar una curva de luz de alta cadencia y su respectivo espectro de frecuencias. Como podemos observar, se aprecia una importante componente de bajas frecuencias debido a las tendencias en la curva de luz, provocadas por variables atmosféricas. Es por eso que en este trabajo se modeló el ruido de una manera en la que el ruido simulado tenga componentes que observamos en curvas de luz reales (véase III.2.2), a diferencia de simplemente añadir un ruido con distribución gaussiana (ruido blanco) el cual tiene un espectro de frecuencias plano.
+En la figura \ref{fig_2_9_fourier} podemos apreciar una curva de luz de alta cadencia y su respectivo espectro de frecuencias. Como podemos observar, se aprecia una importante componente de bajas frecuencias debido a las tendencias en la curva de luz, provocadas por variables atmosféricas. Es por eso que en este trabajo se modeló el ruido de una manera en la que el ruido simulado tenga componentes que observamos en curvas de luz reales (véase III.2.2), a diferencia de simplemente añadir un ruido con distribución gaussiana (ruido blanco) el cual tiene un espectro de frecuencias plano.
 
 En este trabajo se utilizó el análisis de Fourier para encontrar las componentes del ruido y limpiar la curva de luz con una metodología ágil y rápida \cite{kosarev1983optimal}, \cite{brault1971analysis}. U

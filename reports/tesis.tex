@@ -13,8 +13,6 @@
 \renewcommand{\baselinestretch}{1.25}
 \renewcommand{\headrulewidth}{0.5pt}
 \setlength{\marginparwidth}{12cm}
-\fancyhf{}
-\fancyhead[LE,RO]{\chaptername\ {\Huge\thechapter}}
 \fancyfoot[C]{\thepage}
 \usepackage{chngcntr}
 \counterwithin{equation}{chapter}
@@ -25,6 +23,7 @@
 \makeindex
 \begin{document}
 \input{portada.tex}
+\newpage
 \fancyhead[LE,RO]{\chaptername\ {\Huge\thechapter}}
 \pagenumbering{arabic}
 \setstretch{1.25}
@@ -39,10 +38,13 @@
 \input{conclusiones.tex}
 \setstretch{1.25}
 \input{anexos.tex}
-%\input{bibliografia.tex}
 \setstretch{1.25}
+\newpage
+\fancyhead[LE,RO]{}
+\chead{Referencias}
 \bibliography{tesis}
 \bibliographystyle{apalike}
+
 \end{document}
 %----------------------------------------------------------
 % Fin de Tesis
