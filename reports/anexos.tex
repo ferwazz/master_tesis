@@ -13,21 +13,146 @@ HCLcat (del inglés \textit{High Cadende Light curves analityc tools}) es una co
 
 \texttt{pip install git+https://github.com/ferwazz/HCLcat.git}\\
 
-A continuación se describirán algunos de los módulos disponibles:\\
+A continuación se describirán algunos de los módulos disponibles:
 
 \begin{itemize}
-\item \begin{verbatim} doble_gaussian(x,a,mu,sigma,a2,mu2,sigma2) \end{verbatim} Modelo de dos gaussianas como \ref{ec:componentes_gauss}.
+\item \begin{verbatim} doble_gaussian(x,a,mu,sigma,a2,mu2,sigma2) \end{verbatim} Modelo de dos gaussianas como (\ref{ec:componentes_gauss}).
 	\item \begin{verbatim} snr(x): \end{verbatim} Calcula la SNR de una curva de luz.
 	\item \begin{verbatim} set_noise_level(curve,noise): \end{verbatim} Regresa la curva de luz normalizada con SNR igual a \texttt{noise}.
-	\item \begin{verbatim} genruido(noise,lenght=144000): \end{verbatim} Genera una curva de ruido, con distribución doble gaussiana.
+	\item \begin{verbatim} genruido(noise,lenght=144000): \end{verbatim} Genera una curva de ruido, con distribución doble gaussiana de longitud \texttt{lenght}.
 	\item \begin{verbatim} remove_outliers(x,std_limit=5): \end{verbatim} Remueve outliers de una curva \texttt{x}, basado en su desviación estándar \texttt{std\_limit}.
-	\item \begin{verbatim} prom_mov(x,mov,method=prom): \end{verbatim} Aplica un promedio móvil a una curva. \texttt{mov} define el tamaño de la ventana de promediado. Si \texttt{method=prom} calcula una media de los valores en la ventana \texttt{mov}, si \texttt{method='med'} calcula la mediana.
-	\item \begin{verbatim} dexp(x,base,a,b,a2,b2): \end{verbatim} Modelo de evolvente exponencial para el espectro \ref{ec:envolvente_exponencial}.
-	\item \begin{verbatim} ruido_real(noise,base,a,b,a2,b2,lenght=288000): \end{verbatim} Genera una curva de ruido simulado, con componentes de baja frecuencia en su espectro.
+	\item \begin{verbatim} prom_mov(x,mov,method=prom): \end{verbatim} Aplica un promedio móvil a una curva. \texttt{mov} define el tamaño de la ventana de promediado. Si \texttt{method=prom} calcula una media de los valores en la ventana, si \texttt{method='med'} calcula la mediana.
+	\item \begin{verbatim} dexp(x,base,a,b,a2,b2): \end{verbatim} Modelo de evolvente exponencial para el espectro ()\ref{ec:envolvente_exponencial}).
+	\item \begin{verbatim} ruido_real(noise,base,a,b,a2,b2,lenght=144000): \end{verbatim} Genera una curva de ruido simulado, con componentes de baja frecuencia en su espectro.
 	\item \begin{verbatim} fourierfilter(x,cutfreq): \end{verbatim} Aplica un filtrado pasa bajas de Fourier, dada la frecuencia de corte \texttt{cutfreq}.
 	\item \begin{verbatim} pca_train(data_train): \end{verbatim} Calcula las componentes principales de la matriz de datos \texttt{data\_train}.
 	\item \begin{verbatim} pca_filter(data_noised,comp): \end{verbatim} Dadas las componentes principales \texttt{comp}, se reconstruye la curva \texttt{data\_noised}.
 	\item \begin{verbatim} medio_trapezoid(x,depth,down,tc): \end{verbatim} Modelo del trapezoide (mitad) para ajustar a los posibles candidatos a tránsitos.
+	\item \begin{verbatim} ruido_real_random(cotas,lenght=144000,snr=0): \end{verbatim} Genera una curva de ruido simulado, con parámetros aleatorios dentro de las limites definidos en \texttt{cotas}.
 \end{itemize}
 
-Se planea mantener el repositorio y agregar nuevos módulos para el procesamiento de datos de alta cadencia y la búsqueda de características como posibles tránsitos de exoplanetas, variabilidad, etc.
+Se planea mantener el repositorio y agregar nuevos módulos para el procesamiento de datos de alta cadencia y la búsqueda de características como posibles tránsitos de exoplanetas, variabilidad, etc. A continuación se presentan algunos ejemplos de como utilizar estos módulos para la implementación de algunas herramientas que utilizamos en este trabajo.
+
+\newpage
+
+Este código se puede utilizar para generar una base de datos de ruidos simulados. Estos ruidos simulados tienen una envolvente exponencial en su espectro. Los parámetros se eligen de manera aleatoria dentro de las cotas definidas en \texttt{bounds}. Al final guarda la base de datos en un archivo con formato HDF5.
+
+\begin{lstlisting}[language=Python]
+from HCLcat import *
+import h5py
+
+signal_noise = [10,20,50,80,100] # SNR deseadas en nuestra base de datos
+n_curves = 100 # Numero de curvas con la misma SNR pero diferentes parametros
+
+bounds=np.zeros([6,2])
+bounds[0,0]=10     #SNR MIN
+bounds[0,1]=100    #SNR MAX
+bounds[1,0]=0.85   #BASE MIN
+bounds[1,1]=10     #BASE MAX
+bounds[2,0]=0      #a MIN
+bounds[2,1]=30     #a MAX
+bounds[3,0]=2      #b MIN e-2
+bounds[3,1]=250    #b MAX e-2         
+bounds[4,0]=0      #a2 MIN
+bounds[4,1]=150    #a2 MAX
+bounds[5,0]=2.9    #b2 MIN e-3
+bounds[5,1]=60     #b2 MAX e-3
+
+for j in signal_noise:
+    f = h5py.File('database_ruido_SNR_{}.hdf5'.format(j), 'w')
+    for i in range(n_curves):
+        ruido_random,base,a,b,a2,b2 = ruido_real_random(bounds,lenght=144000,snr=j)
+        dset2 = f.create_dataset(
+			"ruido_{:.3f}_{:.3f}_{:.3f}_{:.3f}_{:.3f}".format(base,a,b,a2,b2),
+			data=ruido_random)
+    f.close()
+
+\end{lstlisting}
+
+\newpage
+
+Este código se puede utilizar para generar una base de datos de medios trapecios. Los parámetros se eligen por el usuario. Al final guarda la base de datos en un archivo con formato HDF5.
+
+\begin{lstlisting}[language=Python]
+from HCLcat import *
+
+f = h5py.File('database_half_trapezoids.hdf5', 'w')
+
+delta_f_min = 0.998
+delta_f_max = 0.94
+tc_min = 18000
+tc_max = 72000
+
+n_radius=25
+n_tc=25
+
+depth=np.linspace(delta_f_min, delta_f_max, n_radius)
+t_caida=np.linspace(tc_min, tc_max, n_tc)
+xdata=np.linspace(1,144000,144000)
+down=32000
+
+for j in np.arange(n_tc):
+    for i in range(n_radius):
+        flux=medio_trapezoid(xdata,depth[i],down,t_caida[j])
+        dset2 = f.create_dataset(
+			"transito_delta_{:.3f}_Tc_{:.3f}".format(depth[i],(t_caida[j]/(60*20))),
+			data=flux)
+f.close()
+
+\end{lstlisting}
+
+\newpage
+
+Este código se utilizó para obtener los resultados presentados en este trabajo. Utiliza la base de datos de ruidos simulados, y trapecios previamente generados. La parte de \texttt{FILTER\_METHOD} puede sustituirse por cualquier método de filtrado que el usuario desee como \texttt{prom\_mov}, \texttt{fourier\_filter} ó \texttt{pca\_filter}. Este código es paralelizable en el sentido de que puede ejecutarse varias veces de manera simultánea y analizar secciónes diferentes de las bases de datos.
+
+\begin{lstlisting}[language=Python]
+from HCLcat import *
+
+import numpy as np
+import pickle
+import h5py
+
+f=h5py.File('ideal_case_traps.hdf5', 'r')
+
+size = 625 
+N = 100
+long = 144000
+
+depth=np.zeros((size,N))
+down=np.zeros((size,N))
+tc=np.zeros((size,N))
+ruido_num=np.zeros(N)
+xdata=np.linspace(1,long,long)
+snr=np.array([10,20,50,80,100])
+
+tmod = Model(medio_trapezoid)
+tmod.set_param_hint('tc', value=18000, min=15000, max=73000)
+tmod.set_param_hint('down', value=np.round(0.008*long))
+tmod.set_param_hint('depth', value=0.95)
+params = tmod.make_params()
+
+for j in snr:
+    f2=h5py.File('database_ruido_SNR_{}.hdf5'.format(j), 'r')
+    keys_ruido = list(f2.keys())
+    for i in range(N):
+        cont=0
+        ruido_num[i] = random.randint(0,99)
+        ruido = np.array(f2[keys_ruido[int(ruido_num[i])]])
+        for key in f.keys():
+            data = np.array(f[key])
+            data_ruido = data*ruido
+            data_fil = FILTER_METHOD(params)
+            result = tmod.fit(data_fil, params, x=xdata)       
+            depth[cont,i] = result.params['depth'].value
+            tc[cont,i] = result.params['tc'].value
+            down[cont,i] = result.params['down'].value    
+            cont = cont+1
+    f2.close()
+    pickle.dump(
+		(depth,down,tc),
+		open('param_trap_Fourier_SNR_{}.pickle'.format(j), 'wb'))
+    pickle.dump(
+		(ruido_num), 
+		open('ruido_Fourier_SNR_{}.pickle'.format(j), 'wb'))
+
+\end{lstlisting}
