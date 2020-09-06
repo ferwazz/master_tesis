@@ -10,77 +10,31 @@
 \section*{IV.1 Simulaciones}
 \addcontentsline{toc}{section}{IV.1 Simulaciones}
 
-Primeramente se presentan los resultados de las metodologías para la mejora de la SNR en las curvas simuladas.
+\subsection*{IV.1.1 Determinación de candidatos a tránsitos}
+\addcontentsline{toc}{subsection}{IV.1.1 Determinación de candidatos a tránsitos}
 
-\subsection*{IV.1.1 Mejora de la señal a ruido en curvas de luz}
-\addcontentsline{toc}{subsection}{IV.1.1 Mejora de la señal a ruido en curvas de luz}
+Para determinar la eficiencia de la metodología en la identificación de candidatos a tránsitos de exoplanetas, se utilizó el coeficiente de correlación de Pearson como medida de la calidad del ajuste. También evaluamos la distorsión de la curva de luz, debido a los diferentes métodos de filtrado, para esto calculamos la diferencia porcentual entre el parámetro $t_c$ de la simulación y los obtenidos mediante el ajuste.
 
-Con el propósito de evaluar estadísticamente el desempeño de la metodología planteada en este trabajo, se combinaron las bases de datos de ruidos simulados (véase III.2.3) y de tránsitos simulados (véase III.3) para una prueba de ajuste del modelo del trapezoide y probar el criterio de validación de tránsitos. Se insertaron los tránsitos simulados a las curvas de ruido para distintos valores de señal a ruido (SNR). Las 625 curvas de tránsitos, con cada una de las 100 curvas de ruido. Esto genera un total de 62,500 pruebas por valor de SNR, y un total de 2,500 pruebas por valor de $\Delta F$.
-
-Esto nos genera una distribución 2500 SNR's por cada valor de $\Delta F$, para resumir este resultado, presentamos el intervalo que contiene el 90\% de los resultados, excluyendo los casos más extremos. Es decir, cada intervalo de las tablas \ref{tab_mejora_snr_10} y \ref{tab_mejora_snr_100} está compuesto por el percentil 5, 50 y 95.  
-
-\begin{table}
-	\centering
-	\begin{tabular}{ccccccccc}
-	\hline 
-	$\Delta F$ & $\mbox{SNR}_{Fourier}$ &  $\mbox{SNR}_{mov}$ & $\mbox{SNR}_{PCA}$\\ 
-	\hline
-	0.03 & 	${56.12}_{-22.53}^{+21.43}$ & ${46.39}_{-17.83}^{+26.5}$ & ${66.95}_{-22.37}^{+20.83}$ \\
-	0.02 &  ${65.82}_{-29.63}^{+42.01}$ & ${51.0}_{-21.18}^{+50.29}$ & ${86.41}_{-37.71}^{+38.48}$ \\
-	0.01 & ${73.24}_{-36.93}^{+96.5}$ & ${55.08}_{-24.24}^{+86.07}$ & ${112.47}_{-58.77}^{+91.6}$ \\
-	0.002 & ${76.25}_{-38.76}^{+163.78}$ & ${56.83}_{-25.37}^{+108.36}$	& ${127.94}_{-69.19}^{+228.57}$ \\
-	\hline 
-	\end{tabular} 
-	\caption{Resultados de la mejora de la SNR para tránsitos simulados, a los cuales se les insertó un ruido simulado de $SNR=10$. $\Delta F$ representa la variación en el flujo de la estrella debido al tránsito. $\mbox{SNR}_{Fourier}$, $\mbox{SNR}_{mov}$ y $\mbox{SNR}_{PCA}$ indican el valor de SNR de la curva de luz, obtenida mediante el filtrado de Fourier, promedio móvil y PCA respectivamente. Los intervalos del 90\% fueron obtenidos a partir de la distribución de SNR's que resultan de las pruebas, con $N=2500$ casos únicos para cada $\Delta F$.}
-	\label{tab_mejora_snr_10}
-	\end{table}
-
-
-\begin{table}
-	\centering
-	\begin{tabular}{ccccccccc}
-	\hline 
-	$\Delta F$ & $\mbox{SNR}_{Fourier}$ &  $\mbox{SNR}_{mov}$ & $\mbox{SNR}_{PCA}$\\ 
-	\hline
-	0.03 & 	${81.71}_{-4.37}^{+4.01}$ & ${80.91}_{-4.74}^{+3.74}$ & ${81.22}_{-3.82}^{+4.11}$ \\
-	0.02 &  ${123.01}_{-10.47}^{+7.08}$ & ${120.85}_{-12.16}^{+7.21}$ & ${123.04}_{-8.96}^{+7.65}$ \\
-	0.01 & ${240.81}_{-47.93}^{+24.17}$ & ${226.68}_{-47.63}^{+32.63}$ & ${248.12}_{-36.71}^{+27.47}$ \\
-	0.002 & ${548.05}_{-237.59}^{+474.3}$ & ${439.0}_{-182.87}^{+497.27}$ & ${784.99}_{-357.55}^{+456.92}$ \\
-	\hline 
-	\end{tabular} 
-	\caption{Resultados de la mejora de la SNR para tránsitos simulados, a los cuales se les insertó un ruido simulado de $SNR=100$. $\Delta F$ representa la variación en el flujo de la estrella debido al tránsito. $\mbox{SNR}_{Fourier}$, $\mbox{SNR}_{mov}$ y $\mbox{SNR}_{PCA}$ indican el valor de SNR de la curva de luz, obtenida mediante el filtrado de Fourier, promedio móvil y PCA respectivamente. Los intervalos del 90\% fueron obtenidos a partir de la distribución de SNR's que resultan de las pruebas, con $N=2500$ casos únicos para cada $\Delta F$.}
-	\label{tab_mejora_snr_100}
-	\end{table}
-
-Como puede verse en las tablas \ref{tab_mejora_snr_10} y \ref{tab_mejora_snr_100}, el valor de la SNR depende de la variación en el flujo $\Delta F$, los tránsitos profundos disminuyen la SNR, sin embargo podemos apreciar que los valores centrales son comparables.
-
-El análisis de componentes principales parece tener el mejor desempeño. Como se puede apreciar en la figura \ref{fig_transito_pca}, el resultado es una curva suave con SNR alta. Sin embargo en la misma imágen podemos apreciar la diferencia entre el modelo y la curva filtrada, por lo que la medida de la SNR, no nos sugiere cual es el mejor método.
-
-Debido a esto, comparamos también las curvas resultantes del filtrado con el modelo trapezoidal, para evaluar el desempeño de las diferentes metodologías, los resultados se presentan a continuación.
-
-\subsection*{IV.1.2 Determinación de candidatos a tránsitos}
-\addcontentsline{toc}{subsection}{IV.1.2 Determinación de candidatos a tránsitos}
-
-Para determinar la eficiencia de la metodología en la identificación de candidatos a tránsitos de exoplanetas, se utilizó el coeficiente de correlación como medida de la calidad del filtrado. Utilizando la base de datos de tránsitos simulados (véase III.3.1) y los ruidos simulados (véase III.2.3) se calcularon los coeficientes de correlación de 625 casos únicos (25 $\Delta F$ y 25 $t_{c}$), las mismas simulaciones que dieron lugar a los resultados presentados en la subsección anterior (IV.1.1).
+Utilizando la base de datos de tránsitos simulados (véase III.3.1) y los ruidos simulados (véase III.2.3) se calcularon los coeficientes de correlación de 625 casos únicos (25 $\Delta F$ y 25 $t_{c}$).
 
 Presentaremos los resultados por método de filtrado, y para los casos límites de ruido, es decir $SNR=10$ y $SNR=100$. Estos valores de SNR's son de antes de cualquier proceso de filtrado.
 
-\subsubsection*{IV.1.2.1 Correlaciones resultantes del filtrado de Fourier}
-\addcontentsline{toc}{subsubsection}{IV.1.2.1 Correlaciones resultantes del filtrado de Fourier}
+\subsubsection*{IV.1.1.1 Resultados del filtro de Fourier}
+\addcontentsline{toc}{subsubsection}{IV.1.1.1 Resultados del filtro de Fourier}
 
 Las figuras \ref{fig_correlaciones_fou_10} y \ref{fig_correlaciones_fou_100} muestran la correlación, entre el modelo y la curva filtrada con el filtro de Fourier, para curvas con $SNR=10$ y $SNR=100$ respectivamente. El color nos indica la media de los coeficientes de correlación ($C$), de los 100 ruidos con diferentes parámetros (véase III.2.3).
 
-\begin{figure}[h!]
+\begin{figure}
 	\centering
 		\includegraphics[max size={0.9\textwidth}{0.36\textheight}]{./figures/corrFourierSNR_10.png}
-		\caption{Mapa de correlaciones de los parámetros $\Delta F$ y $t_{c}$ entre las simulaciones y los calculados después de aplicar el modelo del trapezoide a los datos filtrados utilizando Fourier. Estos resultados se obtuvieron a partir de curvas simuladas con una $SNR=10$.}
+		\caption{Matriz de correlaciones de los parámetros $\Delta F$ y $t_{c}$ entre las simulaciones y los calculados después de aplicar el modelo del trapezoide a los datos filtrados utilizando Fourier. Estos resultados se obtuvieron a partir de curvas simuladas con una $SNR=10$.}
 		\label{fig_correlaciones_fou_10}
 \end{figure}
 
-\begin{figure}[h!]
+\begin{figure}
 	\centering
 		\includegraphics[max size={0.9\textwidth}{0.36\textheight}]{./figures/corrFourierSNR_100.png}
-		\caption{Mapa de correlaciones de los parámetros $\Delta F$ y $t_{c}$ entre las simulaciones y los calculados después de aplicar el modelo del trapezoide a los datos filtrados utilizando Fourier. Estos resultados se obtuvieron a partir de curvas simuladas con una $SNR=100$.}
+		\caption{Matriz de correlaciones de los parámetros $\Delta F$ y $t_{c}$ entre las simulaciones y los calculados después de aplicar el modelo del trapezoide a los datos filtrados utilizando Fourier. Estos resultados se obtuvieron a partir de curvas simuladas con una $SNR=100$.}
 		\label{fig_correlaciones_fou_100}
 \end{figure}
 
@@ -95,46 +49,84 @@ Esta cota inferior se calculó a partir de un estudio de falsos positivos, donde
 
 Si analizamos la figura \ref{fig_correlaciones_fou_100}, vemos que para las curvas con $SNR=100$, todo el intervalo de valores de $\Delta F$ y $t_{c}$ (dentro de los límites, véase IV.2) tiene un valor de $C$ es mayor que la cota inferior. Esto significaría, que en principio seríamos capaces de detectarlos. Por otra parte, en la figura \ref{fig_correlaciones_fou_10}, vemos que para curvas con $SNR=10$ los tránsitos con $\Delta F < \sim 0.005$ no serían detectables.
 
-\subsubsection*{IV.1.2.2 Correlaciones resultantes del promedio móvil}
-\addcontentsline{toc}{subsubsection}{IV.1.2.2 Correlaciones resultantes del promedio móvil}
+Las figuras \ref{fig_diferencias_fou_10} y \ref{fig_diferencias_fou_100} muestran la diferencia porcentual entre $t_{c}^{Fit}$ y $t_{c}^{Real}$, que representan la duración de $t_{c}$ calculada mediante el ajuste y el valor real de la simulación respectivamente. El color nos indica diferentes valores de $\Delta F$. En la figura \ref{fig_diferencias_fou_10} se ilustra los resultados para una $SNR=10$ y los de $SNR=100$ en la figura \ref{fig_diferencias_fou_100}.
+
+
+\begin{figure}
+	\centering
+		\includegraphics[max size={\textwidth}{0.9\textheight}]{./figures/Dif_SNR_10_Fourier.jpg}
+		\caption{Las lineas sólidas representan la diferencia porcentual entre $t_{c}^{Fit}$ y $t_{c}^{Real}$ después de aplicar el modelo del trapezoide a los datos filtrados utilizando el filtro de Fourier. Las líneas punteadas representan la misma cantidad, pero obtenida aplicando el modelo del trapezoide a las curvas simuladas sin filtrar. El color representa diferentes valores de $\Delta F$, se utilizaron 4\%, 2\% y 0.2\% representados en amarillo, verde y rojo respectivamente. Estos resultados se obtuvieron a partir de curvas simuladas a las que se les insertó un ruido con una $SNR=10$.}
+		\label{fig_diferencias_fou_10}
+\end{figure}
+
+\begin{figure}
+	\centering
+		\includegraphics[max size={\textwidth}{0.9\textheight}]{./figures/Dif_SNR_100_Fourier.jpg}
+		\caption{Las lineas sólidas representan la diferencia porcentual entre $t_{c}^{Fit}$ y $t_{c}^{Real}$ después de aplicar el modelo del trapezoide a los datos filtrados utilizando el filtro de Fourier. Las líneas punteadas representan la misma cantidad, pero obtenida aplicando el modelo del trapezoide a las curvas simuladas sin filtrar. El color representa diferentes valores de $\Delta F$, se utilizaron 4\%, 2\% y 0.2\% representados en amarillo, verde y rojo respectivamente. Estos resultados se obtuvieron a partir de curvas simuladas a las que se les insertó un ruido con una $SNR=100$.}
+		\label{fig_diferencias_fou_100}
+\end{figure}
+
+Podemos observar que para tránsitos con una profundidad $\Delta F\, > 1\%$ y los $t_{c}$ más cortos (15-40 min) este método es más efectivo, fuera de estos rangos no se aprecia una diferencia significativa entre los resultados obtenidos sin aplicar filtrado y aplicándolo. En el caso de $SNR=10$ se aprecia como para el caso de $\Delta F=0.2\%$ en algunos casos, el ajuste sin filtrar dio mejores resultados, esto se debe a la deformación en los bordes de la curva debido a el filtrado de Fourier.
+
+
+\subsubsection*{IV.1.1.2 Resultados del promedio móvil}
+\addcontentsline{toc}{subsubsection}{IV.1.1.2 Resultados del promedio móvil}
 
 De manera análoga, las figuras \ref{fig_correlaciones_mov_10} y \ref{fig_correlaciones_mov_100} muestran la correlación, entre el modelo y la curva filtrada con el promedio móvil, para curvas con $SNR=10$ y $SNR=100$ respectivamente. El color nos indica la media de los coeficientes de correlación ($C$), de los 100 ruidos con diferentes parámetros (véase III.2.3).
 
-\begin{figure}[h!]
+\begin{figure}
 	\centering
 		\includegraphics[max size={0.9\textwidth}{0.36\textheight}]{./figures/corrMovSNR_10.png}
-		\caption{Mapa de correlaciones de los parámetros $\Delta F$ y $t_{c}$ entre las simulaciones y los calculados después de aplicar el modelo del trapezoide a los datos filtrados utilizando promedio móvil. Estos resultados se obtuvieron a partir de curvas con una $SNR=10$.}
+		\caption{Matriz de correlaciones de los parámetros $\Delta F$ y $t_{c}$ entre las simulaciones y los calculados después de aplicar el modelo del trapezoide a los datos filtrados utilizando promedio móvil. Estos resultados se obtuvieron a partir de curvas con una $SNR=10$.}
 		\label{fig_correlaciones_mov_10}
 \end{figure}
 
-\begin{figure}[h!]
+\begin{figure}
 	\centering
 		\includegraphics[max size={0.9\textwidth}{0.36\textheight}]{./figures/corrMovSNR_100.png}
-		\caption{Mapa de correlaciones de los parámetros $\Delta F$ y $t_{c}$ entre las simulaciones y los calculados después de aplicar el modelo del trapezoide a los datos filtrados utilizando promedio móvil. Estos resultados se obtuvieron a partir de curvas con una $SNR=100$.}
+		\caption{Matriz de correlaciones de los parámetros $\Delta F$ y $t_{c}$ entre las simulaciones y los calculados después de aplicar el modelo del trapezoide a los datos filtrados utilizando promedio móvil. Estos resultados se obtuvieron a partir de curvas con una $SNR=100$.}
 		\label{fig_correlaciones_mov_100}
 \end{figure}
 
-Para el método de promedio móvil, la cota inferior para determinar una curva como candidata a tránsito es de $C \geq 0.84 $.
+Para el método de promedio móvil, la cota inferior para determinar una curva como candidata a tránsito es de $C \geq 0.84 $. Si analizamos la figura \ref{fig_correlaciones_mov_100}, vemos que para este método de filtrado, los valores de $C$ están en función de $\Delta F$ y más notablemente de $t_{c}$. 
 
-Si analizamos la figura \ref{fig_correlaciones_mov_100}, vemos que para este método de filtrado, los valores de $C$ están en función de $\Delta F$ y más notablemente de $t_{c}$. Esto se debe a lo que se mencionaba anteriormente (véase IV.1.2.2), este método altera la forma de la señal inmersa en el ruido. Esta deformación aumenta de manera proporcional a $t_{c}$.
+Las figuras \ref{fig_diferencias_mov_10} y \ref{fig_diferencias_mov_100} muestran la diferencia porcentual entre $t_{c}^{Fit}$ y $t_{c}^{Real}$, que representan la duración de $t_{c}$ calculada mediante el ajuste y el valor real de la simulación respectivamente. El color nos indica diferentes valores de $\Delta F$. En la figura \ref{fig_diferencias_mov_10} se ilustra los resultados para una $SNR=10$ y los de $SNR=100$ en la figura \ref{fig_diferencias_mov_100}.
 
 
-\subsubsection*{IV.1.2.3 Correlaciones resultantes de PCA}
-\addcontentsline{toc}{subsubsection}{IV.1.2.3 Correlaciones resultantes de PCA}
+\begin{figure}
+	\centering
+		\includegraphics[max size={\textwidth}{0.9\textheight}]{./figures/Dif_SNR_10_Mov.jpg}
+		\caption{Las lineas sólidas representan la diferencia porcentual entre $t_{c}^{Fit}$ y $t_{c}^{Real}$ después de aplicar el modelo del trapezoide a los datos filtrados utilizando promedio móvil. Las líneas punteadas representan la misma cantidad, pero obtenida aplicando el modelo del trapezoide a las curvas simuladas sin filtrar. El color representa diferentes valores de $\Delta F$, se utilizaron 4\%, 2\% y 0.2\% representados en amarillo, verde y rojo respectivamente. Estos resultados se obtuvieron a partir de curvas simuladas a las que se les insertó un ruido con una $SNR=10$.}
+		\label{fig_diferencias_mov_10}
+\end{figure}
+
+\begin{figure}
+	\centering
+		\includegraphics[max size={\textwidth}{0.9\textheight}]{./figures/Dif_SNR_100_Mov.jpg}
+		\caption{Las lineas sólidas representan la diferencia porcentual entre $t_{c}^{Fit}$ y $t_{c}^{Real}$ después de aplicar el modelo del trapezoide a los datos filtrados utilizando promedio móvil. Las líneas punteadas representan la misma cantidad, pero obtenida aplicando el modelo del trapezoide a las  curvas simuladas sin filtrar. El color representa diferentes valores de $\Delta F$, se utilizaron 4\%, 2\% y 0.2\% representados en amarillo, verde y rojo respectivamente. Estos resultados se obtuvieron a partir de curvas simuladas a las que se les insertó un ruido con una $SNR=100$}
+		\label{fig_diferencias_mov_100}
+\end{figure}
+
+Podemos observar que este método es el menos efectivo, si queremos obtener una medida precisa de $t_{c}$. No se aprecia una diferencia significativa entre los resultados para las mismas curvas con y sin filtrar. Esto se debe a lo que se mencionaba con anterioridad, este método altera la forma de la señal inmersa en el ruido. Al promediar en el tiempo, la pendiente de entrada/saluda en la curva de luz cambia (véase \ref{fig_2_2_transito_curva}), esto provoca que aún suavizando la curva y obteniendo un buen coeficiente de correlación, el valor real puede ser diferente del calculado.
+
+Esta deformación parece aumentar de manera proporcional a $t_{c}$. Este método es el menos eficiente computacionalmente hablando.
+
+\subsubsection*{IV.1.1.3 Resultados del filtrado con PCA}
+\addcontentsline{toc}{subsubsection}{IV.1.1.3 Resultados del filtrado con PCA}
 
 De manera análoga, las figuras \ref{fig_correlaciones_pca_10} y \ref{fig_correlaciones_pca_100} muestran la correlación, entre el modelo y la curva filtrada con el método de análisis de componentes principales (PCA), para curvas con $SNR=10$ y $SNR=100$ respectivamente. El color nos indica la media de los coeficientes de correlación ($C$), de los 100 ruidos con diferentes parámetros (véase III.2.3).
 
-\begin{figure}[h!]
+\begin{figure}[H]
 	\centering
 		\includegraphics[max size={0.9\textwidth}{0.36\textheight}]{./figures/corrPCASNR_10.png}
-		\caption{Mapa de correlaciones de los parámetros $\Delta F$ y $t_{c}$ entre las simulaciones y los calculados después de aplicar el modelo del trapezoide a los datos filtrados utilizando PCA. Estos resultados se obtuvieron a partir de curvas con una $SNR=10$.}
+		\caption{Matriz de correlaciones de los parámetros $\Delta F$ y $t_{c}$ entre las simulaciones y los calculados después de aplicar el modelo del trapezoide a los datos filtrados utilizando PCA. Estos resultados se obtuvieron a partir de curvas con una $SNR=10$.}
 		\label{fig_correlaciones_pca_10}
 \end{figure}
 
-\begin{figure}[h!]
+\begin{figure}
 	\centering
 		\includegraphics[max size={0.9\textwidth}{0.36\textheight}]{./figures/corrPCASNR_100.png}
-		\caption{Mapa de correlaciones de los parámetros $\Delta F$ y $t_{c}$ entre las simulaciones y los calculados después de aplicar el modelo del trapezoide a los datos filtrados utilizando PCA. Estos resultados se obtuvieron a partir de curvas con una $SNR=100$.}
+		\caption{Matriz de correlaciones de los parámetros $\Delta F$ y $t_{c}$ entre las simulaciones y los calculados después de aplicar el modelo del trapezoide a los datos filtrados utilizando PCA. Estos resultados se obtuvieron a partir de curvas con una $SNR=100$.}
 		\label{fig_correlaciones_pca_100}
 \end{figure}
 
@@ -142,16 +134,35 @@ El filtrado usando PCA método arroja los coeficientes de correlación más alto
 
 Si analizamos las figuras  \ref{fig_correlaciones_pca_10} y \ref{fig_correlaciones_pca_100}, vemos que al igual que para el método de Fourier, no se ve una correlación significativa entre $C$ y $t_{c}$. 
 
+Las figuras \ref{fig_diferencias_pca_10} y \ref{fig_diferencias_pca_100} muestran la diferencia porcentual entre $t_{c}^{Fit}$ y $t_{c}^{Real}$, que representan la duración de $t_{c}$ calculada mediante el ajuste y el valor real de la simulación respectivamente. El color nos indica diferentes valores de $\Delta F$. En la figura \ref{fig_diferencias_pca_10} se ilustra los resultados para una $SNR=10$ y los de $SNR=100$ en la figura \ref{fig_diferencias_pca_100}.
+
+\begin{figure}
+	\centering
+		\includegraphics[max size={\textwidth}{0.9\textheight}]{./figures/Dif_SNR_10_PCA.jpg}
+		\caption{Las lineas sólidas representan la diferencia porcentual entre $t_{c}^{Fit}$ y $t_{c}^{Real}$ después de aplicar el modelo del trapezoide a los datos filtrados utilizando PCA. Las líneas punteadas representan la misma cantidad, pero obtenida aplicando el modelo del trapezoide a las  curvas simuladas sin filtrar. El color representa diferentes valores de $\Delta F$, se utilizaron 4\%, 2\% y 0.2\% representados en amarillo, verde y rojo respectivamente. Estos resultados se obtuvieron a partir de curvas simuladas a las que se les insertó un ruido con una $SNR=10$.}
+		\label{fig_diferencias_pca_10}
+\end{figure}
+
+\begin{figure}
+	\centering
+		\includegraphics[max size={\textwidth}{0.9\textheight}]{./figures/Dif_SNR_100_PCA.jpg}
+		\caption{Las lineas sólidas representan la diferencia porcentual entre $t_{c}^{Fit}$ y $t_{c}^{Real}$ después de aplicar el modelo del trapezoide a los datos filtrados utilizando PCA. Las líneas punteadas representan la misma cantidad, pero obtenida aplicando el modelo del trapezoide a las  curvas simuladas sin filtrar. El color representa diferentes valores de $\Delta F$, se utilizaron 4\%, 2\% y 0.2\% representados en amarillo, verde y rojo respectivamente. Estos resultados se obtuvieron a partir de curvas simuladas a las que se les insertó un ruido con una $SNR=100$}
+		\label{fig_diferencias_pca_100}
+\end{figure}
+
+Podemos observar que este método es el más efectivo, si queremos obtener una medida precisa de $t_{c}$. De igual manera que el filtro de Fourier, este funciona mejor para pendientes más grandes, es decir tiempos de entrada/salida cortos ($\lesssim 30$ min). Se aprecia una mejora debido al filtrado para todos los valores de $t_{c}$ del al menos 15\%. También cabe destacar que este método de filtrado es el más eficiente, esto desde el punto de vista computacional.
+
+\newpage
 \section*{IV.2 Datos observacionales}
 \addcontentsline{toc}{section}{IV.2 Datos observacionales}
 
-Se presentan los resultados de las metodologías para la mejora de la
-SNR en las curvas de luz reales (véase III.1).
+Se presentan los resultados de las metodologías para la mejora de la SNR en las curvas de luz reales (véase III.1).
 
 \subsection*{IV.2.1 Mejora de la señal a ruido en datos observacionales}
 \addcontentsline{toc}{subsection}{IV.2.1 Mejora de la señal a ruido en datos observacionales}
 
-Se presenta un ejemplo del resultado del filtrado de ruido en la curva de luz de alta cadencia de HAT-P-37b, utilizando las 3 metodologías descritas en la sección anterior: el filtro de frecuencias de Fourier, promedio móvil y análisis de componentes principales (PCA). La curva de luz de HAT-P-37b fue obtenida mediante fotometría de apertura, ya que no se encontraron estrellas de campo para la fotometría diferencial.
+Se le aplico la metodología propuesta en este trabajo a todas las curvas de luz (véase tabla \ref{tab_resultados_obs}, sin embargo por presentación se presentan los resultados del filtrado de ruido en la curva de luz de alta cadencia de HAT-P-37, utilizando las 3 metodologías descritas en la sección anterior: el filtro de frecuencias de Fourier, promedio móvil y análisis de componentes principales (PCA). La curva de luz de HAT-P-37 fue obtenida mediante fotometría de apertura utilizando APPHi.
+
 
 \begin{figure}[h!]
 	\centering
@@ -166,7 +177,7 @@ Se presenta un ejemplo del resultado del filtrado de ruido en la curva de luz de
 
 En la figura \ref{fig_transito_fou} podemos apreciar el resultado del filtro pasabajas de Fourier, aplicado a la curva de luz de HAT-P-37b. A pesar de ser una curva con mucho ruido, se puede apreciar a simple vista la forma del tránsito. Se utilizó una frecuencia de corte $FC$ de $2\times 10^{-3}$. También se muestra el modelo teórico del tránsito en negro, simulado usando los parámetros presentados en \cite{bakos2012hat} y \textit{BATMAN} (véase III.3.1). La similitud entre el modelo y la curva filtrada es alto, el coeficiente de correlación es de $C=0.982$.
 
-\begin{figure}[h!]
+\begin{figure}
 	\centering
 	  \includegraphics[max size={0.9\textwidth}{0.9\textheight}]{./figures/hat37b_fou_2.png}
 	 \caption{Azul: curva de luz de HAT-P-37b después del filtrado de altas frecuencias. La señal a ruido resultante fue de $SNR=124.75$. La línea negra representa el modelo teórico, utilizando los parámetros presentados en \cite{bakos2012hat}. El coeficiente de correlación entre la curva y el modelo es $C=0.982$.}
@@ -178,7 +189,7 @@ En la figura \ref{fig_transito_fou} podemos apreciar el resultado del filtro pas
 
 En la figura \ref{fig_transito_mov} podemos apreciar el resultado del promedio móvil, aplicado a la curva de luz de HAT-P-37b. Para este resultado, se utilizó una ventana de 3000 frames. De igual manera se muestra en negro el modelo teórico. La similitud entre el modelo y la curva filtrada es alto, el coeficiente de correlación es de $C=0.962$.
 
-\begin{figure}[h!]
+\begin{figure}
 \centering
 	\includegraphics[max size={0.9\textwidth}{0.9\textheight}]{./figures/hat37b_mov_2.png}
 	\caption{Azul: curva de luz de HAT-P-37b después del promedio móvil. La señal a ruido resultante fue de $SNR=116.64$. La línea negra representa el modelo teórico, utilizando los parámetros presentados en \cite{bakos2012hat}. El coeficiente de correlación entre la curva y el modelo es $C=0.962$.}
@@ -193,7 +204,7 @@ Como se observa en la figura \ref{fig_transito_mov}, este método altera la pend
 
 En la figura \ref{fig_transito_pca} podemos apreciar el resultado del filtrado utilizando el análisis de componentes principales (PCA), aplicado a la curva de luz de HAT-P-37b. Se calcularon las componentes principales de un conjunto de 25 tránsitos simulados con diferentes $\Delta F$ y $t_{c}$. Debido a que la componentes principales son calculadas utilizando una variedad de parámetros, la curva resultado solo posee la forma de tránsito, sin embargo, no es ideal para ser utilizada para el cálculo de observables.
 
-\begin{figure}[h!]
+\begin{figure}
 	\centering
 		\includegraphics[max size={0.9\textwidth}{0.9\textheight}]{./figures/hat37b_pca_2.png}
 		\caption{Azul: curva de luz de HAT-P-37b después del filtrado con PCA. La señal a ruido resultante fue de $SNR=135.51$. La línea negra representa el modelo teórico, utilizando los parámetros presentados en \cite{bakos2012hat}. El coeficiente de correlación entre la curva y el modelo es $C=0.889$.}
@@ -202,14 +213,15 @@ En la figura \ref{fig_transito_pca} podemos apreciar el resultado del filtrado u
 
 Esta metodología funciona para la visualización, y como método de comparación entre los modelos teóricos y las curvas de luz. Si las curva de luz, contiene componentes principales similares a las del modelo, se producirá una curva similar a la que se observa en la figura \ref{fig_transito_pca}. Si la curva es solo ruido, el resultado será una curva errática sin ningún parecido con el modelo como se muestra en la figura \ref{fig_puro_ruido_pca}.
 
-\begin{figure}[h!]
+\begin{figure}
 	\centering
-		\includegraphics[max size={0.9\textwidth}{0.9\textheight}]{./figures/PCA_puro_ruido.png}
+		\includegraphics[max size={\textwidth}{\textheight}]{./figures/PCA_puro_ruido.png}
 		\caption{Arriba: Ruido simulado con componentes de baja frecuencia en su espectro. La línea negra representa el modelo teórico de HAT-P-37b, utilizando los parámetros presentados en \cite{bakos2012hat}. Abajo: en azul se muestra el resultado de PCA a una curva sin tránsito inmerso.}
 		\label{fig_puro_ruido_pca}
 \end{figure}
 
 
+\newpage
 \subsubsection*{IV.2.1.4 Resumen de resultados con datos observacionales}
 \addcontentsline{toc}{subsubsection}{IV.2.1.4 Resumen de resultados con datos observacionales}
 
@@ -277,4 +289,16 @@ Se aplicó un ajuste del modelo trapezoidal (véase III.6.1) a las curvas filtra
 
 El ajuste trapezoidal, nos regresa como resultado dos parámetros, $\Delta F$ y $t_{c}$ (véase II.1.1). En estos resultados evaluamos solamente el valor de $\Delta F$, esto nos brinda información sobre la magnitud del cambio en el flujo de la estrella observada, el cual es uno de los principales criterios para la selección de un posible candidato a tránsito. 
 
-Los signos (-) en la tabla \ref{tab_resultados_profundidad}, indican que el método de ajuste falló. Esto ocurre cuando el ajuste del modelo nos da como resultado un valor de $\Delta F$ fuera de los límites permitidos. Esto nos indica que la detectabilidad en los datos observacionales fue baja (38\%), en la mayoría de los casos negativos, las curvas de luz tenían tendencias de baja frecuencia después del proceso de fotometría. Esto también puede apreciarse en la tabla \ref{tab:parametros_exponencial}, existe una correlación entre la magnitud de los parámetros ($a_{1},a_{2}$) y los fallos en la identificación de los tránsitos. Cuando la región de bajas frecuencias (línea roja en \ref{fig:3.8_wasp-74b-curva}) se encuentra contaminada, es muy difícil recuperar la señal del tránsito inmersa en el ruido.
+Los signos (-) en la tabla \ref{tab_resultados_profundidad}, indican que el método de ajuste falló. Esto ocurre cuando el ajuste del modelo nos da como resultado un valor de $\Delta F$ fuera de los límites permitidos. Esto nos indica que la detectabilidad en los datos observacionales fue baja (38\%), en la mayoría de los casos negativos, las curvas de luz tenían tendencias de baja frecuencia después del proceso de fotometría. En la figura \ref{fig_comp_espectros_resultados} comparamos 2 espectros, el primero pertenece a la curva de luz de WASP-74b del 06 de agosto y el de HAT-P-37b del 07 de agosto del 2016.
+
+\begin{figure}
+	\centering
+		\includegraphics[max size={\textwidth}{\textheight}]{./figures/comparacion_espectros_resultados.png}
+		\caption{Arriba: Espectro de la curva de luz de WASP-74b del 06 de agosto. Abajo: Espectro de la curva de luz de HAT-P-37b del 06 de agosto. La línea roja es el espectro del tránsito simulado utilizando los parámetros presentados en \cite{bakos2012hat}. La línea negra representa la envolvente exponencial del espectro. }
+		\label{fig_comp_espectros_resultados}
+\end{figure}
+
+
+Comparamos estos espectros, para ilustrar la diferencia entre las curvas en donde el método funciona correctamente (HAT-P-37$^{2}$) y en las que no (WASP-74b$^{1}$) véase tabla \ref{tab_resultados_profundidad}. Podemos apreciar 2 notables diferencias: el nivel de ruido y la envolvente del espectro. El nivel de ruido en la curva de luz HAT-P-37b$^{2}$ es mayor que en la de WASP-74b$^{1}$, esto puede observarse en la tabla \ref{tab_resultados_obs}. Por lo tanto, la SNR en la curva de luz no juega un papel crucial para que el método funcione. Por otra parte, vemos que la envolvente exponencial del espectro de  WASP-74b$^{1}$ posee significativas contribuciones de baja frecuencia, mientras que el espectro de HAT-P-37b$^{2}$ es completamente plano. Esto también puede apreciarse en la tabla \ref{tab:parametros_exponencial}, existe una correlación entre la magnitud de los parámetros ($a_{1},a_{2}$) y los fallos en la identificación de los tránsitos. Cuando la región de bajas frecuencias (línea roja en \ref{fig:3.8_wasp-74b-curva}) se encuentra contaminada, es muy difícil recuperar la señal del tránsito inmersa en el ruido.
+
+En algunos casos como WASP-48b$^{1}$ y HAT-P-31b$^{1}$, las curvas de luz poseen variaciones sistemáticas posiblemente causadas por el movimiento del telescopio. Creemos que en los otros casos fallidos las contribuciones de baja frecuencia fueron causadas al cambio en la masa de aire o al \textit{seeing} de la noche de observación, para mayor detalle véase \cite{guerrero2020effects}, en donde se estudia a detalle este fenómeno y utilizan algunas de las imágenes que utilizamos en este trabajo.
