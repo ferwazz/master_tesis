@@ -7,3 +7,15 @@ RUN apt-get update && apt-get install --yes --no-install-recommends \
         && \
     apt clean
 
+RUN pip install \
+    matplotlib \
+    numpy \
+    pandas \
+    scipy \
+    lmfit \
+    sklearn \
+    black \
+    flake8 \
+    rope \
+    ipykernel
+
